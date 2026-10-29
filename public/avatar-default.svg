@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <radialGradient id="oceanBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1f1810"/>
+      <stop offset="70%" stop-color="#0e0a07"/>
+      <stop offset="100%" stop-color="#050403"/>
+    </radialGradient>
+    <linearGradient id="goldRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd56b"/>
+      <stop offset="35%" stop-color="#c9a227"/>
+      <stop offset="70%" stop-color="#7a5c12"/>
+      <stop offset="100%" stop-color="#e6b830"/>
+    </linearGradient>
+    <radialGradient id="innerGlow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#ff7a1a" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="200" cy="200" r="190" fill="url(#oceanBg)" stroke="url(#goldRim)" stroke-width="6" filter="url(#shadow)"/>
+  <circle cx="200" cy="200" r="176" fill="none" stroke="#8b5a2b" stroke-width="2" stroke-dasharray="6,4"/>
+  <circle cx="200" cy="200" r="170" fill="url(#innerGlow)"/>
+
+  <!-- Compass / Nautical Star Behind -->
+  <g opacity="0.25" stroke="#c9a227" stroke-width="1.5">
+    <line x1="200" y1="35" x2="200" y2="365"/>
+    <line x1="35" y1="200" x2="365" y2="200"/>
+    <circle cx="200" cy="200" r="140" fill="none" stroke-dasharray="4,8"/>
+  </g>
+
+  <!-- Captain Silhouette / Crest -->
+  <g id="captain-silhouette" transform="translate(0, 15)">
+    <!-- Shoulders / Coat -->
+    <path d="M100 330 C110 270 145 240 200 240 C255 240 290 270 300 330 Z" fill="#140f0b" stroke="url(#goldRim)" stroke-width="3"/>
+    
+    <!-- Coat Lapels and Gold Trim -->
+    <path d="M155 246 L180 300 L200 270 L220 300 L245 246" fill="none" stroke="#c9a227" stroke-width="2.5"/>
+    <circle cx="200" cy="272" r="4" fill="#a01d12"/>
+
+    <!-- Head / Neck -->
+    <ellipse cx="200" cy="180" rx="42" ry="50" fill="#2b1e14" stroke="url(#goldRim)" stroke-width="2"/>
+    
+    <!-- Captain's Bicorne / Tricorn Hat -->
+    <path d="M120 155 Q200 110 280 155 Q245 130 200 132 Q155 130 120 155 Z" fill="#0b0906" stroke="url(#goldRim)" stroke-width="3"/>
+    <path d="M140 148 Q200 95 260 148" fill="none" stroke="#a01d12" stroke-width="3"/>
+    
+    <!-- Gold Medallion Badge on Hat -->
+    <circle cx="200" cy="138" r="8" fill="#ffd56b" stroke="#7a5c12" stroke-width="1.5"/>
+    <circle cx="200" cy="138" r="4" fill="#a01d12"/>
+  </g>
+
+  <!-- Text / Banner at Bottom -->
+  <g transform="translate(200, 350)">
+    <rect x="-85" y="-14" width="170" height="26" rx="13" fill="#a01d12" stroke="#ffd56b" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="0" y="4" font-family="Georgia, serif" font-size="11" font-weight="bold" fill="#e8dcc0" text-anchor="middle" letter-spacing="2">CAPTAIN HARSH</text>
+  </g>
+</svg>
