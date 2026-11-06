@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Anchor, Volume2, VolumeX, Menu, X } from 'lucide-react';
+import { Anchor, Volume2, VolumeX, Menu, X, Terminal, FileText } from 'lucide-react';
 import type { PersonalProfile } from '../../data/personalConfig';
 import { playAudioFx } from './AudioEngine';
 
@@ -8,6 +8,8 @@ interface NavbarProps {
   onToggleAudio: () => void;
   activeSection: string;
   profile: PersonalProfile;
+  onOpenTerminal: () => void;
+  onOpenResume: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -15,6 +17,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleAudio,
   activeSection,
   profile,
+  onOpenTerminal,
+  onOpenResume,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -23,6 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'legend', label: 'Biography' },
     { id: 'armory', label: 'Tech Stack' },
     { id: 'voyages', label: 'Projects' },
+    { id: 'spoils', label: 'Spoils & Certs' },
     { id: 'log', label: 'Experience' },
     { id: 'bottle', label: 'Contact' },
   ];
@@ -66,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </button>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-5">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -88,8 +93,34 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </div>
 
-        {/* Actions: Audio Toggle & Mobile Menu */}
-        <div className="flex items-center gap-3">
+        {/* Tactical Actions: Terminal, Resume, Audio Toggle & Mobile Menu */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* CLI Terminal Button */}
+          <button
+            onClick={() => {
+              playAudioFx('click');
+              onOpenTerminal();
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#171310] hover:bg-[#a01d12]/40 text-[#ffd56b] hover:text-white border border-[#c9a227]/60 hover:border-[#ffd56b] rounded-full text-xs font-cinzel cursor-pointer transition-all shadow-sm"
+            title="Open Captain's CLI Terminal (~ or Ctrl+K)"
+          >
+            <Terminal className="w-3.5 h-3.5 text-[#ff7a1a]" />
+            <span className="hidden sm:inline">CLI</span>
+          </button>
+
+          {/* Parchment Resume Button */}
+          <button
+            onClick={() => {
+              playAudioFx('seal');
+              onOpenResume();
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#171310] hover:bg-[#a01d12]/40 text-[#d8c49a] hover:text-[#ffd56b] border border-[#8b5a2b] hover:border-[#ffd56b] rounded-full text-xs font-cinzel cursor-pointer transition-all shadow-sm"
+            title="Open Official Curriculum Vitae"
+          >
+            <FileText className="w-3.5 h-3.5 text-[#ff7a1a]" />
+            <span className="hidden sm:inline">Resume</span>
+          </button>
+
           {/* Sea Soundscape Wax Seal Button */}
           <button
             onClick={handleToggleAudio}
@@ -112,7 +143,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Mobile Hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-[#c9a227] hover:text-[#ff7a1a] cursor-pointer"
+            className="lg:hidden p-2 text-[#c9a227] hover:text-[#ff7a1a] cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -122,16 +153,36 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#0b0906]/98 border-b-2 border-[#c9a227]/50 px-6 py-6 space-y-3">
+        <div className="lg:hidden bg-[#0b0906]/98 border-b-2 border-[#c9a227]/50 px-6 py-6 space-y-3 font-cinzel">
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => scrollTo(link.id)}
-              className="block w-full text-left font-cinzel text-sm text-[#e8dcc0] hover:text-[#ff7a1a] py-1.5 border-b border-[#281d13]"
+              className="block w-full text-left text-sm text-[#e8dcc0] hover:text-[#ff7a1a] py-1.5 border-b border-[#281d13]"
             >
               ⚓ {link.label}
             </button>
           ))}
+          <div className="flex gap-2 pt-2">
+            <button
+              onClick={() => {
+                setMobileOpen(false);
+                onOpenTerminal();
+              }}
+              className="flex-1 py-2 bg-[#171310] border border-[#c9a227] rounded text-xs text-[#ffd56b] flex items-center justify-center gap-1.5"
+            >
+              <Terminal className="w-3.5 h-3.5 text-[#ff7a1a]" /> Open CLI
+            </button>
+            <button
+              onClick={() => {
+                setMobileOpen(false);
+                onOpenResume();
+              }}
+              className="flex-1 py-2 wax-seal rounded text-xs text-[#e8dcc0] flex items-center justify-center gap-1.5"
+            >
+              <FileText className="w-3.5 h-3.5 text-[#ff7a1a]" /> View Resume
+            </button>
+          </div>
         </div>
       )}
     </nav>

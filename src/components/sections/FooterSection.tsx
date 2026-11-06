@@ -37,7 +37,7 @@ export const FooterSection: React.FC = () => {
         {/* Copyright & Disclaimer */}
         <div className="pt-6 border-t border-[#281d13] text-[10px] font-cinzel text-[#8b5a2b] space-y-1">
           <p>
-            © {new Date().getFullYear()} Software Engineering Portfolio. Built with React 19, TypeScript & Three.js.
+            © 2026 Software Engineering Portfolio. Built with React 19, TypeScript & Three.js.
           </p>
         </div>
       </div>

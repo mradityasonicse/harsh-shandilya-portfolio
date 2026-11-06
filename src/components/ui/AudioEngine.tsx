@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 // Global audio FX interface
 declare global {
   interface Window {
-    __playAudioFx?: (type: 'cannon' | 'click' | 'creak' | 'seal' | 'thunder' | 'page') => void;
+    __playAudioFx?: (type: 'cannon' | 'click' | 'creak' | 'seal' | 'thunder' | 'page' | 'bell') => void;
   }
 }
 
@@ -11,7 +11,7 @@ interface AudioEngineProps {
   isPlaying: boolean;
 }
 
-export const playAudioFx = (type: 'cannon' | 'click' | 'creak' | 'seal' | 'thunder' | 'page') => {
+export const playAudioFx = (type: 'cannon' | 'click' | 'creak' | 'seal' | 'thunder' | 'page' | 'bell') => {
   if (typeof window !== 'undefined' && window.__playAudioFx) {
     window.__playAudioFx(type);
   }
@@ -40,7 +40,7 @@ export const AudioEngine: React.FC<AudioEngineProps> = ({ isPlaying }) => {
   };
 
   // Sound FX Synthesizers
-  const playSoundEffect = (type: 'cannon' | 'click' | 'creak' | 'seal' | 'thunder' | 'page') => {
+  const playSoundEffect = (type: 'cannon' | 'click' | 'creak' | 'seal' | 'thunder' | 'page' | 'bell') => {
     const ctx = getContext();
     if (!ctx) return;
 
@@ -191,6 +191,31 @@ export const AudioEngine: React.FC<AudioEngineProps> = ({ isPlaying }) => {
       gain.connect(ctx.destination);
       noiseSource.start(now);
       noiseSource.stop(now + 2.5);
+    } else if (type === 'bell') {
+      // 7. Ship's Brass Bell Tone with harmonic ring
+      const fundamental = ctx.createOscillator();
+      fundamental.type = 'sine';
+      fundamental.frequency.setValueAtTime(1174.66, now); // D6
+      const fGain = ctx.createGain();
+      fGain.gain.setValueAtTime(0.28, now);
+      fGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+
+      const overtone = ctx.createOscillator();
+      overtone.type = 'sine';
+      overtone.frequency.setValueAtTime(2349.32, now); // D7
+      const oGain = ctx.createGain();
+      oGain.gain.setValueAtTime(0.14, now);
+      oGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+
+      fundamental.connect(fGain);
+      fGain.connect(ctx.destination);
+      overtone.connect(oGain);
+      oGain.connect(ctx.destination);
+
+      fundamental.start(now);
+      overtone.start(now);
+      fundamental.stop(now + 1.9);
+      overtone.stop(now + 1.3);
     }
   };
 

@@ -4,8 +4,8 @@ export const CustomCursor: React.FC = () => {
   const [pos, setPos] = useState({ x: -100, y: -100 });
   const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [rotation, setRotation] = useState(0);
   const targetPos = useRef({ x: -100, y: -100 });
-  const rotationRef = useRef(0);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -15,7 +15,7 @@ export const CustomCursor: React.FC = () => {
 
     const handleMouseDown = () => {
       setIsClicking(true);
-      rotationRef.current += 180 + Math.random() * 90;
+      setRotation((r) => r + 180 + Math.random() * 90);
     };
 
     const handleMouseUp = () => {
@@ -65,7 +65,7 @@ export const CustomCursor: React.FC = () => {
       {/* Outer Brass Ring with Cardinal Points */}
       <div
         className="w-10 h-10 rounded-full border-2 border-[#c9a227] flex items-center justify-center relative shadow-[0_0_15px_rgba(201,162,39,0.5)] transition-transform duration-500 ease-out"
-        style={{ transform: `rotate(${rotationRef.current}deg)` }}
+        style={{ transform: `rotate(${rotation}deg)` }}
       >
         {/* Cardinal Markers */}
         <span className="absolute -top-3 text-[8px] font-bold text-[#c9a227] font-cinzel">N</span>

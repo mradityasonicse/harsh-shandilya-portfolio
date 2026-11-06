@@ -8,9 +8,10 @@ import { playAudioFx } from '../ui/AudioEngine';
 
 interface ContactSectionProps {
   profile: PersonalProfile;
+  onOpenResume?: () => void;
 }
 
-export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
+export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenResume }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,7 +45,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
   return (
     <section id="bottle" className="min-h-screen py-20 px-4 max-w-5xl mx-auto relative z-10">
       <SectionBanner
-        number="PORT V"
+        number="PORT VI"
         title="Direct Contact & Opportunity Inquiry"
         subtitle="Open for full-time roles, architectural consulting, and high-impact software projects"
       />
@@ -201,13 +202,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
             <p className="text-xs text-[#b39b6d] font-fell italic mb-4">
               Download complete PDF curriculum vitae with educational background, certifications, and project metrics.
             </p>
-            <a
-              href={profile.resumeUrl}
-              download="Resume.pdf"
-              className="inline-flex items-center gap-2 px-6 py-2.5 wax-seal text-[#e8dcc0] font-cinzel font-bold text-xs uppercase rounded hover:scale-105 transition-transform"
+            <button
+              onClick={() => {
+                playAudioFx('seal');
+                if (onOpenResume) onOpenResume();
+              }}
+              className="inline-flex items-center gap-2 px-6 py-2.5 wax-seal text-[#e8dcc0] font-cinzel font-bold text-xs uppercase rounded hover:scale-105 transition-transform cursor-pointer"
             >
-              Download PDF Resume
-            </a>
+              View Official Resume
+            </button>
           </div>
         </div>
       </div>

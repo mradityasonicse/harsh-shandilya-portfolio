@@ -9,6 +9,11 @@ export const ThreeOceanScene: React.FC<ThreeOceanSceneProps> = ({
   scrollProgress,
 }) => {
   const mountRef = useRef<HTMLDivElement>(null);
+  const scrollProgressRef = useRef(scrollProgress);
+
+  useEffect(() => {
+    scrollProgressRef.current = scrollProgress;
+  }, [scrollProgress]);
 
   useEffect(() => {
     const container = mountRef.current;
@@ -359,7 +364,7 @@ export const ThreeOceanScene: React.FC<ThreeOceanSceneProps> = ({
       emberGeo.attributes.position.needsUpdate = true;
 
       // (E) Scroll-Driven Camera Motion
-      const p = scrollProgress;
+      const p = scrollProgressRef.current;
       const targetCamX = Math.sin(p * Math.PI * 2) * 5.0 + mouse.x * 1.2;
       const targetCamY = 3.5 + p * 3.8 + mouse.y * 0.8;
       const targetCamZ = 13.0 - p * 6.5;

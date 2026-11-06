@@ -6,11 +6,13 @@ import { playAudioFx } from '../ui/AudioEngine';
 interface HeroSectionProps {
   profile: PersonalProfile;
   onExplore: () => void;
+  onOpenResume?: () => void;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({
   profile,
   onExplore,
+  onOpenResume,
 }) => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
@@ -108,15 +110,16 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           Verified GitHub
         </a>
 
-        <a
-          href={profile.resumeUrl}
-          download="Developer_Resume.pdf"
-          onClick={() => playAudioFx('click')}
-          className="flex items-center gap-2 px-6 py-3.5 bg-[#21160e]/95 text-[#d8c49a] hover:text-white border border-[#8b5a2b] hover:border-[#ffd56b] rounded-full font-cinzel text-xs tracking-wider uppercase transition-all hover:scale-105 active:scale-95 shadow-sm"
+        <button
+          onClick={() => {
+            playAudioFx('seal');
+            if (onOpenResume) onOpenResume();
+          }}
+          className="flex items-center gap-2 px-6 py-3.5 bg-[#21160e]/95 text-[#d8c49a] hover:text-white border border-[#8b5a2b] hover:border-[#ffd56b] rounded-full font-cinzel text-xs tracking-wider uppercase transition-all hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
         >
           <FileText className="w-4 h-4 text-[#ff7a1a]" />
           Curriculum Vitae
-        </a>
+        </button>
       </div>
 
       {/* Downward Navigation Anchor */}

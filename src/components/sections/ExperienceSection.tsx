@@ -12,7 +12,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile })
   return (
     <section id="log" className="min-h-screen py-20 px-4 max-w-5xl mx-auto relative z-10">
       <SectionBanner
-        number="PORT IV"
+        number="PORT V"
         title="Engineering Career & Work History"
         subtitle="Documented contributions across production environments, high-concurrency systems, and leadership roles"
       />
