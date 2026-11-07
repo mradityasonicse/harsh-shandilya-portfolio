@@ -71,7 +71,8 @@ export const PERSONAL_CONFIG: PersonalProfile = {
   tagline: "Architecting high-concurrency distributed systems, zero-defect microservices, and interactive 3D spatial web environments.",
   location: "Bhilai / Raipur, India • 21°14'N 81°38'E (Open to Global Remote & Relocation)",
   email: "7c24harsh@gmail.com",
-  photoUrl: "/profile-photo.jpg",
+  // Path to your hero portrait cutout (drop your cut-out photo in public/ and update path here):
+  photoUrl: "/harsh-cutout.png",
   githubUrl: "https://github.com/mradityasonicse",
   linkedinUrl: "https://linkedin.com/in/harsh-shandilya",
   twitterUrl: "https://x.com",
@@ -389,8 +390,8 @@ export interface IntroConfig {
 
 export const INTRO_CONFIG: IntroConfig = {
   enabled: true,
-  // Visible identity displayed on the airplane fuselage (defaults to PERSONAL_CONFIG.name):
-  ownerName: PERSONAL_CONFIG.name,
+  // Owner name displayed on the airplane and hero poster:
+  ownerName: "HARSH",
   durationMs: 2200,
 };
 

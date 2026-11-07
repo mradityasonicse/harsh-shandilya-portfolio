@@ -342,7 +342,12 @@ export const ThreeOceanScene: React.FC<ThreeOceanSceneProps> = ({
 
       // (B) Galleon Buoyancy, Pitch & Roll Physics
       const shipWave = Math.sin(time * 1.4) * 0.24;
-      shipGroup.position.y = -0.06 + shipWave;
+      const p = scrollProgressRef.current;
+      // In Hero poster view (p close to 0), submerge/tuck the ship below horizon so the poster has clean focus
+      // As user scrolls past 3%, the flagship galleon ascends majestically onto the waves
+      const shipElevation = Math.min(Math.max((p - 0.02) * 12, 0), 1);
+      shipGroup.position.y = -7.5 * (1 - shipElevation) - 0.06 + shipWave;
+      shipGroup.position.z = -1.5 * (1 - shipElevation);
       shipGroup.rotation.z = Math.sin(time * 0.85) * 0.045 + mouse.x * 0.03; // Roll
       shipGroup.rotation.x = Math.cos(time * 1.1) * 0.035 + mouse.y * 0.02;  // Pitch
       shipGroup.rotation.y = Math.sin(time * 0.4) * 0.025;                   // Yaw
@@ -373,7 +378,6 @@ export const ThreeOceanScene: React.FC<ThreeOceanSceneProps> = ({
       emberGeo.attributes.position.needsUpdate = true;
 
       // (D) Cinematic Scroll-Driven Camera Choreography
-      const p = scrollProgressRef.current;
       // Multi-stage camera flight:
       // Hero: front bow view | Skills: top mast overview | Projects: wide ocean wake | Contact: low horizon
       const targetCamX = Math.sin(p * Math.PI * 2.2) * 4.5 + mouse.x * 1.2;

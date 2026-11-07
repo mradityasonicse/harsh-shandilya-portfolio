@@ -7,7 +7,7 @@ interface CinematicPreloaderProps {
 }
 
 export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
-  ownerName = 'Harsh Shandilya',
+  ownerName = 'HARSH',
   durationMs = 2300,
   onComplete,
 }) => {
@@ -361,12 +361,12 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                 fill="#f8fafc"
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize="12.5"
-                fontWeight="700"
-                letterSpacing="0.26em"
+                fontSize="14"
+                fontWeight="900"
+                letterSpacing="0.3em"
                 style={{
                   fontFamily: "'Cinzel', Georgia, serif",
-                  filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.98))',
+                  filter: 'drop-shadow(0 1px 4px rgba(0,0,0,0.98))',
                 }}
               >
                 {formattedName}

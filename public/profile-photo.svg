@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="600" height="750" fill="none">
+  <defs>
+    <!-- Dark Suit Fabric Gradient -->
+    <linearGradient id="suitGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141c28"/>
+      <stop offset="40%" stop-color="#0c121a"/>
+      <stop offset="100%" stop-color="#06090e"/>
+    </linearGradient>
+
+    <!-- Lapel Shading Gradient -->
+    <linearGradient id="lapelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e2a3c"/>
+      <stop offset="100%" stop-color="#0a0f16"/>
+    </linearGradient>
+
+    <!-- Ambient Rim Light on Silhouette Edge -->
+    <linearGradient id="rimLight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.8"/>
+      <stop offset="20%" stop-color="#dfbe7a" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0.2"/>
+      <stop offset="80%" stop-color="#dfbe7a" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Skin Tone Silhouette Gradient -->
+    <linearGradient id="skinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2a3547"/>
+      <stop offset="50%" stop-color="#182232"/>
+      <stop offset="100%" stop-color="#0f1622"/>
+    </linearGradient>
+
+    <!-- Hair Contour Gradient -->
+    <linearGradient id="hairGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d14"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Torso & Shoulders (Tailored Blazer) -->
+  <path d="M 80 750 L 110 520 C 125 430 190 390 240 375 L 300 450 L 360 375 C 410 390 475 430 490 520 L 520 750 Z" 
+        fill="url(#suitGrad)" stroke="url(#rimLight)" stroke-width="1.5"/>
+
+  <!-- Left Blazer Lapel -->
+  <path d="M 230 380 L 180 500 L 255 580 L 285 450 Z" 
+        fill="url(#lapelGrad)" stroke="rgba(223, 190, 122, 0.4)" stroke-width="1"/>
+
+  <!-- Right Blazer Lapel -->
+  <path d="M 370 380 L 420 500 L 345 580 L 315 450 Z" 
+        fill="url(#lapelGrad)" stroke="rgba(223, 190, 122, 0.4)" stroke-width="1"/>
+
+  <!-- Inner Shirt & Collar -->
+  <path d="M 270 370 L 300 440 L 330 370 L 300 385 Z" 
+        fill="#080c12" stroke="#dfbe7a" stroke-width="0.8" opacity="0.9"/>
+  <path d="M 275 372 L 290 415 L 300 435 L 310 415 L 325 372" 
+        stroke="rgba(239, 68, 68, 0.5)" stroke-width="1.2" fill="none"/>
+
+  <!-- Neck -->
+  <path d="M 265 370 C 265 320 270 290 275 270 L 325 270 C 330 290 335 320 335 370 Z" 
+        fill="url(#skinGrad)" stroke="rgba(223, 190, 122, 0.3)" stroke-width="0.8"/>
+
+  <!-- Head Contour -->
+  <ellipse cx="300" cy="220" rx="68" ry="85" 
+           fill="url(#skinGrad)" stroke="url(#rimLight)" stroke-width="1.2"/>
+
+  <!-- Hair Cutout Contour -->
+  <path d="M 226 210 C 220 160 250 120 300 115 C 350 120 380 160 374 210 C 365 175 345 155 300 155 C 255 155 235 175 226 210 Z" 
+        fill="url(#hairGrad)" stroke="rgba(223, 190, 122, 0.4)" stroke-width="1"/>
+
+  <!-- Subtle Executive Glasses / Eye Accent -->
+  <path d="M 260 215 Q 275 210 290 215 M 310 215 Q 325 210 340 215" 
+        stroke="#dfbe7a" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+</svg>
