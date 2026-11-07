@@ -75,7 +75,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#0b0906] text-[#e8dcc0] font-fell selection:bg-[#a01d12] selection:text-[#d8c49a] overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#05080c] text-[#f1f5f9] font-sans selection:bg-[#c5a059]/30 selection:text-[#dfbe7a] overflow-x-hidden">
       {/* 1. Procedural 3D WebGL Ocean Canvas (Fixed in Background) */}
       <ThreeOceanScene scrollProgress={scrollProgress} />
 

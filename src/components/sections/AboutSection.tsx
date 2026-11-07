@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import type { PersonalProfile } from '../../data/personalConfig';
 import { SectionBanner } from '../ui/SectionBanner';
-import { ParchmentCard } from '../ui/ParchmentCard';
-import { GraduationCap, Award, CheckCircle2, Code2, MapPin, Terminal } from 'lucide-react';
+import { GraduationCap, Terminal, MapPin, ShieldCheck, Code2 } from 'lucide-react';
 
 interface AboutSectionProps {
   profile: PersonalProfile;
@@ -13,8 +12,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
 
   const handlePortraitMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 10;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -10;
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
     setPortraitTilt({ x, y });
   };
 
@@ -23,65 +22,73 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
   };
 
   return (
-    <section id="legend" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
+    <section id="legend" className="min-h-screen py-20 px-4 max-w-7xl mx-auto relative z-10">
       <SectionBanner
-        number="PORT I"
-        title="Engineering Chronicle & Biography"
-        subtitle="A verified profile forged across production systems, hackathon podiums, and deep code architecture"
+        number="CHRONICLE I"
+        title="Engineering Provenance & Dossier"
+        subtitle="A verified profile forged across production distributed systems, hackathon podiums, and deep code architecture"
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-10">
-        {/* Left Side: Personal Engineering Manifesto */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-8">
+        {/* Left Side: Personal Engineering Manifesto & Academic Provenance */}
         <div className="lg:col-span-7">
-          <ParchmentCard rotate="-0.8" className="border-2 border-[#8b5a2b]">
-            <div className="flex items-center justify-between border-b-2 border-[#8b5a2b]/30 pb-3 mb-4">
-              <span className="font-cinzel text-xs font-bold uppercase text-[#a01d12] flex items-center gap-1.5">
-                <Terminal className="w-4 h-4 text-[#a01d12]" /> Software Engineer Biography
+          <div className="nautical-card p-6 sm:p-8 rounded-2xl border border-[#c5a059]/25 shadow-[0_20px_50px_rgba(0,0,0,0.85)] backdrop-blur-xl">
+            {/* Header Telemetry */}
+            <div className="flex items-center justify-between border-b border-[#c5a059]/15 pb-4 mb-5">
+              <span className="font-mono text-xs font-semibold text-[#dfbe7a] flex items-center gap-2">
+                <Terminal className="w-4 h-4 text-[#dfbe7a]" />
+                ENGINEERING DOSSIER • ID: ARCH-HARSH-01
               </span>
-              <span className="font-cinzel text-xs text-[#543b22]">Verified Profile • {profile.location.split('(')[0].trim()}</span>
+              <span className="font-mono text-xs text-[#94a3b8] flex items-center gap-1">
+                <MapPin className="w-3.5 h-3.5 text-[#dfbe7a]" />
+                21°14'N, 81°38'E
+              </span>
             </div>
 
-            <h3 className="text-2xl md:text-3xl font-pirate text-[#a01d12] mb-3">
+            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#f1f5f9] mb-3">
               About Me: {profile.name}
             </h3>
 
-            <p className="text-base text-[#1c130c] font-fell leading-relaxed mb-4 text-justify">
+            <p className="text-sm sm:text-base text-[#94a3b8] font-sans leading-relaxed mb-6 font-normal">
               {profile.aboutBio}
             </p>
 
-            <div className="p-4 bg-[#bfa97c]/25 rounded border-l-4 border-[#a01d12] mb-6">
-              <h4 className="text-xs font-cinzel font-bold text-[#171310] uppercase mb-1">
-                Core Engineering Philosophy:
+            {/* Core Code Philosophy Callout */}
+            <div className="p-4 sm:p-5 bg-[#05080c]/70 rounded-xl border-l-2 border-[#dfbe7a] border-y border-r border-white/5 mb-6">
+              <h4 className="text-xs font-mono font-bold text-[#dfbe7a] uppercase mb-1.5 flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#dfbe7a]" />
+                Core Architectural Philosophy:
               </h4>
-              <p className="text-sm text-[#382618] font-fell italic leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#cbd5e1] font-sans italic leading-relaxed">
                 "{profile.codePhilosophy}"
               </p>
             </div>
 
-            {/* Academic Qualifications & Degree */}
-            <div className="border-t border-[#8b5a2b]/40 pt-4 space-y-2">
-              <h4 className="text-xs font-cinzel font-bold text-[#171310] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                <GraduationCap className="w-4 h-4 text-[#a01d12]" /> Academic Credentials:
+            {/* Academic Pedigree & Degree Credentials */}
+            <div className="border-t border-[#c5a059]/15 pt-5 space-y-3">
+              <h4 className="text-xs font-mono font-bold text-[#dfbe7a] uppercase tracking-wider flex items-center gap-2">
+                <GraduationCap className="w-4 h-4 text-[#dfbe7a]" />
+                Academic Pedigree & University Record
               </h4>
-              <div className="bg-[#f0e2c2] p-3.5 rounded border border-[#8b5a2b]/40 space-y-1">
-                <div className="flex items-center justify-between text-xs font-cinzel font-bold text-[#171310]">
+              <div className="bg-[#0e1622]/90 p-4 rounded-xl border border-[#c5a059]/20 space-y-1.5">
+                <div className="flex flex-wrap items-center justify-between gap-1 text-xs font-heading font-bold text-[#f1f5f9]">
                   <span>{profile.education.degree}</span>
-                  <span className="text-[#a01d12] font-mono">{profile.education.period}</span>
+                  <span className="text-[#dfbe7a] font-mono">{profile.education.period}</span>
                 </div>
-                <div className="text-xs text-[#523d24] font-cinzel">
-                  {profile.education.institution} • <span className="font-bold text-[#171310]">{profile.education.grade}</span>
+                <div className="text-xs text-[#94a3b8] font-sans">
+                  {profile.education.institution} • <span className="font-semibold text-emerald-400">{profile.education.grade}</span>
                 </div>
-                <p className="text-[11px] text-[#382618] font-fell italic pt-1">
+                <p className="text-xs text-[#64748b] font-sans pt-1 leading-relaxed">
                   {profile.education.details}
                 </p>
               </div>
             </div>
-          </ParchmentCard>
+          </div>
         </div>
 
-        {/* Right Side: Captain's Portrait & 4 Real Engineering Stats */}
+        {/* Right Side: Portrait Card & 4 Verified Production Metrics */}
         <div className="lg:col-span-5 space-y-6">
-          {/* Captain's Ornate Portrait Card with Interactive 3D Perspective */}
+          {/* Captain's Architectural Portrait Card with 3D Perspective */}
           <div
             onMouseMove={handlePortraitMove}
             onMouseLeave={handlePortraitLeave}
@@ -89,90 +96,63 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
               transform: `perspective(1000px) rotateX(${portraitTilt.y}deg) rotateY(${portraitTilt.x}deg)`,
               transition: 'transform 0.15s ease-out',
             }}
-            className="bg-[#171310]/95 border-2 border-[#c9a227] rounded-xl p-6 shadow-[0_15px_45px_rgba(0,0,0,0.85)] relative overflow-hidden group backdrop-blur-xl"
+            className="nautical-card rounded-2xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#c5a059]/30 relative overflow-hidden backdrop-blur-xl group"
           >
-            {/* Top gold rim highlight */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#a01d12] via-[#ffd56b] to-[#ff7a1a]" />
-            
+            {/* Top gold highlight line */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#c5a059] via-[#dfbe7a] to-[#c5a059]" />
+
             <div className="flex flex-col sm:flex-row items-center gap-5">
               {/* Portrait Medallion */}
               <div className="relative shrink-0">
-                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full border-4 border-[#c9a227] p-1 bg-gradient-to-br from-[#ffd56b] via-[#c9a227] to-[#543b22] shadow-[0_0_20px_rgba(201,162,39,0.4)] group-hover:shadow-[0_0_30px_#ff7a1a] transition-all">
-                  <img
-                    src={profile.photoUrl || '/avatar-default.svg'}
-                    alt={profile.name}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/avatar-default.svg';
-                    }}
-                    className="w-full h-full object-cover rounded-full filter contrast-105"
-                  />
-                </div>
-                {/* Wax Seal Badge on corner */}
-                <div className="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-[#a01d12] border-2 border-[#ffd56b] flex items-center justify-center text-[10px] font-bold text-[#ffd56b] shadow-md">
-                  ⚓
+                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-[#dfbe7a] p-1 bg-[#05080c] shadow-[0_0_20px_rgba(223,190,122,0.3)] group-hover:shadow-[0_0_30px_rgba(223,190,122,0.5)] transition-all overflow-hidden flex items-center justify-center">
+                  <div className="w-full h-full rounded-full bg-gradient-to-br from-[#141f2e] to-[#05080c] flex flex-col items-center justify-center text-center p-2">
+                    <Code2 className="w-7 h-7 text-[#dfbe7a] mb-1" />
+                    <span className="text-[10px] font-mono text-[#94a3b8] uppercase font-bold">Harsh</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Identity Brief */}
-              <div className="text-center sm:text-left flex-1">
-                <span className="text-[10px] font-cinzel text-[#ff7a1a] tracking-widest uppercase block mb-0.5">
-                  Full-Stack Architect
+              {/* Bio Summary Details */}
+              <div className="text-center sm:text-left space-y-1">
+                <span className="text-[10px] font-mono text-[#dfbe7a] uppercase tracking-wider block font-semibold">
+                  Systems Architect & Engineer
                 </span>
-                <h4 className="text-2xl font-pirate text-[#d8c49a] group-hover:text-[#ffd56b] transition-colors leading-tight">
+                <h4 className="text-xl font-heading font-bold text-[#f1f5f9] leading-tight">
                   {profile.name}
                 </h4>
-                <p className="text-xs font-cinzel text-[#b39b6d] mt-1">
-                  {profile.role.split('&')[0]}
+                <p className="text-xs font-sans text-[#94a3b8] leading-relaxed">
+                  {profile.subRole}
                 </p>
-                <div className="mt-2.5 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0b0906] border border-[#c9a227]/40 text-[10px] font-cinzel text-[#e8dcc0]">
-                  <MapPin className="w-3 h-3 text-[#ff7a1a]" />
-                  <span>{profile.location.split('(')[0].trim()}</span>
+                <div className="pt-2 flex flex-wrap items-center justify-center sm:justify-start gap-1.5">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#05080c] border border-white/10 text-emerald-400">
+                    ● Available for Hire
+                  </span>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#05080c] border border-white/10 text-[#dfbe7a]">
+                    Full-Stack / Distributed
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* 4 Stats Medallions */}
-          <div className="grid grid-cols-2 gap-4">
-            {profile.stats.map((stat, idx) => (
+          {/* 4 Verified Production Metrics Grid */}
+          <div className="grid grid-cols-2 gap-3.5">
+            {profile.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="bg-[#171310]/95 border border-[#c9a227]/60 rounded-xl p-4 sm:p-5 text-center shadow-[0_8px_25px_rgba(0,0,0,0.8)] hover:border-[#ffd56b] hover:-translate-y-1 transition-all backdrop-blur-xl"
+                className="nautical-card rounded-xl p-4 sm:p-5 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all group/stat shadow-sm"
               >
-                <div className="w-9 h-9 mx-auto mb-2 rounded-full border border-[#c9a227]/40 flex items-center justify-center bg-[#0b0906] shadow-inner">
-                  {idx === 0 && <Code2 className="w-4 h-4 text-[#c9a227]" />}
-                  {idx === 1 && <Award className="w-4 h-4 text-[#ff7a1a]" />}
-                  {idx === 2 && <CheckCircle2 className="w-4 h-4 text-[#c9a227]" />}
-                  {idx === 3 && <MapPin className="w-4 h-4 text-[#a01d12]" />}
-                </div>
-                <div className="text-2xl md:text-3xl font-pirate text-[#ffd56b]">
+                <div className="text-xl sm:text-2xl font-mono font-bold text-[#dfbe7a] group-hover/stat:scale-105 transition-transform">
                   {stat.value}
                 </div>
-                <div className="text-[11px] font-cinzel text-[#d8c49a] uppercase tracking-wider mt-1">
+                <div className="text-xs font-heading font-semibold text-[#f1f5f9] mt-1">
                   {stat.label}
                 </div>
-                <div className="text-[10px] font-fell text-[#b39b6d] italic">
+                <div className="text-[11px] font-sans text-[#64748b] mt-0.5">
                   {stat.subtext}
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Hiring / Engagement Notice Card */}
-          <div className="bg-gradient-to-br from-[#171310] via-[#211812] to-[#0b0906] border-2 border-[#c9a227] rounded-xl p-6 sm:p-7 shadow-[0_10px_35px_rgba(201,162,39,0.2)] backdrop-blur-xl">
-            <span className="text-xs font-cinzel text-[#ff7a1a] uppercase tracking-widest block mb-1 font-semibold">
-              Employment & Collaboration Status
-            </span>
-            <h4 className="text-2xl font-pirate text-[#d8c49a] mb-2 leading-tight">
-              Ready for Full-Time Roles & High-Impact Projects
-            </h4>
-            <p className="text-xs text-[#e8dcc0]/85 font-fell leading-relaxed mb-4">
-              Actively seeking opportunities with top-tier technology teams, fast-growing startups, and high-velocity engineering organizations. Open to full-stack, distributed backend, or creative 3D spatial web challenges.
-            </p>
-            <div className="text-xs font-cinzel text-[#ffd56b] flex items-center gap-2">
-              <span className="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
-              <span className="font-semibold">Available for Immediate Onboarding</span>
-            </div>
           </div>
         </div>
       </div>

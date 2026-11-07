@@ -11,8 +11,7 @@ interface ParchmentCardProps {
 export const ParchmentCard: React.FC<ParchmentCardProps> = ({
   children,
   className = '',
-  rotate = '-0.5',
-  hasTornEdges = true,
+  rotate = '0',
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
@@ -27,11 +26,11 @@ export const ParchmentCard: React.FC<ParchmentCardProps> = ({
     const xPercent = (x / rect.width) * 100;
     const yPercent = (y / rect.height) * 100;
 
-    const tiltX = (y / rect.height - 0.5) * -4;
-    const tiltY = (x / rect.width - 0.5) * 4;
+    const tiltX = (y / rect.height - 0.5) * -3;
+    const tiltY = (x / rect.width - 0.5) * 3;
 
     setTilt({ x: tiltX, y: tiltY });
-    setSpotlight({ x: xPercent, y: yPercent, opacity: 0.15 });
+    setSpotlight({ x: xPercent, y: yPercent, opacity: 0.18 });
   };
 
   const handleMouseEnter = () => {
@@ -49,29 +48,27 @@ export const ParchmentCard: React.FC<ParchmentCardProps> = ({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative parchment-card p-6 md:p-8 rounded-sm transition-transform duration-300 ease-out will-change-transform ${
-        hasTornEdges ? 'clip-torn-paper' : ''
-      } ${className}`}
+      className={`relative nautical-card p-6 md:p-8 rounded-xl border border-[#c5a059]/25 shadow-[0_20px_50px_rgba(0,0,0,0.85)] transition-all duration-300 ease-out will-change-transform backdrop-blur-xl ${className}`}
       style={{
         transform: `perspective(1000px) rotate(${rotate}deg) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
       }}
     >
       {/* Specular Radial Cursor Spotlight */}
       <div
-        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
+        className="pointer-events-none absolute inset-0 z-0 rounded-xl transition-opacity duration-300"
         style={{
-          background: `radial-gradient(circle 280px at ${spotlight.x}% ${spotlight.y}%, rgba(255, 230, 160, ${spotlight.opacity}), transparent 70%)`,
+          background: `radial-gradient(circle 350px at ${spotlight.x}% ${spotlight.y}%, rgba(223, 190, 122, ${spotlight.opacity}), transparent 75%)`,
         }}
       />
 
-      {/* Burnt Paper Corner Accents */}
-      <div className="absolute top-2 left-2 w-3.5 h-3.5 border-t-2 border-l-2 border-[#8b5a2b] opacity-70" />
-      <div className="absolute top-2 right-2 w-3.5 h-3.5 border-t-2 border-r-2 border-[#8b5a2b] opacity-70" />
-      <div className="absolute bottom-2 left-2 w-3.5 h-3.5 border-b-2 border-l-2 border-[#8b5a2b] opacity-70" />
-      <div className="absolute bottom-2 right-2 w-3.5 h-3.5 border-b-2 border-r-2 border-[#8b5a2b] opacity-70" />
+      {/* Antique Nautical Brass Corner Markers */}
+      <div className="absolute top-2.5 left-2.5 w-3 h-3 border-t border-l border-[#dfbe7a]/60 pointer-events-none" />
+      <div className="absolute top-2.5 right-2.5 w-3 h-3 border-t border-r border-[#dfbe7a]/60 pointer-events-none" />
+      <div className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b border-l border-[#dfbe7a]/60 pointer-events-none" />
+      <div className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b border-r border-[#dfbe7a]/60 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-10 text-[#171310]">{children}</div>
+      <div className="relative z-10 text-[#f1f5f9]">{children}</div>
     </div>
   );
 };

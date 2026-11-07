@@ -2,143 +2,174 @@
 
 @layer base {
   :root {
-    --ink-black: #0b0906;
-    --charcoal: #171310;
-    --parchment: #d8c49a;
-    --parchment-dark: #b39b6d;
-    --blood-red: #a01d12;
-    --ember: #ff7a1a;
-    --gold: #c9a227;
-    --bone: #e8dcc0;
-    --sea: #0a1a1f;
+    --abyss-deep: #05080c;
+    --abyss-surface: #090e17;
+    --abyss-card: #0e1622;
+    --abyss-border: rgba(197, 160, 89, 0.18);
+    --brass-primary: #c5a059;
+    --brass-light: #dfbe7a;
+    --brass-glow: rgba(223, 190, 122, 0.35);
+    --ocean-teal: #06b6d4;
+    --emerald-signal: #10b981;
+    --crimson-seal: #881337;
+    --slate-text: #94a3b8;
+    --bone-text: #f1f5f9;
   }
 
   body {
-    background-color: var(--ink-black);
-    color: var(--bone);
-    font-family: 'IM Fell English', Georgia, serif;
+    background-color: var(--abyss-deep);
+    color: var(--bone-text);
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
   }
 
-  h1, h2, h3, .font-pirate {
-    font-family: 'Pirata One', cursive;
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Cinzel', Georgia, serif;
+    letter-spacing: 0.04em;
+  }
+
+  .font-display {
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
     letter-spacing: 0.05em;
   }
 
-  .font-cinzel {
-    font-family: 'Cinzel', serif;
-    letter-spacing: 0.08em;
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
   }
 
-  .font-fell {
-    font-family: 'IM Fell English', serif;
+  .font-sans {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   }
 }
 
-/* Custom Scrollbar - Pirate Brass & Ember */
+/* Precision Nautical Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0906;
-  border-left: 1px solid #281d13;
+  background: #05080c;
+  border-left: 1px solid rgba(197, 160, 89, 0.1);
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #c9a227 0%, #a01d12 50%, #281d13 100%);
-  border-radius: 4px;
-  border: 1px solid #ff7a1a;
+  background: linear-gradient(180deg, #c5a059 0%, #1e293b 100%);
+  border-radius: 9999px;
+  border: 1px solid rgba(223, 190, 122, 0.3);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff7a1a;
-  box-shadow: 0 0 10px #ff7a1a;
+  background: #dfbe7a;
+  box-shadow: 0 0 12px rgba(223, 190, 122, 0.6);
 }
 
-/* Realistic Aged Parchment & Torn Edges */
-.parchment-card {
-  background-color: #d8c49a;
+/* Luxury Cartographic Card Engine */
+.nautical-card {
+  background: linear-gradient(145deg, rgba(14, 22, 34, 0.85) 0%, rgba(9, 14, 23, 0.95) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.22);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(223, 190, 122, 0.2);
+  backdrop-filter: blur(16px);
+  position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nautical-card:hover {
+  border-color: rgba(223, 190, 122, 0.55);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85), 0 0 30px rgba(197, 160, 89, 0.15);
+}
+
+/* Brass Hairline Border */
+.brass-border {
+  border: 1px solid rgba(197, 160, 89, 0.25);
+}
+
+/* Deep Oceanic Vignette */
+.vignette-overlay {
+  box-shadow: inset 0 0 120px rgba(5, 8, 12, 0.95), inset 0 0 200px rgba(3, 5, 8, 0.85);
+  pointer-events: none;
+}
+
+/* Cartographic Grid Background Pattern */
+.cartography-grid {
   background-image: 
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.15)),
-    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.015) 0px, rgba(0, 0, 0, 0.015) 2px, transparent 2px, transparent 4px);
-  color: #171310;
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.8),
-    inset 0 0 40px rgba(78, 52, 28, 0.6),
-    inset 0 0 10px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(139, 90, 43, 0.4);
+    linear-gradient(to right, rgba(197, 160, 89, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(197, 160, 89, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
-.clip-torn-paper {
-  clip-path: polygon(
-    1% 1%, 9% 3%, 18% 1%, 27% 4%, 36% 1%, 45% 3%, 54% 0%, 63% 3%, 72% 1%, 81% 4%, 90% 1%, 99% 3%,
-    98% 12%, 100% 24%, 98% 36%, 100% 48%, 98% 60%, 100% 72%, 98% 84%, 100% 96%,
-    93% 99%, 84% 97%, 75% 100%, 66% 97%, 57% 99%, 48% 97%, 39% 100%, 30% 98%, 21% 100%, 12% 98%, 3% 99%,
-    1% 88%, 3% 76%, 1% 64%, 2% 52%, 0% 40%, 2% 28%, 1% 16%
-  );
-}
-
-.clip-ribbon {
-  clip-path: polygon(
-    0% 0%, 100% 0%, 96% 50%, 100% 100%, 0% 100%, 4% 50%
-  );
-}
-
-/* Wax Seal Button */
-.wax-seal {
-  background: radial-gradient(circle at 35% 35%, #e63946, #a01d12 60%, #4a0904 100%);
-  box-shadow: 
-    0 6px 15px rgba(0, 0, 0, 0.7),
-    0 0 20px rgba(160, 29, 18, 0.4),
-    inset 0 3px 5px rgba(255, 255, 255, 0.3),
-    inset 0 -3px 5px rgba(0, 0, 0, 0.6);
-  border: 2px solid #5a0d07;
-  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.wax-seal:hover {
-  transform: scale(1.06) rotate(3deg);
-  box-shadow: 
-    0 10px 25px rgba(0, 0, 0, 0.9),
-    0 0 30px rgba(255, 122, 26, 0.6),
-    inset 0 3px 6px rgba(255, 255, 255, 0.4);
-}
-
-/* Gold Shimmer Sweep */
-.gold-shimmer {
+/* Subtle Shimmer for High-Value Metrics */
+.gold-sheen {
   background: linear-gradient(
-    90deg,
-    #c9a227 0%,
-    #ffeb99 25%,
-    #c9a227 50%,
-    #e5b83b 75%,
-    #c9a227 100%
+    110deg,
+    #c5a059 0%,
+    #dfbe7a 25%,
+    #fff2cc 50%,
+    #dfbe7a 75%,
+    #c5a059 100%
   );
   background-size: 200% auto;
-  color: #0b0906;
-  animation: shimmer 3s linear infinite;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: sheen 4s linear infinite;
 }
 
-@keyframes shimmer {
+@keyframes sheen {
   to {
     background-position: 200% center;
   }
 }
 
-/* Slow Nautical Sway */
-@keyframes seaSway {
+/* Gentle Maritime Heave Animation */
+@keyframes oceanHeave {
   0%, 100% {
-    transform: rotate(-0.75deg) translateY(0px);
+    transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: rotate(0.75deg) translateY(-5px);
+    transform: translateY(-6px) rotate(0.4deg);
   }
 }
 
-.animate-sea-sway {
-  animation: seaSway 7s ease-in-out infinite;
+.animate-ocean-heave {
+  animation: oceanHeave 6s ease-in-out infinite;
 }
 
-/* Burnt Vignette Overlay */
-.vignette-overlay {
-  box-shadow: inset 0 0 100px rgba(11, 9, 6, 0.95), inset 0 0 160px rgba(11, 9, 6, 0.85);
-  pointer-events: none;
+/* Clean Button Styles */
+.brass-btn {
+  background: linear-gradient(180deg, #dfbe7a 0%, #c5a059 100%);
+  color: #05080c;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid #dfbe7a;
+  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.35);
+  transition: all 0.25s ease;
+}
+
+.brass-btn:hover {
+  background: linear-gradient(180deg, #fff0c7 0%, #dfbe7a 100%);
+  box-shadow: 0 0 30px rgba(223, 190, 122, 0.6);
+  transform: translateY(-2px);
+}
+
+.brass-btn:active {
+  transform: translateY(0px);
+}
+
+.brass-btn-outline {
+  background: rgba(14, 22, 34, 0.8);
+  color: #dfbe7a;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.brass-btn-outline:hover {
+  background: rgba(197, 160, 89, 0.15);
+  border-color: #dfbe7a;
+  color: #fff;
+  box-shadow: 0 0 25px rgba(197, 160, 89, 0.3);
+  transform: translateY(-2px);
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Compass } from 'lucide-react';
 
 interface SectionBannerProps {
   number: string;
@@ -8,29 +9,33 @@ interface SectionBannerProps {
 
 export const SectionBanner: React.FC<SectionBannerProps> = ({ number, title, subtitle }) => {
   return (
-    <div className="flex flex-col items-center justify-center my-12 text-center relative z-10 px-4">
-      {/* Decorative Skull and Crossbones Top Flourish */}
-      <div className="flex items-center gap-3 mb-2">
-        <div className="h-[2px] w-12 md:w-24 bg-gradient-to-r from-transparent via-[#c9a227] to-[#a01d12]" />
-        <span className="text-[#c9a227] text-lg font-cinzel">⚔️ {number} ⚔️</span>
-        <div className="h-[2px] w-12 md:w-24 bg-gradient-to-l from-transparent via-[#c9a227] to-[#a01d12]" />
-      </div>
-
-      {/* Ribbon Heading */}
-      <div className="relative inline-block max-w-2xl">
-        <div className="parchment-card clip-ribbon px-8 md:px-16 py-3 md:py-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)] border-y-2 border-[#8b5a2b]">
-          <h2 className="text-3xl md:text-5xl font-pirate text-[#a01d12] tracking-wider drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-            {title}
-          </h2>
+    <div className="flex flex-col items-center justify-center my-14 text-center relative z-10 px-4">
+      {/* Precision Astrolabe / Coordinate Flourish */}
+      <div className="flex items-center gap-3 mb-3">
+        <div className="h-[1px] w-12 md:w-28 bg-gradient-to-r from-transparent via-[#c5a059]/40 to-[#dfbe7a]" />
+        <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#0e1622] border border-[#c5a059]/30 shadow-inner">
+          <Compass className="w-3.5 h-3.5 text-[#dfbe7a]" />
+          <span className="text-[11px] font-mono tracking-widest text-[#dfbe7a] uppercase font-semibold">
+            {number}
+          </span>
         </div>
+        <div className="h-[1px] w-12 md:w-28 bg-gradient-to-l from-transparent via-[#c5a059]/40 to-[#dfbe7a]" />
       </div>
 
-      {/* Subtitle / Nautical Chart note */}
+      {/* Main Elegant Header */}
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-[#f1f5f9] tracking-tight leading-tight max-w-3xl">
+        {title}
+      </h2>
+
+      {/* Cartographic Subtitle */}
       {subtitle && (
-        <p className="mt-3 text-sm md:text-base text-[#b39b6d] font-fell italic max-w-xl">
-          "{subtitle}"
+        <p className="mt-3 text-sm md:text-base text-[#94a3b8] font-sans max-w-2xl leading-relaxed font-light">
+          {subtitle}
         </p>
       )}
+
+      {/* Hairline subtle bottom accent */}
+      <div className="h-[1px] w-24 bg-gradient-to-r from-transparent via-[#c5a059]/50 to-transparent mt-4" />
     </div>
   );
 };

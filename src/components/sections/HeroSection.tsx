@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { PersonalProfile } from '../../data/personalConfig';
-import { ChevronDown, FileText, Code2, ExternalLink, Shield } from 'lucide-react';
+import { ChevronDown, FileText, Shield, Compass } from 'lucide-react';
 import { playAudioFx } from '../ui/AudioEngine';
 
 interface HeroSectionProps {
@@ -15,6 +15,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenResume,
 }) => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
 
   const handleInspect = () => {
     playAudioFx('seal');
@@ -29,9 +30,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 8;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -8;
     setTilt({ x, y });
+    setMousePos({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    });
   };
 
   const handleMouseLeave = () => {
@@ -41,17 +46,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
-      className="min-h-screen relative flex flex-col items-center justify-center text-center px-4 pt-24 pb-16 z-10"
+      className="min-h-screen relative flex flex-col items-center justify-center text-center px-4 pt-28 pb-16 z-10 cartography-grid"
     >
-      {/* Top Architectural Status Capsule */}
-      <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#120e0a]/90 border border-[#c9a227]/50 shadow-[0_4px_25px_rgba(201,162,39,0.2)] mb-8 backdrop-blur-md">
-        <span className="w-2 h-2 rounded-full bg-[#ff7a1a] shadow-[0_0_10px_#ff7a1a]" />
-        <span className="text-xs font-cinzel text-[#d8c49a] tracking-widest uppercase font-semibold">
-          {profile.role} • {profile.location.split('(')[0].trim()}
+      {/* Commissioned Naval Status Pill */}
+      <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-[#0e1622]/90 border border-[#c5a059]/30 shadow-[0_4px_30px_rgba(0,0,0,0.6)] mb-8 backdrop-blur-md">
+        <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#10b981] animate-pulse" />
+        <span className="text-xs font-mono text-[#dfbe7a] tracking-wider uppercase font-semibold">
+          ACTIVE COMMISSION • SYSTEMS ARCHITECT • 21°14'N, 81°38'E
         </span>
       </div>
 
-      {/* Main Aged Parchment Title Banner with Interactive 3D Spatial Tilt */}
+      {/* Main Luxury Cartographic Instrument Card */}
       <div
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
@@ -59,73 +64,108 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           transform: `perspective(1000px) rotateX(${tilt.y}deg) rotateY(${tilt.x}deg)`,
           transition: 'transform 0.15s ease-out',
         }}
-        className="relative max-w-4xl mx-auto my-4 cursor-default"
+        className="relative max-w-4xl mx-auto my-3 cursor-default w-full"
       >
-        <div className="parchment-card clip-torn-paper px-8 sm:px-16 py-10 md:py-14 shadow-[0_30px_70px_rgba(0,0,0,0.95)] border-2 border-[#8b5a2b] relative overflow-hidden">
-          {/* Subtle gold specular gradient rim */}
-          <div className="pointer-events-none absolute -inset-px rounded-sm bg-gradient-to-tr from-transparent via-[#ffd56b]/15 to-transparent" />
+        <div className="nautical-card rounded-2xl px-8 sm:px-16 py-12 md:py-16 shadow-[0_30px_80px_rgba(0,0,0,0.95)] border border-[#c5a059]/30 relative overflow-hidden backdrop-blur-2xl">
+          {/* Real-time Dynamic Specular Cursor Glow */}
+          <div
+            className="pointer-events-none absolute inset-0 z-0 opacity-40 transition-opacity duration-300"
+            style={{
+              background: `radial-gradient(500px circle at ${mousePos.x}% ${mousePos.y}%, rgba(223, 190, 122, 0.18), transparent 75%)`,
+            }}
+          />
 
-          <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-pirate text-[#a01d12] tracking-wide leading-none drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]">
-            {profile.name}
-          </h1>
+          {/* Antique Brass Corner Rivets */}
+          <div className="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-[#dfbe7a]/60 pointer-events-none" />
+          <div className="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-[#dfbe7a]/60 pointer-events-none" />
+          <div className="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-[#dfbe7a]/60 pointer-events-none" />
+          <div className="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-[#dfbe7a]/60 pointer-events-none" />
 
-          <div className="h-[2px] w-36 sm:w-72 mx-auto my-5 bg-gradient-to-r from-transparent via-[#a01d12] to-transparent" />
+          {/* Heading */}
+          <div className="relative z-10">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-black text-[#f1f5f9] tracking-tight leading-none drop-shadow-[0_4px_25px_rgba(0,0,0,0.8)]">
+              {profile.name}
+            </h1>
 
-          <p className="text-base sm:text-xl md:text-2xl font-cinzel text-[#171310] font-semibold tracking-wide">
-            {profile.subRole}
-          </p>
+            {/* Hairline Divider with Compass Rosette */}
+            <div className="flex items-center justify-center gap-3 my-6">
+              <div className="h-[1px] w-24 sm:w-40 bg-gradient-to-r from-transparent via-[#c5a059]/40 to-[#dfbe7a]" />
+              <Compass className="w-4 h-4 text-[#dfbe7a]" />
+              <div className="h-[1px] w-24 sm:w-40 bg-gradient-to-l from-transparent via-[#c5a059]/40 to-[#dfbe7a]" />
+            </div>
 
-          <p className="mt-4 text-sm sm:text-base font-fell italic text-[#3e2716] max-w-2xl mx-auto leading-relaxed">
-            "{profile.tagline}"
-          </p>
+            <p className="text-base sm:text-lg md:text-xl font-heading font-semibold text-[#dfbe7a] tracking-wide">
+              {profile.role}
+            </p>
+
+            <p className="mt-4 text-sm sm:text-base font-sans font-light text-[#94a3b8] max-w-2xl mx-auto leading-relaxed">
+              "{profile.tagline}"
+            </p>
+
+            {/* Live Naval Architectural Telemetry Strip */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 pt-8 border-t border-[#c5a059]/15">
+              <div className="text-center p-2 rounded-lg bg-[#05080c]/60 border border-white/5">
+                <div className="text-xs text-[#94a3b8] font-mono uppercase">Throughput</div>
+                <div className="text-base font-mono font-bold text-[#dfbe7a]">10,000+ TPS</div>
+              </div>
+              <div className="text-center p-2 rounded-lg bg-[#05080c]/60 border border-white/5">
+                <div className="text-xs text-[#94a3b8] font-mono uppercase">Framerate</div>
+                <div className="text-base font-mono font-bold text-[#dfbe7a]">120 FPS WebGL</div>
+              </div>
+              <div className="text-center p-2 rounded-lg bg-[#05080c]/60 border border-white/5">
+                <div className="text-xs text-[#94a3b8] font-mono uppercase">Cumulative Shift</div>
+                <div className="text-base font-mono font-bold text-emerald-400">0ms CLS</div>
+              </div>
+              <div className="text-center p-2 rounded-lg bg-[#05080c]/60 border border-white/5">
+                <div className="text-xs text-[#94a3b8] font-mono uppercase">Automated Tests</div>
+                <div className="text-base font-mono font-bold text-emerald-400">98%+ Verified</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* High-Impact Tactical CTA Buttons */}
-      <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
+      <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
         <button
           onClick={handleInspect}
-          className="flex items-center gap-2.5 px-8 py-3.5 wax-seal text-[#e8dcc0] hover:text-white font-cinzel font-bold text-sm tracking-wider uppercase rounded-full cursor-pointer shadow-[0_6px_25px_rgba(160,29,18,0.5)] hover:shadow-[0_0_30px_#ff7a1a] hover:scale-105 active:scale-95 transition-all group"
+          className="flex items-center gap-2.5 px-8 py-3.5 brass-btn rounded-xl cursor-pointer text-xs font-heading font-bold uppercase tracking-wider group"
         >
-          <Code2 className="w-5 h-5 text-[#ff7a1a] group-hover:rotate-12 transition-transform" />
-          Explore Flagship Systems
+          <Compass className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
+          Explore Flagship Expeditions
         </button>
 
         <button
           onClick={handleExploreArmory}
-          className="flex items-center gap-2.5 px-7 py-3.5 bg-[#171310]/95 text-[#d8c49a] hover:text-[#ffd56b] border-2 border-[#c9a227]/70 rounded-full font-cinzel font-semibold text-sm tracking-wider uppercase transition-all hover:shadow-[0_0_20px_#c9a227] hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-md"
+          className="flex items-center gap-2.5 px-7 py-3.5 brass-btn-outline rounded-xl text-xs font-heading font-semibold uppercase tracking-wider cursor-pointer"
         >
-          <Shield className="w-4 h-4 text-[#c9a227]" />
-          Engineering Armory
+          <Shield className="w-4 h-4 text-[#dfbe7a]" />
+          Technical Armory
         </button>
 
-        <a
-          href={profile.githubUrl}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => playAudioFx('click')}
-          className="flex items-center gap-2.5 px-7 py-3.5 bg-[#171310]/95 text-[#c9a227] hover:text-white border-2 border-[#c9a227]/70 rounded-full font-cinzel font-semibold text-sm tracking-wider uppercase transition-all hover:shadow-[0_0_20px_#c9a227] hover:scale-105 active:scale-95 backdrop-blur-md"
-        >
-          <ExternalLink className="w-4 h-4 text-[#c9a227]" />
-          Verified GitHub
-        </a>
-
-        <button
-          onClick={() => {
-            playAudioFx('seal');
-            if (onOpenResume) onOpenResume();
-          }}
-          className="flex items-center gap-2 px-6 py-3.5 bg-[#21160e]/95 text-[#d8c49a] hover:text-white border border-[#8b5a2b] hover:border-[#ffd56b] rounded-full font-cinzel text-xs tracking-wider uppercase transition-all hover:scale-105 active:scale-95 shadow-sm cursor-pointer"
-        >
-          <FileText className="w-4 h-4 text-[#ff7a1a]" />
-          Curriculum Vitae
-        </button>
+        {onOpenResume && (
+          <button
+            onClick={() => {
+              playAudioFx('seal');
+              onOpenResume();
+            }}
+            className="flex items-center gap-2 px-6 py-3.5 bg-[#0e1622]/90 hover:bg-[#141f2e] text-[#94a3b8] hover:text-[#dfbe7a] border border-white/10 hover:border-[#dfbe7a]/50 rounded-xl text-xs font-heading font-semibold uppercase tracking-wider cursor-pointer transition-all"
+          >
+            <FileText className="w-4 h-4" />
+            Curriculum Vitae
+          </button>
+        )}
       </div>
 
-      {/* Downward Navigation Anchor */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-[#c9a227] animate-bounce pointer-events-none">
-        <span className="text-[10px] font-cinzel tracking-widest uppercase mb-1">Scroll to Voyage</span>
-        <ChevronDown className="w-5 h-5" />
+      {/* Smooth Scroll Anchor Prompt */}
+      <div className="mt-14 animate-bounce opacity-70">
+        <button
+          onClick={handleExploreArmory}
+          className="flex flex-col items-center gap-1 text-[11px] font-mono text-[#94a3b8] hover:text-[#dfbe7a] cursor-pointer"
+        >
+          <span>NAVIGATE FLEET</span>
+          <ChevronDown className="w-4 h-4" />
+        </button>
       </div>
     </section>
   );

@@ -21,8 +21,8 @@ export const ThreeOceanScene: React.FC<ThreeOceanSceneProps> = ({
 
     // 1. Scene, Camera, Renderer
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0b0906);
-    scene.fog = new THREE.FogExp2(0x0b0906, 0.024);
+    scene.background = new THREE.Color(0x05080c);
+    scene.fog = new THREE.FogExp2(0x05080c, 0.022);
 
     const camera = new THREE.PerspectiveCamera(
       45,
@@ -277,14 +277,14 @@ export const ThreeOceanScene: React.FC<ThreeOceanSceneProps> = ({
     scene.add(embersPoints);
 
     // Atmospheric Night Lighting Setup
-    scene.background = new THREE.Color(0x0b0906);
-    scene.fog = new THREE.FogExp2(0x0b0906, 0.024);
-    moonMat.color.setHex(0xfff3db);
-    haloMat.color.setHex(0x4a7a96);
-    moonLight.color.setHex(0xd4e5ff);
-    ambientLight.color.setHex(0x1a2634);
-    oceanMat.color.setHex(0x07151c);
-    emberMat.color.setHex(0xff7a1a);
+    scene.background = new THREE.Color(0x05080c);
+    scene.fog = new THREE.FogExp2(0x05080c, 0.022);
+    moonMat.color.setHex(0xf8fafc);
+    haloMat.color.setHex(0x38bdf8);
+    moonLight.color.setHex(0xe0f2fe);
+    ambientLight.color.setHex(0x0e1b29);
+    oceanMat.color.setHex(0x06111a);
+    emberMat.color.setHex(0xdfbe7a);
 
     // Mouse Tracking for Parallax
     const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };

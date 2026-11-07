@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Anchor, Volume2, VolumeX, Menu, X, Terminal, FileText } from 'lucide-react';
+import { Compass, Volume2, VolumeX, Menu, X, Terminal, FileText } from 'lucide-react';
 import type { PersonalProfile } from '../../data/personalConfig';
 import { playAudioFx } from './AudioEngine';
 
@@ -24,12 +24,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { id: 'hero', label: 'Helm' },
-    { id: 'legend', label: 'Biography' },
-    { id: 'armory', label: 'Tech Stack' },
-    { id: 'voyages', label: 'Projects' },
-    { id: 'spoils', label: 'Spoils & Certs' },
-    { id: 'log', label: 'Experience' },
-    { id: 'bottle', label: 'Contact' },
+    { id: 'legend', label: 'Chronicle' },
+    { id: 'armory', label: 'Armory' },
+    { id: 'voyages', label: 'Expeditions' },
+    { id: 'spoils', label: 'Honors' },
+    { id: 'log', label: 'Service Log' },
+    { id: 'bottle', label: 'Dispatch' },
   ];
 
   const scrollTo = (id: string) => {
@@ -47,142 +47,128 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-[#0b0906]/85 backdrop-blur-md border-b-2 border-[#c9a227]/40 shadow-[0_4px_25px_rgba(0,0,0,0.8)]">
-      {/* Nautical Rope Trim Border Accent */}
-      <div className="h-[3px] w-full bg-gradient-to-r from-[#a01d12] via-[#c9a227] to-[#ff7a1a]" />
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-[#05080c]/85 backdrop-blur-xl border-b border-[#c5a059]/20 shadow-[0_4px_30px_rgba(0,0,0,0.85)]">
+      {/* Top Hairline Brass Accent */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-[#dfbe7a]/60 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Brand / Crest */}
+        {/* Brand / Naval Astrolabe Emblem */}
         <button
           onClick={() => scrollTo('hero')}
-          className="flex items-center gap-3 text-left group cursor-pointer"
+          className="flex items-center gap-3 text-left group cursor-pointer focus:outline-none"
         >
-          <div className="w-10 h-10 rounded-full border border-[#c9a227] bg-[#171310] flex items-center justify-center shadow-[0_0_12px_rgba(201,162,39,0.3)] group-hover:scale-105 transition-transform">
-            <Anchor className="w-5 h-5 text-[#c9a227] group-hover:text-[#ff7a1a] transition-colors" />
+          <div className="w-9 h-9 rounded-full border border-[#c5a059]/40 bg-[#0e1622] flex items-center justify-center shadow-[0_0_15px_rgba(197,160,89,0.2)] group-hover:border-[#dfbe7a] transition-all">
+            <Compass className="w-4 h-4 text-[#dfbe7a] group-hover:rotate-45 transition-transform duration-500" />
           </div>
           <div>
-            <span className="font-pirate text-xl text-[#d8c49a] group-hover:text-[#ff7a1a] transition-colors tracking-wider block leading-tight">
+            <span className="font-heading font-bold text-base text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors tracking-wide block leading-tight">
               {profile.name}
             </span>
-            <span className="text-[10px] font-cinzel text-[#b39b6d] tracking-widest uppercase block">
-              {profile.role.split('&')[0]} • 3D Portfolio
+            <span className="text-[10px] font-mono text-[#94a3b8] tracking-widest uppercase block">
+              Systems Architect • 21°14'N
             </span>
           </div>
         </button>
 
-        {/* Desktop Nav Links */}
-        <div className="hidden lg:flex items-center gap-5">
+        {/* Desktop Navigation Links */}
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`text-xs font-cinzel tracking-wider uppercase transition-all duration-300 relative py-1 cursor-pointer ${
+                className={`text-xs font-heading tracking-widest uppercase transition-all duration-200 relative py-1 cursor-pointer ${
                   isActive
-                    ? 'text-[#ff7a1a] font-bold drop-shadow-[0_0_8px_#ff7a1a]'
-                    : 'text-[#e8dcc0]/80 hover:text-[#c9a227]'
+                    ? 'text-[#dfbe7a] font-bold drop-shadow-[0_0_10px_rgba(223,190,122,0.4)]'
+                    : 'text-[#94a3b8] hover:text-[#f1f5f9]'
                 }`}
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#c9a227] to-[#ff7a1a]" />
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] rounded-full" />
                 )}
               </button>
             );
           })}
         </div>
 
-        {/* Tactical Actions: Terminal, Resume, Audio Toggle & Mobile Menu */}
+        {/* Action HUD Controls: Terminal, CV, Audio & Mobile Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* CLI Terminal Button */}
+          {/* CLI Terminal Trigger */}
           <button
             onClick={() => {
               playAudioFx('click');
               onOpenTerminal();
             }}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#171310] hover:bg-[#a01d12]/40 text-[#ffd56b] hover:text-white border border-[#c9a227]/60 hover:border-[#ffd56b] rounded-full text-xs font-cinzel cursor-pointer transition-all shadow-sm"
-            title="Open Captain's CLI Terminal (~ or Ctrl+K)"
+            title="Open Naval Architecture Terminal (` or Ctrl+K)"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0e1622] border border-[#c5a059]/30 hover:border-[#dfbe7a] text-xs font-mono text-[#dfbe7a] hover:bg-[#141f2e] transition-all cursor-pointer shadow-sm group"
           >
-            <Terminal className="w-3.5 h-3.5 text-[#ff7a1a]" />
-            <span className="hidden sm:inline">CLI</span>
+            <Terminal className="w-3.5 h-3.5 text-[#dfbe7a]" />
+            <span className="hidden sm:inline font-semibold">CLI</span>
+            <kbd className="hidden md:inline-block px-1.5 py-0.2 bg-[#05080c] text-[10px] text-[#94a3b8] rounded border border-white/10">
+              ^K
+            </kbd>
           </button>
 
-          {/* Parchment Resume Button */}
+          {/* Curriculum Vitae (Print/View) */}
           <button
             onClick={() => {
               playAudioFx('seal');
               onOpenResume();
             }}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#171310] hover:bg-[#a01d12]/40 text-[#d8c49a] hover:text-[#ffd56b] border border-[#8b5a2b] hover:border-[#ffd56b] rounded-full text-xs font-cinzel cursor-pointer transition-all shadow-sm"
-            title="Open Official Curriculum Vitae"
+            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg brass-btn text-xs font-heading font-bold cursor-pointer"
           >
-            <FileText className="w-3.5 h-3.5 text-[#ff7a1a]" />
-            <span className="hidden sm:inline">Resume</span>
+            <FileText className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Dossier / CV</span>
+            <span className="sm:hidden">CV</span>
           </button>
 
-          {/* Sea Soundscape Wax Seal Button */}
+          {/* Discreet Ocean Ambience Audio Toggle */}
           <button
             onClick={handleToggleAudio}
-            className="flex items-center gap-2 px-3.5 py-1.5 wax-seal rounded-full text-xs font-cinzel text-[#e8dcc0] cursor-pointer hover:shadow-[0_0_15px_#ff7a1a] transition-all"
-            title={audioPlaying ? 'Mute Sea Waves' : 'Play Ocean Ambience'}
+            title={audioPlaying ? 'Mute Ocean Ambience' : 'Play Ocean Ambience'}
+            className={`w-8 h-8 rounded-full border flex items-center justify-center transition-all cursor-pointer ${
+              audioPlaying
+                ? 'border-[#dfbe7a] bg-[#dfbe7a]/15 text-[#dfbe7a] shadow-[0_0_12px_rgba(223,190,122,0.4)]'
+                : 'border-[#c5a059]/30 bg-[#0e1622] text-[#94a3b8] hover:text-[#f1f5f9]'
+            }`}
           >
             {audioPlaying ? (
-              <>
-                <Volume2 className="w-4 h-4 text-[#ff7a1a] animate-pulse" />
-                <span className="hidden sm:inline text-[#d8c49a]">Sound ON</span>
-              </>
+              <Volume2 className="w-4 h-4 animate-pulse" />
             ) : (
-              <>
-                <VolumeX className="w-4 h-4 text-[#b39b6d]" />
-                <span className="hidden sm:inline text-[#b39b6d]">Sound</span>
-              </>
+              <VolumeX className="w-4 h-4" />
             )}
           </button>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Menu Hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden p-2 text-[#c9a227] hover:text-[#ff7a1a] cursor-pointer"
-            aria-label="Toggle menu"
+            className="lg:hidden w-8 h-8 rounded-lg border border-[#c5a059]/30 bg-[#0e1622] flex items-center justify-center text-[#dfbe7a] cursor-pointer"
+            aria-label="Toggle navigation"
           >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#0b0906]/98 border-b-2 border-[#c9a227]/50 px-6 py-6 space-y-3 font-cinzel">
-          {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => scrollTo(link.id)}
-              className="block w-full text-left text-sm text-[#e8dcc0] hover:text-[#ff7a1a] py-1.5 border-b border-[#281d13]"
-            >
-              ⚓ {link.label}
-            </button>
-          ))}
-          <div className="flex gap-2 pt-2">
-            <button
-              onClick={() => {
-                setMobileOpen(false);
-                onOpenTerminal();
-              }}
-              className="flex-1 py-2 bg-[#171310] border border-[#c9a227] rounded text-xs text-[#ffd56b] flex items-center justify-center gap-1.5"
-            >
-              <Terminal className="w-3.5 h-3.5 text-[#ff7a1a]" /> Open CLI
-            </button>
-            <button
-              onClick={() => {
-                setMobileOpen(false);
-                onOpenResume();
-              }}
-              className="flex-1 py-2 wax-seal rounded text-xs text-[#e8dcc0] flex items-center justify-center gap-1.5"
-            >
-              <FileText className="w-3.5 h-3.5 text-[#ff7a1a]" /> View Resume
-            </button>
-          </div>
+        <div className="lg:hidden bg-[#090e17] border-b border-[#c5a059]/30 px-6 py-5 space-y-3">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <button
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
+                className={`block w-full text-left py-2 text-sm font-heading tracking-widest uppercase transition-colors ${
+                  isActive ? 'text-[#dfbe7a] font-bold' : 'text-[#94a3b8] hover:text-white'
+                }`}
+              >
+                {link.label}
+              </button>
+            );
+          })}
         </div>
       )}
     </nav>

@@ -25,81 +25,82 @@ const SpotlightProjectCard: React.FC<{
     <div
       onMouseMove={handleMouseMove}
       onClick={() => onOpen(proj)}
-      className="group cursor-pointer bg-[#171310]/95 border-2 border-[#8b5a2b]/70 hover:border-[#ffd56b] rounded-xl p-6 sm:p-8 shadow-[0_15px_45px_rgba(0,0,0,0.9)] transition-all duration-300 hover:-translate-y-2 relative overflow-hidden backdrop-blur-xl"
+      className="group cursor-pointer nautical-card rounded-2xl p-6 sm:p-7 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 hover:-translate-y-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden backdrop-blur-xl flex flex-col justify-between"
     >
       {/* Specular Mouse-Reactive Spotlight Flare */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
-          background: `radial-gradient(450px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 213, 107, 0.16), transparent 75%)`,
+          background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(223, 190, 122, 0.14), transparent 75%)`,
         }}
       />
 
-      {/* Watermark Compass background */}
-      <div className="absolute -right-8 -bottom-8 w-40 h-40 opacity-5 text-[#c9a227] pointer-events-none group-hover:rotate-45 transition-transform duration-700">
+      {/* Watermark Compass Silhouette */}
+      <div className="absolute -right-6 -bottom-6 w-36 h-36 opacity-5 text-[#dfbe7a] pointer-events-none group-hover:rotate-45 transition-transform duration-700">
         <Compass className="w-full h-full" />
       </div>
 
-      {/* Island Pin & Category Header */}
-      <div className="flex items-center justify-between gap-2 mb-3 relative z-10">
-        <div className="flex items-center gap-1.5 text-xs font-cinzel text-[#ffd56b]">
-          <MapPin className="w-4 h-4 text-[#ff7a1a]" />
-          <span className="font-bold tracking-wider">{proj.islandCode}</span>
+      <div className="relative z-10">
+        {/* Expedition Code & Category Tag */}
+        <div className="flex items-center justify-between gap-2 mb-3">
+          <div className="flex items-center gap-1.5 text-xs font-mono text-[#dfbe7a]">
+            <MapPin className="w-3.5 h-3.5 text-[#dfbe7a]" />
+            <span className="font-semibold tracking-wider">{proj.islandCode}</span>
+          </div>
+
+          <span
+            className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase border ${getBadgeColor(
+              proj.type
+            )}`}
+          >
+            {proj.type}
+          </span>
         </div>
 
-        <span
-          className={`px-3 py-0.5 rounded-full text-[10px] font-cinzel font-bold tracking-wider uppercase border ${getBadgeColor(
-            proj.type
-          )}`}
-        >
-          {proj.type}
-        </span>
-      </div>
+        {/* Project Title */}
+        <h3 className="text-xl sm:text-2xl font-heading font-bold text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors mb-1.5 leading-tight">
+          {proj.title}
+        </h3>
 
-      {/* Project Title */}
-      <h3 className="text-2xl sm:text-3xl font-pirate text-[#d8c49a] group-hover:text-[#ffd56b] transition-colors mb-1.5 relative z-10 leading-tight">
-        {proj.title}
-      </h3>
+        <p className="text-xs font-sans text-[#dfbe7a] italic mb-3.5">
+          "{proj.tagline}"
+        </p>
 
-      <p className="text-xs font-cinzel text-[#b39b6d] italic mb-4 relative z-10">
-        "{proj.tagline}"
-      </p>
+        {/* Description */}
+        <p className="text-xs sm:text-sm text-[#94a3b8] font-sans leading-relaxed mb-5 line-clamp-3 font-normal">
+          {proj.description}
+        </p>
 
-      {/* Description */}
-      <p className="text-xs sm:text-sm text-[#e8dcc0]/85 font-fell leading-relaxed mb-5 line-clamp-3 relative z-10">
-        {proj.description}
-      </p>
-
-      {/* Tech Tags */}
-      <div className="flex flex-wrap gap-1.5 mb-6 relative z-10">
-        {proj.techStack.map((tech) => (
-          <span
-            key={tech}
-            className="px-2.5 py-1 bg-[#0b0906] text-[#e8dcc0] text-[10px] font-cinzel rounded-md border border-[#8b5a2b]/50 group-hover:border-[#c9a227]/60 transition-colors shadow-sm"
-          >
-            {tech}
-          </span>
-        ))}
+        {/* Tech Stack Badges */}
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          {proj.techStack.map((tech) => (
+            <span
+              key={tech}
+              className="px-2.5 py-0.5 bg-[#05080c] text-[#cbd5e1] text-[10px] font-mono rounded-md border border-white/10 group-hover:border-[#dfbe7a]/40 transition-colors shadow-sm"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* Card Footer: Metrics & Actions */}
-      <div className="flex items-center justify-between pt-4 border-t border-[#8b5a2b]/40 relative z-10">
-        <div className="text-[11px] font-cinzel text-[#b39b6d] flex items-center gap-1.5">
-          <Layers className="w-4 h-4 text-[#ff7a1a]" />
-          <span className="text-[#ffd56b] font-bold font-mono">{proj.metrics}</span>
+      <div className="flex items-center justify-between pt-4 border-t border-[#c5a059]/15 relative z-10">
+        <div className="text-[11px] font-mono text-[#94a3b8] flex items-center gap-1.5">
+          <Layers className="w-3.5 h-3.5 text-[#dfbe7a]" />
+          <span className="text-[#dfbe7a] font-semibold">{proj.metrics}</span>
         </div>
 
-        <div className="flex items-center gap-2">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onOpen(proj);
-            }}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-[#a01d12] hover:bg-[#ff7a1a] text-[#d8c49a] hover:text-[#0b0906] text-xs font-cinzel font-bold rounded transition-all shadow-sm group-hover:shadow-[0_0_15px_#ff7a1a] cursor-pointer"
-          >
-            <Sparkles className="w-3.5 h-3.5" /> Inspect Scope
-          </button>
-        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onOpen(proj);
+          }}
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#05080c] hover:bg-[#dfbe7a] text-[#dfbe7a] hover:text-[#05080c] text-xs font-heading font-bold rounded-lg border border-[#dfbe7a]/40 transition-all shadow-sm cursor-pointer"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          Blueprint
+        </button>
       </div>
     </div>
   );
@@ -108,45 +109,47 @@ const SpotlightProjectCard: React.FC<{
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => {
   const [selectedProject, setSelectedProject] = useState<PersonalProject | null>(null);
 
-  const handleOpenProject = (proj: PersonalProject) => {
+  const getBadgeColor = (type: string) => {
+    switch (type) {
+      case 'Full-Stack SaaS':
+        return 'bg-blue-500/10 text-blue-400 border-blue-500/30';
+      case '3D & AI':
+        return 'bg-amber-500/10 text-amber-400 border-amber-500/30';
+      case 'Distributed System':
+        return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
+      case 'Cyber Security':
+        return 'bg-rose-500/10 text-rose-400 border-rose-500/30';
+      default:
+        return 'bg-slate-500/10 text-slate-300 border-slate-500/30';
+    }
+  };
+
+  const handleOpenModal = (proj: PersonalProject) => {
     playAudioFx('seal');
     setSelectedProject(proj);
   };
 
-  const getBadgeColor = (type: string) => {
-    switch (type) {
-      case 'Distributed System':
-        return 'bg-[#a01d12]/40 text-[#ffeb99] border-[#c9a227]';
-      case '3D & AI':
-        return 'bg-[#4a0e4e]/40 text-[#f3c5ff] border-[#b042b5]';
-      case 'Full-Stack SaaS':
-        return 'bg-[#0f2e24]/40 text-[#a7f3d0] border-[#10b981]';
-      default:
-        return 'bg-[#1e293b]/40 text-[#cbd5e1] border-[#64748b]';
-    }
-  };
-
   return (
-    <section id="voyages" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
+    <section id="voyages" className="min-h-screen py-20 px-4 max-w-7xl mx-auto relative z-10">
       <SectionBanner
-        number="PORT III"
-        title="Featured Engineering Projects & Systems"
-        subtitle="Flagship production codebases, distributed architectures, and interactive spatial applications"
+        number="CHRONICLE III"
+        title="Flagship Production Expeditions"
+        subtitle="Architected codebases across distributed backend engines, 3D WebGL spatial applications, and resilient cloud systems"
       />
 
-      {/* Caribbean Nautical Chart Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 mt-10">
         {profile.projects.map((proj) => (
           <SpotlightProjectCard
             key={proj.id}
             proj={proj}
-            onOpen={handleOpenProject}
+            onOpen={handleOpenModal}
             getBadgeColor={getBadgeColor}
           />
         ))}
       </div>
 
-      {/* Interactive Loot Modal */}
+      {/* Blueprint Detail Modal */}
       <TreasureModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}

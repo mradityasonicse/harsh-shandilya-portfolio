@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 import type { PersonalProfile } from '../../data/personalConfig';
-import { X, Printer, ExternalLink, Mail, MapPin, Award, BookOpen, Layers, Code2, Globe } from 'lucide-react';
+import { X, Printer, Mail, MapPin, Code2, Globe, CheckCircle2 } from 'lucide-react';
 import { playAudioFx } from './AudioEngine';
 
 interface ResumeModalProps {
@@ -24,24 +24,24 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, profi
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-[#f5ebd7] text-[#1c130c] border-4 border-[#8b5a2b] rounded-lg shadow-[0_25px_70px_rgba(0,0,0,0.95)] p-6 sm:p-10 animate-scaleUp font-fell"
+        className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-[#090e17] text-[#f1f5f9] border border-[#c5a059]/40 rounded-2xl shadow-[0_25px_70px_rgba(0,0,0,0.95)] p-6 sm:p-10 animate-scaleUp font-sans print:bg-white print:text-black print:border-none print:p-0 print:m-0"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Action Header Bar (Excluded during print) */}
-        <div className="flex items-center justify-between pb-4 mb-6 border-b-2 border-[#8b5a2b]/40 print:hidden">
+        <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#c5a059]/20 print:hidden">
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 bg-[#a01d12] text-[#ffd56b] font-cinzel text-xs font-bold rounded uppercase">
+            <span className="px-3 py-1 bg-[#dfbe7a]/15 text-[#dfbe7a] font-mono text-xs font-bold rounded-full border border-[#dfbe7a]/30 uppercase">
               Curriculum Vitae
             </span>
-            <span className="text-xs font-cinzel text-[#61472e]">
-              Official Verified Profile
+            <span className="text-xs font-mono text-[#94a3b8]">
+              Verified Systems Architect Profile
             </span>
           </div>
 
           <div className="flex items-center gap-2.5">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-4 py-2 bg-[#171310] hover:bg-[#8b5a2b] text-[#ffd56b] hover:text-white rounded text-xs font-cinzel font-bold tracking-wider uppercase transition-colors cursor-pointer shadow"
+              className="flex items-center gap-1.5 px-4 py-2 brass-btn rounded-xl text-xs font-heading font-bold uppercase transition-all cursor-pointer shadow"
             >
               <Printer className="w-4 h-4" />
               Print / Save PDF
@@ -51,7 +51,7 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, profi
                 playAudioFx('click');
                 onClose();
               }}
-              className="w-8 h-8 rounded-full wax-seal flex items-center justify-center text-[#e8dcc0] hover:text-white cursor-pointer"
+              className="w-8 h-8 rounded-full bg-[#05080c] border border-white/10 hover:border-[#dfbe7a] flex items-center justify-center text-[#94a3b8] hover:text-[#dfbe7a] cursor-pointer"
               aria-label="Close"
             >
               <X className="w-4 h-4" />
@@ -62,36 +62,36 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, profi
         {/* Printable Resume Document Body */}
         <div className="space-y-6">
           {/* Header */}
-          <div className="text-center border-b-2 border-[#8b5a2b]/30 pb-6">
-            <h1 className="text-4xl sm:text-5xl font-pirate text-[#a01d12] tracking-wider mb-1">
+          <div className="text-center border-b border-[#c5a059]/20 print:border-black/20 pb-6">
+            <h1 className="text-3xl sm:text-4xl font-heading font-bold text-[#f1f5f9] print:text-black tracking-wide mb-1">
               {profile.name}
             </h1>
-            <p className="text-base sm:text-lg font-cinzel font-bold text-[#171310] uppercase tracking-wide">
+            <p className="text-sm sm:text-base font-heading font-semibold text-[#dfbe7a] print:text-neutral-800 uppercase tracking-wider">
               {profile.role}
             </p>
-            <p className="text-xs font-fell italic text-[#523d24] mt-1 max-w-2xl mx-auto">
+            <p className="text-xs font-sans text-[#94a3b8] print:text-neutral-600 mt-1 max-w-2xl mx-auto font-light">
               "{profile.tagline}"
             </p>
 
             {/* Coordinates / Links */}
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 mt-3 text-xs font-cinzel text-[#2d1e13]">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 mt-3 text-xs font-mono text-[#94a3b8] print:text-neutral-700">
               <span className="flex items-center gap-1">
-                <MapPin className="w-3.5 h-3.5 text-[#a01d12]" />
-                {profile.location}
+                <MapPin className="w-3.5 h-3.5 text-[#dfbe7a] print:text-black" />
+                {profile.location.split('(')[0].trim()}
               </span>
               <span>•</span>
-              <a href={`mailto:${profile.email}`} className="flex items-center gap-1 hover:text-[#a01d12]">
-                <Mail className="w-3.5 h-3.5 text-[#a01d12]" />
+              <a href={`mailto:${profile.email}`} className="flex items-center gap-1 text-[#dfbe7a] hover:underline print:text-black">
+                <Mail className="w-3.5 h-3.5" />
                 {profile.email}
               </a>
               <span>•</span>
-              <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-[#a01d12]">
-                <Code2 className="w-3.5 h-3.5 text-[#a01d12]" />
+              <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-[#dfbe7a] print:text-black">
+                <Code2 className="w-3.5 h-3.5" />
                 GitHub
               </a>
               <span>•</span>
-              <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-[#a01d12]">
-                <Globe className="w-3.5 h-3.5 text-[#a01d12]" />
+              <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-[#dfbe7a] print:text-black">
+                <Globe className="w-3.5 h-3.5" />
                 LinkedIn
               </a>
             </div>
@@ -99,42 +99,55 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, profi
 
           {/* Executive Summary */}
           <div>
-            <h2 className="text-lg font-cinzel font-bold uppercase text-[#a01d12] border-b border-[#8b5a2b]/30 pb-1 mb-2 flex items-center gap-2">
-              <BookOpen className="w-4 h-4" /> Professional Summary
+            <h2 className="text-xs font-mono font-bold text-[#dfbe7a] print:text-neutral-900 uppercase tracking-wider mb-2">
+              Executive Profile & Architecture Stance
             </h2>
-            <p className="text-sm leading-relaxed text-[#211710] text-justify">
+            <p className="text-xs sm:text-sm text-[#cbd5e1] print:text-neutral-800 font-sans leading-relaxed">
               {profile.aboutBio}
             </p>
           </div>
 
           {/* Education */}
           <div>
-            <h2 className="text-lg font-cinzel font-bold uppercase text-[#a01d12] border-b border-[#8b5a2b]/30 pb-1 mb-2 flex items-center gap-2">
-              <Award className="w-4 h-4" /> Education & Pedigree
+            <h2 className="text-xs font-mono font-bold text-[#dfbe7a] print:text-neutral-900 uppercase tracking-wider mb-2">
+              Academic Background
             </h2>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between text-sm font-cinzel font-bold text-[#171310]">
-              <span>{profile.education.degree}</span>
-              <span className="text-[#a01d12]">{profile.education.period}</span>
+            <div className="p-3.5 rounded-xl bg-[#05080c]/60 print:bg-neutral-50 border border-white/5 print:border-neutral-200">
+              <div className="flex justify-between items-start text-xs sm:text-sm font-semibold text-[#f1f5f9] print:text-black">
+                <span>{profile.education.degree}</span>
+                <span className="font-mono text-[#dfbe7a] print:text-neutral-800">{profile.education.period}</span>
+              </div>
+              <div className="text-xs text-[#94a3b8] print:text-neutral-600 mt-0.5">
+                {profile.education.institution} • <span className="text-emerald-400 print:text-black font-semibold">{profile.education.grade}</span>
+              </div>
+              <p className="text-xs text-[#64748b] print:text-neutral-700 mt-1">
+                {profile.education.details}
+              </p>
             </div>
-            <div className="text-xs font-cinzel text-[#523d24]">
-              {profile.education.institution} • <span className="font-bold text-[#171310]">{profile.education.grade}</span>
-            </div>
-            <p className="text-xs italic text-[#382618] mt-1">
-              {profile.education.details}
-            </p>
           </div>
 
-          {/* Technical Armory */}
+          {/* Professional Experience */}
           <div>
-            <h2 className="text-lg font-cinzel font-bold uppercase text-[#a01d12] border-b border-[#8b5a2b]/30 pb-1 mb-2 flex items-center gap-2">
-              <Layers className="w-4 h-4" /> Technical Skills & Core Competencies
+            <h2 className="text-xs font-mono font-bold text-[#dfbe7a] print:text-neutral-900 uppercase tracking-wider mb-3">
+              Engineering Work History
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-cinzel">
-              {profile.skills.map((cat) => (
-                <div key={cat.category} className="p-2.5 bg-[#e8dcbe]/40 rounded border border-[#8b5a2b]/30">
-                  <div className="font-bold text-[#a01d12] uppercase mb-1">{cat.category}</div>
-                  <div className="text-[#261b11] leading-relaxed">
-                    {cat.skills.map((s) => s.name).join(' • ')}
+            <div className="space-y-4">
+              {profile.experience.map((exp) => (
+                <div key={exp.role} className="p-3.5 rounded-xl bg-[#05080c]/60 print:bg-neutral-50 border border-white/5 print:border-neutral-200">
+                  <div className="flex justify-between items-start text-xs sm:text-sm font-semibold text-[#f1f5f9] print:text-black">
+                    <span>{exp.role}</span>
+                    <span className="font-mono text-[#dfbe7a] print:text-neutral-800 text-xs">{exp.period}</span>
+                  </div>
+                  <div className="text-xs text-[#94a3b8] print:text-neutral-600 mb-2">
+                    {exp.organization} • {exp.location}
+                  </div>
+                  <div className="space-y-1">
+                    {exp.achievements.map((ach) => (
+                      <div key={ach} className="flex items-start gap-2 text-xs text-[#cbd5e1] print:text-neutral-800">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
+                        <span>{ach}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
@@ -143,42 +156,18 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, profi
 
           {/* Key Production Projects */}
           <div>
-            <h2 className="text-lg font-cinzel font-bold uppercase text-[#a01d12] border-b border-[#8b5a2b]/30 pb-1 mb-3 flex items-center gap-2">
-              <ExternalLink className="w-4 h-4" /> Selected Flagship Projects
+            <h2 className="text-xs font-mono font-bold text-[#dfbe7a] print:text-neutral-900 uppercase tracking-wider mb-3">
+              Flagship Production Projects
             </h2>
-            <div className="space-y-3.5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {profile.projects.slice(0, 4).map((p) => (
-                <div key={p.id} className="text-xs">
-                  <div className="flex items-center justify-between font-cinzel font-bold text-[#171310]">
-                    <span className="text-sm text-[#a01d12]">{p.title}</span>
-                    <span className="text-[10px] text-[#523d24]">{p.metrics}</span>
-                  </div>
-                  <div className="text-[11px] font-cinzel text-[#543b22] italic mb-1">
-                    Tech Stack: {p.techStack.join(', ')}
-                  </div>
-                  <p className="text-xs text-[#2b1f15] leading-relaxed">
-                    {p.description}
-                  </p>
+                <div key={p.id} className="p-3 rounded-xl bg-[#05080c]/60 print:bg-neutral-50 border border-white/5 print:border-neutral-200">
+                  <div className="text-xs font-bold text-[#f1f5f9] print:text-black font-heading">{p.title}</div>
+                  <div className="text-[11px] font-mono text-[#dfbe7a] print:text-neutral-800">{p.metrics}</div>
+                  <p className="text-xs text-[#94a3b8] print:text-neutral-700 mt-1 line-clamp-2">{p.description}</p>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Honors & Hackathons */}
-          <div>
-            <h2 className="text-lg font-cinzel font-bold uppercase text-[#a01d12] border-b border-[#8b5a2b]/30 pb-1 mb-2 flex items-center gap-2">
-              <Award className="w-4 h-4" /> Hackathons & Certifications
-            </h2>
-            <ul className="space-y-1.5 text-xs text-[#24170f]">
-              {profile.achievements.map((ach) => (
-                <li key={ach.id} className="flex items-start gap-2">
-                  <span className="text-[#a01d12] font-bold">•</span>
-                  <div>
-                    <span className="font-cinzel font-bold">{ach.title}</span> ({ach.year}) — {ach.issuer}: {ach.description}
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>

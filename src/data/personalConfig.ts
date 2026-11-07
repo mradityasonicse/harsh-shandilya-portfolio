@@ -64,71 +64,71 @@ export interface PersonalProfile {
 }
 
 export const PERSONAL_CONFIG: PersonalProfile = {
-  name: "Harsh",
+  name: "Harsh Shandilya",
   moniker: "Harsh",
   role: "Full-Stack Software Engineer & Systems Architect",
-  subRole: "Specializing in High-Performance Distributed Systems, 3D WebGL & Modern Web",
-  tagline: "Architecting high-throughput distributed systems, secure cloud backends, and interactive 3D spatial web interfaces.",
-  location: "Bhilai / Raipur, India (Open to Global Remote & On-Site Roles)",
+  subRole: "Specializing in High-Throughput Distributed Backends, 3D WebGL Engines & Resilient Cloud Architecture",
+  tagline: "Architecting high-concurrency distributed systems, zero-defect microservices, and interactive 3D spatial web environments.",
+  location: "Bhilai / Raipur, India • 21°14'N 81°38'E (Open to Global Remote & Relocation)",
   email: "7c24harsh@gmail.com",
   photoUrl: "/profile-photo.jpg",
-  githubUrl: "https://github.com",
-  linkedinUrl: "https://linkedin.com",
-  twitterUrl: "https://twitter.com",
+  githubUrl: "https://github.com/mradityasonicse",
+  linkedinUrl: "https://linkedin.com/in/harsh-shandilya",
+  twitterUrl: "https://x.com",
   resumeUrl: "#resume",
-  aboutBio: "I am a dedicated software engineer with an obsession for high-velocity engineering, clean architecture, and zero-defect code. From scaling microservice backends and building deterministic CLI test harnesses to engineering silky 120 FPS WebGL 3D spatial interfaces, I build production software that leaves a lasting impression.",
-  codePhilosophy: "Zero vibe coding. 100% verified execution. Every API is strictly typed, every component is profiled, and every architecture is engineered to endure real-world traffic storms.",
+  aboutBio: "I am a full-stack engineer and systems architect dedicated to engineering resilient software with zero-vibe coding and 100% verified execution. From scaling concurrent distributed pipelines and designing strict relational schemas to rendering silky 120 FPS WebGL spatial experiences, I build production systems engineered to endure real-world stress.",
+  codePhilosophy: "Zero unverified assumptions. Every API contract is strictly typed, every component passes performance and accessibility budgets, and every architecture is built to withstand production turbulence.",
   
   stats: [
-    { label: "Production Systems", value: "24+", subtext: "Shipped & Deployed" },
-    { label: "Hackathons Conquered", value: "6+ Podiums", subtext: "National & Global" },
-    { label: "Code Commits", value: "3,200+", subtext: "Verified Open Source" },
-    { label: "Test Automation", value: "98%+", subtext: "Deterministic Passes" }
+    { label: "Production Deployments", value: "24+", subtext: "Zero-Downtime Releases" },
+    { label: "National Hackathons", value: "Top Finalist", subtext: "SIH & Regional Podiums" },
+    { label: "Open Source Commits", value: "3,200+", subtext: "Deterministic Codebases" },
+    { label: "System Test Coverage", value: "98%+", subtext: "Strict Automated Harnesses" }
   ],
 
   skills: [
     {
-      category: "Frontend & Creative Engineering",
-      themeLabel: "The Visual Broadside",
-      lore: "Pixel-perfect Auto Layouts, fluid typography clamp curves, and GPU-accelerated motion.",
+      category: "Frontend & 3D Spatial Interfaces",
+      themeLabel: "Naval Cartography & Visual Engine",
+      lore: "Sub-pixel precision, fluid clamp typography, GPU fragment shaders, and 60-120 FPS render loops.",
       skills: [
-        { name: "React 19 & Next.js 15 (App Router)", level: 96, category: "Framework" },
-        { name: "TypeScript & Strict Type Safety", level: 95, category: "Language" },
-        { name: "Three.js & WebGL / GLSL Shaders", level: 90, category: "3D Graphics" },
-        { name: "Tailwind CSS & Framer Motion", level: 95, category: "Styling" },
+        { name: "React 19 & Next.js 15 (App Router)", level: 96, category: "Core Framework" },
+        { name: "TypeScript & Strict Type Safety", level: 95, category: "Type System" },
+        { name: "Three.js & WebGL / GLSL Shaders", level: 90, category: "3D & Shaders" },
+        { name: "Tailwind CSS v4 & Framer Motion", level: 95, category: "Kinetic Motion" },
       ]
     },
     {
-      category: "Backend & Systems Engineering",
-      themeLabel: "The Ironclad Engine",
-      lore: "Sub-millisecond API gateways, distributed locks, and ACID transactional databases.",
+      category: "Backend & Systems Propulsion",
+      themeLabel: "High-Throughput Distributed Core",
+      lore: "Sub-millisecond API response budgets, distributed locks, and ACID transactional databases.",
       skills: [
-        { name: "Python, FastAPI & CLI Tools", level: 94, category: "Core Language" },
-        { name: "Node.js, Express & Bun Runtime", level: 93, category: "Runtime" },
-        { name: "PostgreSQL & Prisma / Drizzle ORM", level: 91, category: "Database" },
-        { name: "Redis & Distributed Caching", level: 89, category: "Cache / Queues" },
+        { name: "Python 3.12, FastAPI & Asynchronous Queues", level: 94, category: "Core Language" },
+        { name: "Node.js, Express & Bun Runtime", level: 93, category: "Engine Runtime" },
+        { name: "PostgreSQL & Prisma / Drizzle ORM", level: 91, category: "Relational DB" },
+        { name: "Redis & Distributed In-Memory Cache", level: 89, category: "Fast Storage" },
       ]
     },
     {
-      category: "Cloud, DevOps & Infrastructure",
-      themeLabel: "Navigational Infrastructure",
-      lore: "Containerized isolation, zero-downtime CI/CD pipelines, and serverless edge scale.",
+      category: "Cloud Infrastructure & DevOps",
+      themeLabel: "Navigational Fleet Logistics",
+      lore: "Containerized multi-stage microservices, automated CI/CD pipelines, and serverless edge compute.",
       skills: [
         { name: "Docker & Container Hardening", level: 90, category: "Containers" },
-        { name: "AWS Cloud & Architecture", level: 88, category: "Cloud Platform" },
-        { name: "CI/CD & GitHub Actions Workflows", level: 92, category: "Automation" },
-        { name: "Cloudflare Workers & Edge Storage", level: 89, category: "Serverless" },
+        { name: "AWS Cloud (ECS, S3, RDS, Lambda)", level: 88, category: "Cloud Architecture" },
+        { name: "GitHub Actions CI/CD Automation", level: 92, category: "DevOps" },
+        { name: "Cloudflare Workers & Edge K/V", level: 89, category: "Edge Infrastructure" },
       ]
     },
     {
-      category: "Computer Science & Security Fundamentals",
-      themeLabel: "The Cursed Defense Arsenal",
-      lore: "Mastery of algorithmic complexity, clean system design, and OWASP Top 10 security.",
+      category: "Algorithmic Integrity & Security",
+      themeLabel: "Cryptographic & Defensive Armor",
+      lore: "Algorithmic computational complexity, clean hexagonal architecture, and OWASP Top 10 mitigation.",
       skills: [
         { name: "Data Structures & Algorithms (DSA)", level: 92, category: "Core CS" },
-        { name: "System Design & Microservices", level: 89, category: "Architecture" },
-        { name: "OWASP Top 10 Security & Input Sanitization", level: 90, category: "AppSec" },
-        { name: "Unit & Automated Integration Testing", level: 96, category: "Quality" },
+        { name: "System Design & Event-Driven Patterns", level: 89, category: "Architecture" },
+        { name: "OWASP Top 10 Security & Input Sanitization", level: 90, category: "Application Security" },
+        { name: "TDD & Automated Integration Testing", level: 96, category: "Verification" },
       ]
     }
   ],
@@ -136,94 +136,94 @@ export const PERSONAL_CONFIG: PersonalProfile = {
   projects: [
     {
       id: "restaurant-order-billing",
-      title: "Restaurant Order & Automated Billing Engine",
-      tagline: "Deterministic order processing, test-driven pricing logic & receipt pipeline",
-      islandCode: "PORT 01 • AUTOMATION & PYTHON",
-      description: "A production Python ordering and billing system engineered with strict test-driven validation, table status management, real-time bill calculations, itemized discount policies, and terminal receipt generation.",
+      title: "Automated Billing & Order Processing Engine",
+      tagline: "Deterministic pricing calculations, table state machine & tabular receipt pipeline",
+      islandCode: "EXPEDITION 01 • PYTHON SYSTEMS",
+      description: "A production Python ordering and automated billing engine built with test-driven validation, table status management, real-time bill calculations, itemized discount policies, and CLI receipt formatting.",
       highlights: [
         "100% deterministic test-case verification across standard, edge-case, and boundary order inputs",
-        "Built modular menu catalogue parser and itemized tax calculation engine",
-        "Clean terminal CLI interface with formatted tabular output and receipt logs"
+        "Engineered modular menu parser and itemized multi-tier taxation engine",
+        "Deterministic terminal CLI reporting with sub-10ms transactional execution"
       ],
-      techStack: ["Python 3.12", "CLI Engineering", "Unit Testing", "Regex", "Clean Architecture"],
+      techStack: ["Python 3.12", "CLI Architecture", "Unit Testing", "Regex Parsing", "Clean Architecture"],
       type: "Distributed System",
-      metrics: "100% Test Pass Rate • Sub-10ms Processing",
-      demoUrl: "https://github.com",
-      githubUrl: "https://github.com"
+      metrics: "100% Test Pass Rate • Sub-10ms Latency",
+      demoUrl: "https://github.com/mradityasonicse",
+      githubUrl: "https://github.com/mradityasonicse"
     },
     {
-      id: "ai-copilot-engine",
-      title: "OmniAgent: Autonomous Multi-Agent AI System",
-      tagline: "Autonomous multi-threaded developer agent orchestrator",
-      islandCode: "PORT 02 • SYSTEM CORE",
-      description: "A production-grade agent orchestration framework with persistent task sharding, AST code intelligence, self-healing diagnostics, and isolated subagent swarms for parallel task completion.",
+      id: "omni-agent-orchestrator",
+      title: "OmniAgent: Autonomous Multi-Threaded Engine",
+      tagline: "Autonomous multi-threaded developer agent orchestrator with AST code intelligence",
+      islandCode: "EXPEDITION 02 • CORE INTELLIGENCE",
+      description: "A developer agent orchestration framework with persistent task sharding, AST code intelligence, self-healing diagnostic loops, and isolated subagents for concurrent operations.",
       highlights: [
-        "Reduced complex codebase refactoring cycles from 4 hours to 12 minutes",
-        "Implemented AST parsing and ripgrep binary integration for sub-millisecond symbol discovery",
-        "Built persistent state checkpointing immune to memory context degradation"
+        "Accelerates multi-file codebase refactoring with surgical symbol discovery via Ripgrep",
+        "Engineered persistent state checkpointing on disk immune to memory degradation",
+        "Autonomous exit-code diagnostics that self-heal compilation and syntax errors"
       ],
-      techStack: ["TypeScript", "Node.js", "Bun", "Vector DB", "Docker", "Tailwind CSS"],
+      techStack: ["TypeScript", "Node.js", "Bun", "Vector Index", "Docker", "Tailwind CSS"],
       type: "Distributed System",
       metrics: "50K+ Operations / Day • 99.98% Uptime",
-      demoUrl: "https://github.com",
-      githubUrl: "https://github.com"
+      demoUrl: "https://github.com/mradityasonicse",
+      githubUrl: "https://github.com/mradityasonicse"
     },
     {
       id: "visionpath-ai",
-      title: "VisionPath AI: Real-Time Edge Computer Vision Engine",
-      tagline: "Multimodal computer vision pipeline with real-time tensor inference",
-      islandCode: "PORT 03 • AI & MACHINE LEARNING",
-      description: "High-performance edge vision engine designed for object tracking, facial gesture analysis, and automated scene classification using quantized lightweight neural models.",
+      title: "VisionPath: Real-Time Edge Vision Pipeline",
+      tagline: "Multimodal edge computer vision pipeline with real-time tensor inference",
+      islandCode: "EXPEDITION 03 • EDGE TENSORS",
+      description: "High-performance edge vision engine designed for object tracking, facial gesture analysis, and automated scene classification using quantized neural models.",
       highlights: [
-        "Delivers sub-15ms inference latency per frame on standard consumer hardware",
-        "Engineered robust WebSocket streaming pipeline for live camera telemetry",
-        "Modular plug-and-play architecture supporting custom trained neural backends"
+        "Delivers sub-15ms inference latency per frame on standard hardware",
+        "Engineered low-latency WebSocket streaming pipeline for live camera telemetry",
+        "Modular architecture supporting hot-swappable neural weight checkpoints"
       ],
       techStack: ["Python", "PyTorch", "OpenCV", "FastAPI", "WebSockets", "Docker"],
       type: "3D & AI",
       metrics: "60 FPS Stream Rate • Sub-15ms Latency",
-      demoUrl: "https://github.com",
-      githubUrl: "https://github.com"
+      demoUrl: "https://github.com/mradityasonicse",
+      githubUrl: "https://github.com/mradityasonicse"
     },
     {
-      id: "spatial-3d-web",
-      title: "Verve3D: Real-Time WebGL Spatial Commerce Engine",
-      tagline: "Interactive 3D configurator with 60-120 FPS performance budget",
-      islandCode: "PORT 04 • GRAPHICS & WEBGL",
-      description: "An award-winning 3D spatial web platform featuring procedural GLSL fragment shaders, custom physical materials, realistic lighting models, and zero layout shift on mobile devices.",
+      id: "verve-spatial-engine",
+      title: "Verve3D: Real-Time WebGL Spatial Platform",
+      tagline: "Interactive 3D configurator with 60-120 FPS performance budget and GLSL shaders",
+      islandCode: "EXPEDITION 04 • GRAPHICS & WEBGL",
+      description: "An interactive 3D spatial web platform featuring procedural GLSL fragment shaders, custom physical materials, realistic lighting models, and zero layout shift on mobile viewports.",
       highlights: [
-        "Architected custom WebGL shader pipeline delivering stable 60 FPS on mobile and 120 FPS on desktop",
-        "Engineered procedural audio synthesizer utilizing Web Audio API for spatial feedback",
-        "Scored 99/100 on Google Lighthouse performance audits"
+        "Custom WebGL shader pipeline delivering stable 60 FPS on mobile and 120 FPS on desktop",
+        "Engineered procedural Web Audio synthesizer for tactile spatial haptics",
+        "Achieved 99/100 Google Lighthouse performance rating with 0ms CLS"
       ],
       techStack: ["React 19", "Three.js", "GLSL Shaders", "Web Audio API", "Tailwind CSS"],
       type: "3D & AI",
-      metrics: "Sub-500ms First Contentful Paint • 0ms CLS",
-      demoUrl: "https://github.com",
-      githubUrl: "https://github.com"
+      metrics: "Sub-500ms FCP • 0ms Layout Shift",
+      demoUrl: "https://github.com/mradityasonicse",
+      githubUrl: "https://github.com/mradityasonicse"
     },
     {
       id: "resilient-student-planner",
-      title: "Resilient Student: Academic Scheduler & Attendance Tracker",
-      tagline: "Smart timetable optimization, class deficit predictor & automated reminders",
-      islandCode: "PORT 05 • FULL-STACK WEB",
-      description: "A comprehensive academic governance suite helping students navigate complex course schedules, dynamic attendance criteria thresholds, exam timetables, and assignment workflows.",
+      title: "Resilient Academic Governance Suite",
+      tagline: "Deterministic timetable optimizer, attendance margin calculator & PWA sync",
+      islandCode: "EXPEDITION 05 • FULL-STACK WEB",
+      description: "An offline-first academic management suite helping students navigate complex course schedules, dynamic attendance criteria thresholds, exam timetables, and assignment workflows.",
       highlights: [
-        "Automated attendance projection engine calculating mandatory presence margins",
+        "Automated attendance projection engine calculating required presence margins",
         "Offline-first progressive web app with instant sync and local encrypted persistence",
-        "Seamless timetable scheduling algorithm avoiding multi-course conflicts"
+        "Conflict-free timetable scheduling algorithm avoiding multi-course clashes"
       ],
       techStack: ["Next.js 15", "TypeScript", "Tailwind CSS", "IndexedDB", "PWA"],
       type: "Full-Stack SaaS",
-      metrics: "1,500+ Active Students • 0ms Layout Shift",
-      demoUrl: "https://github.com",
-      githubUrl: "https://github.com"
+      metrics: "1,500+ Active Students • 0ms CLS",
+      demoUrl: "https://github.com/mradityasonicse",
+      githubUrl: "https://github.com/mradityasonicse"
     },
     {
       id: "nexus-campus-portal",
       title: "NexusCampus: Distributed University Ecosystem",
-      tagline: "Centralized campus events, lab resource reservations & peer collaboration",
-      islandCode: "PORT 06 • DISTRIBUTED APPS",
+      tagline: "Centralized campus reservations, event logistics & role-based access control",
+      islandCode: "EXPEDITION 06 • DISTRIBUTED APPS",
       description: "An integrated campus infrastructure portal coordinating technical events, lab equipment reservations, student project showcases, and administrative communications with RBAC permissions.",
       highlights: [
         "Implemented role-based access control (RBAC) separating students, faculty, and coordinators",
@@ -232,15 +232,15 @@ export const PERSONAL_CONFIG: PersonalProfile = {
       ],
       techStack: ["React 19", "Node.js", "Express", "PostgreSQL", "Tailwind CSS"],
       type: "Full-Stack SaaS",
-      metrics: "5,000+ Campus Bookings • 99.9% Uptime",
-      demoUrl: "https://github.com",
-      githubUrl: "https://github.com"
+      metrics: "5,000+ Bookings • 99.9% Uptime",
+      demoUrl: "https://github.com/mradityasonicse/NexusCampus",
+      githubUrl: "https://github.com/mradityasonicse/NexusCampus"
     },
     {
       id: "fintech-settlement",
-      title: "SentinelPay: High-Throughput Payment Settlement Gateway",
-      tagline: "Idempotent financial ledger with sub-50ms latency",
-      islandCode: "PORT 07 • FINTECH & CLOUD",
+      title: "SentinelPay: High-Throughput Settlement Gateway",
+      tagline: "Idempotent financial ledger with sub-50ms latency and ACID compliance",
+      islandCode: "EXPEDITION 07 • FINTECH & CLOUD",
       description: "An enterprise-grade double-entry ledger and payment router designed with strict ACID compliance, distributed Redis locking, and automated reconciliation audit trails.",
       highlights: [
         "Handles 10,000+ concurrent payment transactions per second with zero double-spends",
@@ -249,26 +249,26 @@ export const PERSONAL_CONFIG: PersonalProfile = {
       ],
       techStack: ["Next.js 15", "PostgreSQL", "Prisma", "Redis", "Docker", "Stripe API"],
       type: "Full-Stack SaaS",
-      metrics: "10,000 TPS Capacity • 0 Reconciliation Errors",
-      demoUrl: "https://github.com",
-      githubUrl: "https://github.com"
+      metrics: "10,000 TPS Capacity • 0 Double-Spends",
+      demoUrl: "https://github.com/mradityasonicse",
+      githubUrl: "https://github.com/mradityasonicse"
     },
     {
       id: "cyber-hunter",
       title: "AegisHunt: Autonomous Vulnerability Auditor",
-      tagline: "Automated perimeter reconnaissance and CVE scanner",
-      islandCode: "PORT 08 • SECURITY & AUDIT",
+      tagline: "Automated perimeter reconnaissance, soft-404 baseline derivation & CVSS reporting",
+      islandCode: "EXPEDITION 08 • SECURITY & AUDIT",
       description: "A defensive cybersecurity engine that maps attack surfaces, audits JWT crypto implementations, derives soft-404 baselines, and generates standardized CVSS v3.1 reports.",
       highlights: [
         "Automated discovery of IDOR, SSRF, and authentication bypass attack vectors",
         "Generates executive-ready PDF audit reports with non-destructive reproduction proofs",
-        "Used by security researchers to triage bug bounty scopes in minutes"
+        "Accelerates vulnerability triage for security researchers and platform engineers"
       ],
       techStack: ["Python", "FastAPI", "TypeScript", "OWASP Arsenal", "PostgreSQL"],
       type: "Cyber Security",
       metrics: "200+ Automated Vulnerability Checks",
-      demoUrl: "https://github.com",
-      githubUrl: "https://github.com"
+      demoUrl: "https://github.com/mradityasonicse",
+      githubUrl: "https://github.com/mradityasonicse"
     }
   ],
 
@@ -345,9 +345,9 @@ export const PERSONAL_CONFIG: PersonalProfile = {
     {
       period: "2024 - Present",
       role: "Lead Full-Stack & Systems Engineer",
-      organization: "Tech Innovation & Autonomous Systems Fleet",
+      organization: "Autonomous Systems Fleet & Enterprise Platforms",
       location: "Bengaluru / Remote",
-      description: "Leading core product engineering and distributed architecture, driving high-concurrency Python & TypeScript backends, WebGL rendering engines, and developer productivity tools.",
+      description: "Leading core software development and distributed architecture, driving high-concurrency Python & TypeScript backends, WebGL rendering engines, and developer productivity tools.",
       achievements: [
         "Spearheaded redesign of legacy monolith into event-driven microservices, slashing p99 latency by 68%",
         "Architected real-time collaboration canvas supporting thousands of simultaneous active users",
