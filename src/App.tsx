@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PERSONAL_CONFIG } from './data/personalConfig';
 import { ThreeOceanScene } from './components/canvas/ThreeOceanScene';
 import { Navbar } from './components/ui/Navbar';
@@ -17,6 +20,15 @@ import { ResumeModal } from './components/ui/ResumeModal';
 import { SoundboardBar } from './components/ui/SoundboardBar';
 import { VoyageHUD } from './components/ui/VoyageHUD';
 
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
+
+declare global {
+  interface Window {
+    __lenis?: Lenis;
+  }
+}
+
 export const App: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('hero');
@@ -25,12 +37,19 @@ export const App: React.FC = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const profile = PERSONAL_CONFIG;
 
+  // Initialize Lenis Inertia Smooth Scroll
   useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const currentScroll = window.scrollY;
-      const progress = totalScroll > 0 ? Math.min(Math.max(currentScroll / totalScroll, 0), 1) : 0;
-      setScrollProgress(progress);
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
+
+    window.__lenis = lenis;
+
+    lenis.on('scroll', (e: { progress: number }) => {
+      setScrollProgress(e.progress);
+      ScrollTrigger.update();
 
       const sections = ['hero', 'legend', 'armory', 'voyages', 'spoils', 'log', 'bottle'];
       for (const sectionId of sections) {
@@ -43,12 +62,20 @@ export const App: React.FC = () => {
           }
         }
       }
+    });
+
+    const updateRaf = (time: number) => {
+      lenis.raf(time * 1000);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    gsap.ticker.add(updateRaf);
+    gsap.ticker.lagSmoothing(0);
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      gsap.ticker.remove(updateRaf);
+      lenis.destroy();
+      delete window.__lenis;
+    };
   }, []);
 
   // Global hotkeys for Captain's Terminal & Modals
@@ -68,9 +95,11 @@ export const App: React.FC = () => {
   }, []);
 
   const handleExplore = () => {
-    const el = document.getElementById('voyages');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (window.__lenis) {
+      window.__lenis.scrollTo('#voyages');
+    } else {
+      const el = document.getElementById('voyages');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -85,10 +114,10 @@ export const App: React.FC = () => {
       {/* 3. Procedural Web Audio Ocean Soundscape */}
       <AudioEngine isPlaying={audioPlaying} />
 
-      {/* 4. Cinematic Burnt Vignette Overlay */}
+      {/* 4. Deep Oceanic Vignette Overlay */}
       <div className="fixed inset-0 vignette-overlay z-20 pointer-events-none" />
 
-      {/* 5. Nautical Rope Navigation Bar */}
+      {/* 5. Precision Naval Astrolabe Navigation Bar */}
       <Navbar
         audioPlaying={audioPlaying}
         onToggleAudio={() => setAudioPlaying(!audioPlaying)}
@@ -116,10 +145,10 @@ export const App: React.FC = () => {
         />
       </main>
 
-      {/* 7. Pirate Code Footer */}
+      {/* 7. Naval Astrolabe Crest Footer */}
       <FooterSection />
 
-      {/* 8. ADD-ON: Captain's Command Bridge CLI Terminal */}
+      {/* 8. Captain's Command Bridge CLI Terminal */}
       <CaptainTerminal
         isOpen={isTerminalOpen}
         onClose={() => setIsTerminalOpen(false)}
@@ -127,20 +156,20 @@ export const App: React.FC = () => {
         profile={profile}
       />
 
-      {/* 9. ADD-ON: Official Parchment Printable Resume Modal */}
+      {/* 9. Official Architectural CV Modal */}
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
         profile={profile}
       />
 
-      {/* 10. ADD-ON: Floating Nautical Soundboard FX Bar (Bottom Right) */}
+      {/* 10. Floating Nautical Soundscape Controller (Bottom Right) */}
       <SoundboardBar
         ambientPlaying={audioPlaying}
         onToggleAmbient={() => setAudioPlaying(!audioPlaying)}
       />
 
-      {/* 11. ADD-ON: Floating Voyage Coordinates & Compass HUD (Bottom Left) */}
+      {/* 11. Floating Voyage Coordinates & Circular Progress HUD (Bottom Left) */}
       <VoyageHUD
         scrollProgress={scrollProgress}
         activeSection={activeSection}

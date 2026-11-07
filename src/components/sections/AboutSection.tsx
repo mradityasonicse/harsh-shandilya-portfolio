@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import type { PersonalProfile } from '../../data/personalConfig';
 import { SectionBanner } from '../ui/SectionBanner';
-import { GraduationCap, Terminal, MapPin, ShieldCheck, Code2 } from 'lucide-react';
+import { Terminal, MapPin, ShieldCheck, Code2 } from 'lucide-react';
+import { playAudioFx } from '../ui/AudioEngine';
 
 interface AboutSectionProps {
   profile: PersonalProfile;
@@ -9,6 +10,7 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
   const [portraitTilt, setPortraitTilt] = useState({ x: 0, y: 0 });
+  const [activeTab, setActiveTab] = useState<'bio' | 'philosophy' | 'education'>('bio');
 
   const handlePortraitMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -30,7 +32,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-8">
-        {/* Left Side: Personal Engineering Manifesto & Academic Provenance */}
+        {/* Left Side: Personal Engineering Manifesto & Interactive Tabbed Dossier */}
         <div className="lg:col-span-7">
           <div className="nautical-card p-6 sm:p-8 rounded-2xl border border-[#c5a059]/25 shadow-[0_20px_50px_rgba(0,0,0,0.85)] backdrop-blur-xl">
             {/* Header Telemetry */}
@@ -45,44 +47,114 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
               </span>
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#f1f5f9] mb-3">
-              About Me: {profile.name}
-            </h3>
-
-            <p className="text-sm sm:text-base text-[#94a3b8] font-sans leading-relaxed mb-6 font-normal">
-              {profile.aboutBio}
-            </p>
-
-            {/* Core Code Philosophy Callout */}
-            <div className="p-4 sm:p-5 bg-[#05080c]/70 rounded-xl border-l-2 border-[#dfbe7a] border-y border-r border-white/5 mb-6">
-              <h4 className="text-xs font-mono font-bold text-[#dfbe7a] uppercase mb-1.5 flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#dfbe7a]" />
-                Core Architectural Philosophy:
-              </h4>
-              <p className="text-xs sm:text-sm text-[#cbd5e1] font-sans italic leading-relaxed">
-                "{profile.codePhilosophy}"
-              </p>
+            {/* Interactive Dossier Nav Tabs */}
+            <div className="flex items-center gap-2 mb-6 p-1.5 rounded-xl bg-[#05080c]/80 border border-white/5">
+              <button
+                onClick={() => {
+                  playAudioFx('click');
+                  setActiveTab('bio');
+                }}
+                className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                  activeTab === 'bio'
+                    ? 'bg-[#dfbe7a] text-[#05080c] shadow-sm'
+                    : 'text-[#94a3b8] hover:text-[#f1f5f9]'
+                }`}
+              >
+                Executive Bio
+              </button>
+              <button
+                onClick={() => {
+                  playAudioFx('click');
+                  setActiveTab('philosophy');
+                }}
+                className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                  activeTab === 'philosophy'
+                    ? 'bg-[#dfbe7a] text-[#05080c] shadow-sm'
+                    : 'text-[#94a3b8] hover:text-[#f1f5f9]'
+                }`}
+              >
+                Code Philosophy
+              </button>
+              <button
+                onClick={() => {
+                  playAudioFx('click');
+                  setActiveTab('education');
+                }}
+                className={`flex-1 py-2 px-3 rounded-lg text-xs font-mono font-semibold transition-all cursor-pointer ${
+                  activeTab === 'education'
+                    ? 'bg-[#dfbe7a] text-[#05080c] shadow-sm'
+                    : 'text-[#94a3b8] hover:text-[#f1f5f9]'
+                }`}
+              >
+                University Pedigree
+              </button>
             </div>
 
-            {/* Academic Pedigree & Degree Credentials */}
-            <div className="border-t border-[#c5a059]/15 pt-5 space-y-3">
-              <h4 className="text-xs font-mono font-bold text-[#dfbe7a] uppercase tracking-wider flex items-center gap-2">
-                <GraduationCap className="w-4 h-4 text-[#dfbe7a]" />
-                Academic Pedigree & University Record
-              </h4>
-              <div className="bg-[#0e1622]/90 p-4 rounded-xl border border-[#c5a059]/20 space-y-1.5">
-                <div className="flex flex-wrap items-center justify-between gap-1 text-xs font-heading font-bold text-[#f1f5f9]">
-                  <span>{profile.education.degree}</span>
-                  <span className="text-[#dfbe7a] font-mono">{profile.education.period}</span>
-                </div>
-                <div className="text-xs text-[#94a3b8] font-sans">
-                  {profile.education.institution} • <span className="font-semibold text-emerald-400">{profile.education.grade}</span>
-                </div>
-                <p className="text-xs text-[#64748b] font-sans pt-1 leading-relaxed">
-                  {profile.education.details}
+            {/* Tab Contents with smooth fade */}
+            {activeTab === 'bio' && (
+              <div className="space-y-4 animate-fadeIn">
+                <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#f1f5f9]">
+                  About Me: {profile.name}
+                </h3>
+                <p className="text-sm sm:text-base text-[#94a3b8] font-sans leading-relaxed font-normal">
+                  {profile.aboutBio}
                 </p>
+                <div className="p-4 bg-[#05080c]/60 rounded-xl border border-white/5 text-xs text-[#cbd5e1] font-sans leading-relaxed">
+                  Specialized in translating mission-critical engineering requirements into battle-tested architectures. From kernel-level algorithmic optimizations to responsive 3D WebGL user interfaces, every line is crafted for zero latency and deterministic execution.
+                </div>
               </div>
-            </div>
+            )}
+
+            {activeTab === 'philosophy' && (
+              <div className="space-y-4 animate-fadeIn">
+                <div className="p-5 bg-[#05080c]/80 rounded-xl border-l-2 border-[#dfbe7a] border-y border-r border-white/5">
+                  <h4 className="text-xs font-mono font-bold text-[#dfbe7a] uppercase mb-2 flex items-center gap-2">
+                    <ShieldCheck className="w-4 h-4 text-[#dfbe7a]" />
+                    Zero Vibe Coding & Deterministic Reliability:
+                  </h4>
+                  <p className="text-sm text-[#cbd5e1] font-sans italic leading-relaxed">
+                    "{profile.codePhilosophy}"
+                  </p>
+                </div>
+                <div className="space-y-2 pt-2">
+                  <div className="text-xs font-mono text-[#dfbe7a] font-semibold">Architectural Tenets:</div>
+                  <ul className="space-y-1.5 text-xs text-[#94a3b8] font-sans list-disc pl-4">
+                    <li>Strict end-to-end type safety across backend API contracts and frontend views.</li>
+                    <li>Zero-vibe coding: Every unit test, integration test, and terminal command verified before completion.</li>
+                    <li>OWASP Top 10 defenses enforced at the boundary with rigorous parameter sanitization.</li>
+                    <li>Sub-millisecond latency budgets and 0ms layout shift (CLS) standards.</li>
+                  </ul>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'education' && (
+              <div className="space-y-4 animate-fadeIn">
+                <div className="bg-[#0e1622]/90 p-5 rounded-xl border border-[#c5a059]/20 space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-1 text-sm font-heading font-bold text-[#f1f5f9]">
+                    <span>{profile.education.degree}</span>
+                    <span className="text-[#dfbe7a] font-mono">{profile.education.period}</span>
+                  </div>
+                  <div className="text-xs text-[#94a3b8] font-sans">
+                    {profile.education.institution} • <span className="font-semibold text-emerald-400">{profile.education.grade}</span>
+                  </div>
+                  <p className="text-xs text-[#94a3b8] font-sans pt-2 leading-relaxed">
+                    {profile.education.details}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-lg bg-[#05080c] border border-white/5 text-center">
+                    <div className="text-[10px] font-mono text-[#94a3b8] uppercase">Academic Focus</div>
+                    <div className="text-xs font-mono font-bold text-[#dfbe7a] mt-0.5">Distributed & OS</div>
+                  </div>
+                  <div className="p-3 rounded-lg bg-[#05080c] border border-white/5 text-center">
+                    <div className="text-[10px] font-mono text-[#94a3b8] uppercase">Graduation Standing</div>
+                    <div className="text-xs font-mono font-bold text-emerald-400 mt-0.5">Distinction</div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -96,7 +168,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
               transform: `perspective(1000px) rotateX(${portraitTilt.y}deg) rotateY(${portraitTilt.x}deg)`,
               transition: 'transform 0.15s ease-out',
             }}
-            className="nautical-card rounded-2xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#c5a059]/30 relative overflow-hidden backdrop-blur-xl group"
+            className="nautical-card border-beam-card rounded-2xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.85)] border border-[#c5a059]/30 relative overflow-hidden backdrop-blur-xl group"
           >
             {/* Top gold highlight line */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#c5a059] via-[#dfbe7a] to-[#c5a059]" />
@@ -106,7 +178,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
               <div className="relative shrink-0">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-[#dfbe7a] p-1 bg-[#05080c] shadow-[0_0_20px_rgba(223,190,122,0.3)] group-hover:shadow-[0_0_30px_rgba(223,190,122,0.5)] transition-all overflow-hidden flex items-center justify-center">
                   <div className="w-full h-full rounded-full bg-gradient-to-br from-[#141f2e] to-[#05080c] flex flex-col items-center justify-center text-center p-2">
-                    <Code2 className="w-7 h-7 text-[#dfbe7a] mb-1" />
+                    <Code2 className="w-7 h-7 text-[#dfbe7a] mb-1 group-hover:scale-110 transition-transform" />
                     <span className="text-[10px] font-mono text-[#94a3b8] uppercase font-bold">Harsh</span>
                   </div>
                 </div>
@@ -135,12 +207,12 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
             </div>
           </div>
 
-          {/* 4 Verified Production Metrics Grid */}
+          {/* 4 Verified Production Metrics Grid with Hover Animation */}
           <div className="grid grid-cols-2 gap-3.5">
             {profile.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="nautical-card rounded-xl p-4 sm:p-5 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all group/stat shadow-sm"
+                className="nautical-card rounded-2xl p-4 sm:p-5 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all group/stat shadow-sm hover:-translate-y-1"
               >
                 <div className="text-xl sm:text-2xl font-mono font-bold text-[#dfbe7a] group-hover/stat:scale-105 transition-transform">
                   {stat.value}

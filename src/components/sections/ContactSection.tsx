@@ -49,7 +49,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-10">
         {/* Left Side: Modern Naval Dispatch Form */}
         <div className="lg:col-span-7">
-          <div className="nautical-card rounded-2xl p-6 sm:p-8 border border-[#c5a059]/25 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+          <div className="nautical-card border-beam-card rounded-2xl p-6 sm:p-8 border border-[#c5a059]/25 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#c5a059]/15">
               <span className="font-mono text-xs font-semibold text-[#dfbe7a] flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#dfbe7a]" />
@@ -59,14 +59,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
             </div>
 
             {isSent ? (
-              <div className="py-12 text-center space-y-4">
+              <div className="py-12 text-center space-y-4 animate-fadeIn">
                 <div className="w-14 h-14 mx-auto rounded-full bg-[#dfbe7a]/15 border border-[#dfbe7a] flex items-center justify-center text-[#dfbe7a] shadow-[0_0_20px_rgba(223,190,122,0.3)]">
                   <Check className="w-7 h-7 text-[#dfbe7a]" />
                 </div>
                 <h3 className="text-2xl font-heading font-bold text-[#f1f5f9]">
                   Transmission Successfully Dispatched!
                 </h3>
-                <p className="text-sm font-sans text-[#94a3b8] max-w-md mx-auto leading-relaxed">
+                <p className="text-sm font-sans text-[#94a3b8] max-w-md mx-auto leading-relaxed font-light">
                   Your inquiry has been delivered directly to {profile.name}. Expect an expedited reply at your registered email coordinates.
                 </p>
               </div>
@@ -122,6 +122,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
 
                 <button
                   type="submit"
+                  data-cursor="TRANSMIT"
                   className="w-full py-3.5 px-6 rounded-xl brass-btn text-xs font-heading font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
@@ -142,7 +143,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
 
             <div className="space-y-4">
               {/* Email with copy */}
-              <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#05080c] border border-white/5">
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#05080c] border border-white/5 hover:border-[#dfbe7a]/40 transition-colors">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-lg bg-[#0e1622] border border-[#c5a059]/30 flex items-center justify-center text-[#dfbe7a]">
                     <Mail className="w-4 h-4" />
@@ -154,6 +155,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                 </div>
                 <button
                   onClick={handleCopyEmail}
+                  data-cursor="COPY"
                   className="p-2 rounded-lg bg-[#141f2e] text-[#dfbe7a] hover:bg-[#dfbe7a] hover:text-[#05080c] transition-all cursor-pointer"
                   title="Copy email"
                 >
@@ -180,6 +182,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                   href={profile.githubUrl}
                   target="_blank"
                   rel="noreferrer"
+                  data-cursor="GITHUB"
                   className="p-3 rounded-xl bg-[#05080c] border border-white/10 hover:border-[#dfbe7a] flex items-center justify-between group transition-all"
                 >
                   <span className="text-xs font-mono font-semibold text-[#f1f5f9] group-hover:text-[#dfbe7a]">GitHub</span>
@@ -190,6 +193,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                   href={profile.linkedinUrl}
                   target="_blank"
                   rel="noreferrer"
+                  data-cursor="LINKEDIN"
                   className="p-3 rounded-xl bg-[#05080c] border border-white/10 hover:border-[#dfbe7a] flex items-center justify-between group transition-all"
                 >
                   <span className="text-xs font-mono font-semibold text-[#f1f5f9] group-hover:text-[#dfbe7a]">LinkedIn</span>
@@ -204,6 +208,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                     playAudioFx('seal');
                     onOpenResume();
                   }}
+                  data-cursor="DOSSIER"
                   className="w-full py-3 rounded-xl bg-[#0e1622] hover:bg-[#141f2e] text-[#dfbe7a] hover:text-white border border-[#c5a059]/30 text-xs font-heading font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer mt-2"
                 >
                   <FileText className="w-4 h-4" />

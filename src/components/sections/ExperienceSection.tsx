@@ -16,16 +16,16 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile })
         subtitle="Documented contributions across production distributed backends, high-concurrency systems, and engineering leadership"
       />
 
-      <div className="relative mt-12 pl-6 sm:pl-10 border-l border-[#c5a059]/30 space-y-10">
+      <div className="relative mt-12 pl-6 sm:pl-10 border-l border-[#c5a059]/30 space-y-12">
         {profile.experience.map((exp) => (
           <div key={exp.role} className="relative group">
-            {/* Navigational Anchor Node */}
-            <div className="absolute -left-[35px] sm:-left-[51px] top-4 w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-[#05080c] border-2 border-[#dfbe7a] flex items-center justify-center shadow-[0_0_15px_rgba(223,190,122,0.4)] group-hover:scale-110 transition-all">
-              <Anchor className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#dfbe7a]" />
+            {/* Navigational Anchor Node with Ambient Pulsing Glow */}
+            <div className="absolute -left-[35px] sm:-left-[51px] top-5 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#05080c] border-2 border-[#dfbe7a] flex items-center justify-center shadow-[0_0_20px_rgba(223,190,122,0.4)] group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(223,190,122,0.7)] transition-all">
+              <Anchor className="w-4 h-4 text-[#dfbe7a]" />
             </div>
 
-            {/* Vessel Tenure Card */}
-            <div className="nautical-card rounded-2xl p-6 sm:p-8 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+            {/* Vessel Tenure Card with Border Beam */}
+            <div className="nautical-card border-beam-card rounded-2xl p-6 sm:p-8 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] hover:-translate-y-1">
               {/* Header: Period & Location */}
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#c5a059]/15 pb-3 mb-4">
                 <div className="flex items-center gap-2 text-xs font-mono font-semibold text-[#dfbe7a]">
@@ -52,7 +52,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile })
               </p>
 
               {/* Key Deliverables & Achievements */}
-              <div className="space-y-2 pt-3 border-t border-[#c5a059]/15">
+              <div className="space-y-2.5 pt-4 border-t border-[#c5a059]/15">
                 <h4 className="text-xs font-mono font-bold text-[#dfbe7a] uppercase tracking-wider mb-2">
                   Key Production Impacts:
                 </h4>

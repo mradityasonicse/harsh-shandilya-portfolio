@@ -25,7 +25,8 @@ const SpotlightProjectCard: React.FC<{
     <div
       onMouseMove={handleMouseMove}
       onClick={() => onOpen(proj)}
-      className="group cursor-pointer nautical-card rounded-2xl p-6 sm:p-7 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 hover:-translate-y-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden backdrop-blur-xl flex flex-col justify-between"
+      data-cursor="BLUEPRINT"
+      className="group cursor-pointer nautical-card border-beam-card rounded-2xl p-6 sm:p-7 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 hover:-translate-y-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden backdrop-blur-xl flex flex-col justify-between"
     >
       {/* Specular Mouse-Reactive Spotlight Flare */}
       <div
@@ -35,7 +36,7 @@ const SpotlightProjectCard: React.FC<{
         }}
       />
 
-      {/* Watermark Compass Silhouette */}
+      {/* Watermark Compass Silhouette with smooth spin */}
       <div className="absolute -right-6 -bottom-6 w-36 h-36 opacity-5 text-[#dfbe7a] pointer-events-none group-hover:rotate-45 transition-transform duration-700">
         <Compass className="w-full h-full" />
       </div>
@@ -108,6 +109,13 @@ const SpotlightProjectCard: React.FC<{
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => {
   const [selectedProject, setSelectedProject] = useState<PersonalProject | null>(null);
+  const [filter, setFilter] = useState<string>('All');
+
+  const filterTabs = ['All', 'Distributed System', '3D & AI', 'Full-Stack SaaS', 'Cyber Security'];
+
+  const filteredProjects = filter === 'All'
+    ? profile.projects
+    : profile.projects.filter((p) => p.type === filter);
 
   const getBadgeColor = (type: string) => {
     switch (type) {
@@ -137,9 +145,36 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => 
         subtitle="Architected codebases across distributed backend engines, 3D WebGL spatial applications, and resilient cloud systems"
       />
 
+      {/* Filter Tabs */}
+      <div className="flex flex-wrap items-center justify-center gap-2 mt-6 mb-10">
+        {filterTabs.map((tab) => {
+          const isActive = filter === tab;
+          const count = tab === 'All'
+            ? profile.projects.length
+            : profile.projects.filter((p) => p.type === tab).length;
+
+          return (
+            <button
+              key={tab}
+              onClick={() => {
+                playAudioFx('click');
+                setFilter(tab);
+              }}
+              className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
+                isActive
+                  ? 'bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] text-[#05080c] font-bold shadow-[0_0_15px_rgba(223,190,122,0.4)]'
+                  : 'bg-[#0e1622] text-[#94a3b8] border border-[#c5a059]/25 hover:border-[#dfbe7a] hover:text-[#f1f5f9]'
+              }`}
+            >
+              {tab === 'All' ? `All Expeditions (${count})` : `${tab} (${count})`}
+            </button>
+          );
+        })}
+      </div>
+
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8 mt-10">
-        {profile.projects.map((proj) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
+        {filteredProjects.map((proj) => (
           <SpotlightProjectCard
             key={proj.id}
             proj={proj}

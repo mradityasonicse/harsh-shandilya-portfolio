@@ -35,9 +35,13 @@ export const Navbar: React.FC<NavbarProps> = ({
   const scrollTo = (id: string) => {
     playAudioFx('click');
     setMobileOpen(false);
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (typeof window !== 'undefined' && window.__lenis) {
+      window.__lenis.scrollTo('#' + id);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
