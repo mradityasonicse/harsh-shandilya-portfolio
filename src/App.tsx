@@ -19,6 +19,7 @@ import { CaptainTerminal } from './components/ui/CaptainTerminal';
 import { ResumeModal } from './components/ui/ResumeModal';
 import { SoundboardBar } from './components/ui/SoundboardBar';
 import { VoyageHUD } from './components/ui/VoyageHUD';
+import { CinematicPreloader } from './components/ui/CinematicPreloader';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -105,6 +106,9 @@ export const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-[#05080c] text-[#f1f5f9] font-sans selection:bg-[#c5a059]/30 selection:text-[#dfbe7a] overflow-x-hidden">
+      {/* 0. Cinematic Airplane & Stage Curtains Preloader */}
+      <CinematicPreloader ownerName={profile.name} />
+
       {/* 1. Procedural 3D WebGL Ocean Canvas (Fixed in Background) */}
       <ThreeOceanScene scrollProgress={scrollProgress} />
 
