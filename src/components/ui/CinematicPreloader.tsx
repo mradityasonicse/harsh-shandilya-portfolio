@@ -8,7 +8,7 @@ interface CinematicPreloaderProps {
 
 export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
   ownerName = 'Harsh Shandilya',
-  durationMs = 2200,
+  durationMs = 2300,
   onComplete,
 }) => {
   const [phase, setPhase] = useState<'waiting' | 'flying' | 'parting' | 'completed'>('waiting');
@@ -37,16 +37,16 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
     window.addEventListener('pageshow', handlePageShow);
 
     // 3. Timing Coordination
-    // Total duration default: ~2200ms
+    // Total duration: ~2300ms
     // - t=0ms: Dark stage mounted, portfolio ready underneath
-    // - t=60ms: Airplane enters from left edge
-    // - t=950ms: Airplane reaches central stage; curtains begin parting
-    // - t=2150ms: Curtains fully open; overlay cleanly unmounts
+    // - t=50ms: Airplane enters smoothly from left
+    // - t=980ms: Airplane passes center stage; curtains begin parting
+    // - t=2250ms: Curtains fully open; overlay cleanly unmounts
     const flightTimer = setTimeout(() => {
       setPhase('flying');
-    }, 60);
+    }, 50);
 
-    const partingDelay = Math.round(durationMs * 0.44);
+    const partingDelay = Math.round(durationMs * 0.43);
     const partingTimer = setTimeout(() => {
       setPhase('parting');
     }, partingDelay);
@@ -106,7 +106,7 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(15, 23, 36, 0.35) 0%, rgba(4, 6, 9, 0.95) 75%)',
+          background: 'radial-gradient(circle at 50% 50%, rgba(18, 26, 40, 0.4) 0%, rgba(4, 6, 9, 0.98) 75%)',
         }}
       />
 
@@ -191,34 +191,34 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
       />
 
       {/* ============================================================ */}
-      {/* FRAME B — REFINED AIRCRAFT SILHOUETTE WITH OWNER SIGNATURE   */}
+      {/* FRAME B — GRAND AIRCRAFT SILHOUETTE WITH OWNER SIGNATURE     */}
       {/* ============================================================ */}
       <div
         aria-hidden="true"
         className="absolute top-1/2 -translate-y-1/2 z-25 pointer-events-none w-full flex items-center will-change-transform"
         style={{
           transform: isFlying
-            ? 'translateX(118vw) translateY(-2.5vh)'
-            : 'translateX(-40vw) translateY(2.5vh)',
+            ? 'translateX(128vw) translateY(-2vh)'
+            : 'translateX(-115%) translateY(2vh)',
           transition: isFlying
-            ? 'transform 2.15s cubic-bezier(0.25, 0.9, 0.45, 1)'
+            ? 'transform 2.25s cubic-bezier(0.25, 0.9, 0.45, 1)'
             : 'none',
         }}
       >
         <div className="relative flex items-center">
-          {/* Subtle Atmospheric Flight Trail */}
+          {/* Restrained Atmospheric Flight Trail */}
           <div
-            className="w-24 sm:w-40 md:w-56 h-[1.5px] opacity-35 mr-1"
+            className="w-36 sm:w-56 md:w-80 lg:w-96 h-[2px] opacity-40 mr-1"
             style={{
-              background: 'linear-gradient(90deg, transparent 0%, rgba(223, 190, 122, 0.15) 50%, rgba(223, 190, 122, 0.5) 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(223, 190, 122, 0.12) 40%, rgba(223, 190, 122, 0.55) 100%)',
               filter: 'blur(0.5px)',
             }}
           />
 
-          {/* Bespoke Aerodynamic Aircraft Silhouette */}
+          {/* Majestic Large Aerodynamic Aircraft Silhouette */}
           <div className="relative shrink-0 flex items-center">
             <svg
-              className="w-64 sm:w-80 md:w-96 lg:w-[440px] h-auto drop-shadow-[0_12px_32px_rgba(0,0,0,0.95)]"
+              className="w-[88vw] max-w-[540px] sm:max-w-[700px] md:max-w-[860px] lg:max-w-[1040px] xl:max-w-[1160px] h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.98)]"
               viewBox="0 0 520 120"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -235,8 +235,8 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                 {/* Controlled Fuselage Highlight Zone */}
                 <linearGradient id="fuselageHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#dfbe7a" stopOpacity="0" />
-                  <stop offset="25%" stopColor="#dfbe7a" stopOpacity="0.18" />
-                  <stop offset="75%" stopColor="#dfbe7a" stopOpacity="0.18" />
+                  <stop offset="20%" stopColor="#dfbe7a" stopOpacity="0.22" />
+                  <stop offset="80%" stopColor="#dfbe7a" stopOpacity="0.22" />
                   <stop offset="100%" stopColor="#dfbe7a" stopOpacity="0" />
                 </linearGradient>
 
@@ -251,33 +251,33 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
               <path
                 d="M 68 60 L 22 72 L 32 75 L 85 63 Z"
                 fill="#0b111a"
-                stroke="rgba(223, 190, 122, 0.35)"
-                strokeWidth="0.8"
+                stroke="rgba(223, 190, 122, 0.4)"
+                strokeWidth="1.0"
               />
 
               {/* Swept Vertical Stabilizer (Tail Fin) */}
               <path
                 d="M 85 58 L 30 18 L 48 18 L 125 58 Z"
                 fill="#0c121c"
-                stroke="rgba(223, 190, 122, 0.45)"
-                strokeWidth="1.0"
+                stroke="rgba(223, 190, 122, 0.5)"
+                strokeWidth="1.2"
                 strokeLinejoin="round"
               />
               {/* Tail Fin Gold Leading Edge Strip */}
               <path
                 d="M 48 18 L 30 18 L 85 58"
                 stroke="#dfbe7a"
-                strokeWidth="1.2"
+                strokeWidth="1.5"
                 strokeLinecap="round"
-                opacity="0.8"
+                opacity="0.85"
               />
 
               {/* Main Fuselage Aerodynamic Body */}
               <path
                 d="M 18 60 Q 75 58 160 56 Q 300 54 440 56 Q 490 58 510 60 Q 490 62 440 64 Q 300 66 160 64 Q 75 62 18 60 Z"
                 fill="url(#planeBodyGrad)"
-                stroke="rgba(223, 190, 122, 0.55)"
-                strokeWidth="1.2"
+                stroke="rgba(223, 190, 122, 0.65)"
+                strokeWidth="1.4"
                 strokeLinejoin="round"
               />
 
@@ -285,64 +285,73 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
               <path
                 d="M 160 56 Q 300 54 440 56 Q 480 57.5 500 59"
                 stroke="#dfbe7a"
-                strokeWidth="0.9"
+                strokeWidth="1.2"
                 strokeLinecap="round"
-                opacity="0.65"
+                opacity="0.75"
               />
 
               {/* Controlled Mid-Fuselage Highlight Plate */}
               <rect
-                x="200"
-                y="54"
-                width="190"
-                height="12"
-                rx="2"
+                x="185"
+                y="53.5"
+                width="220"
+                height="13"
+                rx="3"
                 fill="url(#fuselageHighlight)"
               />
 
+              {/* Executive Cabin Illuminated Windows (Forward of Name) */}
+              <rect x="408" y="58" width="6" height="4.5" rx="2" fill="#ffe4a0" opacity="0.85" />
+              <rect x="420" y="58" width="6" height="4.5" rx="2" fill="#ffe4a0" opacity="0.85" />
+              <rect x="432" y="58" width="6" height="4.5" rx="2" fill="#ffe4a0" opacity="0.85" />
+
+              {/* Executive Cabin Illuminated Windows (Aft of Name) */}
+              <rect x="160" y="58" width="6" height="4.5" rx="2" fill="#ffe4a0" opacity="0.85" />
+              <rect x="172" y="58" width="6" height="4.5" rx="2" fill="#ffe4a0" opacity="0.85" />
+
               {/* Cockpit Canopy Tinted Glass Visor */}
               <path
-                d="M 425 56 Q 460 56.5 480 58 Q 460 57.5 425 57 Z"
+                d="M 445 56 Q 472 56.5 490 58 Q 472 57.5 445 57 Z"
                 fill="#06090e"
                 stroke="#dfbe7a"
-                strokeWidth="1.2"
+                strokeWidth="1.4"
                 strokeLinecap="round"
-                opacity="0.85"
+                opacity="0.9"
               />
 
               {/* Swept Main Wing (Portside / Lower Profile) */}
               <path
                 d="M 285 64 L 175 98 L 198 99 L 345 64 Z"
                 fill="url(#wingGrad)"
-                stroke="rgba(223, 190, 122, 0.4)"
-                strokeWidth="0.9"
+                stroke="rgba(223, 190, 122, 0.45)"
+                strokeWidth="1.1"
                 strokeLinejoin="round"
               />
               {/* Winglet Accent */}
               <path
                 d="M 175 98 L 170 91 L 175 92 Z"
                 fill="#dfbe7a"
-                opacity="0.8"
+                opacity="0.85"
               />
 
               {/* Underslung Jet Engine Nacelle */}
               <rect
                 x="250"
                 y="69"
-                width="42"
-                height="11"
+                width="44"
+                height="12"
                 rx="3"
                 fill="#0e1520"
-                stroke="rgba(223, 190, 122, 0.4)"
-                strokeWidth="0.8"
+                stroke="rgba(223, 190, 122, 0.45)"
+                strokeWidth="0.9"
               />
               {/* Subtle Restrained Exhaust Warmth */}
               <circle
                 cx="250"
-                cy="74.5"
-                r="1.8"
+                cy="75"
+                r="2.2"
                 fill="#f59e0b"
-                opacity="0.65"
+                opacity="0.75"
               />
 
               {/* Fuselage Inscription: Portfolio Owner's Clean Signature */}
@@ -352,12 +361,12 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                 fill="#f8fafc"
                 textAnchor="middle"
                 dominantBaseline="central"
-                fontSize="11.5"
+                fontSize="12.5"
                 fontWeight="700"
-                letterSpacing="0.24em"
+                letterSpacing="0.26em"
                 style={{
                   fontFamily: "'Cinzel', Georgia, serif",
-                  filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.95))',
+                  filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.98))',
                 }}
               >
                 {formattedName}
@@ -365,13 +374,13 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
 
               {/* Discreet Underline Below Owner Name */}
               <line
-                x1="215"
-                y1="67"
-                x2="375"
-                y2="67"
+                x1="205"
+                y1="67.5"
+                x2="385"
+                y2="67.5"
                 stroke="#dfbe7a"
-                strokeWidth="0.75"
-                strokeOpacity="0.45"
+                strokeWidth="0.85"
+                strokeOpacity="0.55"
               />
             </svg>
           </div>
@@ -390,7 +399,7 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
           type="button"
           onClick={handleSkip}
           aria-label="Skip opening intro"
-          className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#94a3b8]/75 hover:text-[#dfbe7a] transition-all px-3 py-1.5 rounded border border-white/10 hover:border-[#dfbe7a]/40 bg-black/50 hover:bg-black/80 backdrop-blur-md focus-visible:ring-1 focus-visible:ring-[#dfbe7a] focus-visible:outline-none cursor-pointer"
+          className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#94a3b8]/75 hover:text-[#dfbe7a] transition-all px-3.5 py-1.5 rounded border border-white/10 hover:border-[#dfbe7a]/40 bg-black/50 hover:bg-black/80 backdrop-blur-md focus-visible:ring-1 focus-visible:ring-[#dfbe7a] focus-visible:outline-none cursor-pointer"
         >
           Skip intro
         </button>
