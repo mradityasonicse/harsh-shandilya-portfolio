@@ -1,66 +1,86 @@
-import React, { useState, useEffect } from 'react';
-import { FlightScene3D } from './FlightScene3D';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface CinematicPreloaderProps {
   ownerName?: string;
+  durationMs?: number;
   onComplete?: () => void;
 }
 
 export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
   ownerName = 'Harsh Shandilya',
+  durationMs = 2200,
   onComplete,
 }) => {
-  const [phase, setPhase] = useState<'flying' | 'parting' | 'completed'>('flying');
+  const [phase, setPhase] = useState<'waiting' | 'flying' | 'parting' | 'completed'>('waiting');
+  const onCompleteRef = useRef(onComplete);
 
   useEffect(() => {
-    // 1. Accessibility: Check for prefers-reduced-motion
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
+
+  useEffect(() => {
+    // 1. Accessibility: Skip immediately if user requests reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setPhase('completed');
-      onComplete?.();
+      onCompleteRef.current?.();
       return;
     }
 
-    // Safety fallback: ensure curtain opens and completes even if WebGL fails
-    const curtainFallback = setTimeout(() => {
-      setPhase((prev) => (prev === 'flying' ? 'parting' : prev));
-    }, 1400);
+    // 2. bfcache: Skip if restored from browser back-forward cache
+    const handlePageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) {
+        setPhase('completed');
+        onCompleteRef.current?.();
+      }
+    };
+    window.addEventListener('pageshow', handlePageShow);
 
-    const completeFallback = setTimeout(() => {
+    // 3. Timing Coordination
+    // Total duration default: ~2200ms
+    // - t=0ms: Dark stage mounted, portfolio ready underneath
+    // - t=60ms: Airplane enters from left edge
+    // - t=950ms: Airplane reaches central stage; curtains begin parting
+    // - t=2150ms: Curtains fully open; overlay cleanly unmounts
+    const flightTimer = setTimeout(() => {
+      setPhase('flying');
+    }, 60);
+
+    const partingDelay = Math.round(durationMs * 0.44);
+    const partingTimer = setTimeout(() => {
+      setPhase('parting');
+    }, partingDelay);
+
+    const completionTimer = setTimeout(() => {
       setPhase('completed');
-      onComplete?.();
-    }, 3200);
+      onCompleteRef.current?.();
+    }, durationMs);
 
     return () => {
-      clearTimeout(curtainFallback);
-      clearTimeout(completeFallback);
+      window.removeEventListener('pageshow', handlePageShow);
+      clearTimeout(flightTimer);
+      clearTimeout(partingTimer);
+      clearTimeout(completionTimer);
     };
-  }, [onComplete]);
+  }, [durationMs]);
 
-  // Click or Escape key to skip instantly
+  // 4. Keyboard Shortcuts: Escape, Space, or Enter to dismiss immediately
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' || e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
         setPhase('completed');
-        onComplete?.();
+        onCompleteRef.current?.();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onComplete]);
+  }, []);
 
-  const handleSkip = () => {
+  const handleSkip = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setPhase('completed');
-    onComplete?.();
-  };
-
-  const handleCurtainOpen = () => {
-    setPhase('parting');
-  };
-
-  const handleFlightComplete = () => {
-    setPhase('completed');
-    onComplete?.();
+    onCompleteRef.current?.();
   };
 
   if (phase === 'completed') {
@@ -68,30 +88,35 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
   }
 
   const isParting = phase === 'parting';
+  const isFlying = phase === 'flying' || phase === 'parting';
+
+  // Format owner name cleanly for uppercase letterspaced typography
+  const formattedName = ownerName.trim().toUpperCase();
 
   return (
-    <div
-      aria-hidden="true"
-      onClick={handleSkip}
-      className={`fixed inset-0 z-50 overflow-hidden select-none cursor-pointer ${
-        isParting ? 'pointer-events-none' : 'pointer-events-auto'
+    <aside
+      aria-label="Opening cinematic transition"
+      className={`fixed inset-0 z-50 overflow-hidden select-none pointer-events-auto transition-opacity duration-300 ${
+        isParting ? 'pointer-events-none' : ''
       }`}
     >
       {/* ============================================================ */}
-      {/* 3D WEBGL FLIGHT SCENE (Boeing 787 / Executive Jet Livery)    */}
+      {/* FRAME A — RESTRAINED DARK STAGE ATMOSPHERE                   */}
       {/* ============================================================ */}
-      <FlightScene3D
-        ownerName={ownerName}
-        onCurtainOpen={handleCurtainOpen}
-        onComplete={handleFlightComplete}
+      <div
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          background: 'radial-gradient(circle at 50% 50%, rgba(15, 23, 36, 0.35) 0%, rgba(4, 6, 9, 0.95) 75%)',
+        }}
       />
 
       {/* ============================================================ */}
-      {/* ELEGANT STAGE CURTAINS (Dark fabric-like with subtle vertical folds) */}
+      {/* FRAME C & D — ELEGANT FABRIC THEATRICAL CURTAINS             */}
       {/* ============================================================ */}
 
-      {/* Left Curtain Panel */}
+      {/* Left Curtain Panel (Slides -100% to left) */}
       <div
+        aria-hidden="true"
         className="absolute top-0 left-0 w-1/2 h-full z-10 will-change-transform"
         style={{
           transform: isParting ? 'translateX(-100%)' : 'translateX(0%)',
@@ -101,28 +126,29 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
           backgroundColor: '#040609',
           backgroundImage: `
             linear-gradient(90deg, 
-              rgba(0, 0, 0, 0.8) 0%, 
-              rgba(18, 25, 36, 0.4) 15%, 
-              rgba(5, 8, 12, 0.9) 30%, 
-              rgba(22, 30, 44, 0.3) 48%, 
-              rgba(4, 6, 9, 0.95) 65%, 
-              rgba(15, 21, 31, 0.4) 85%, 
-              rgba(0, 0, 0, 0.98) 100%
+              rgba(0, 0, 0, 0.85) 0%, 
+              rgba(16, 24, 36, 0.35) 12%, 
+              rgba(4, 6, 9, 0.92) 28%, 
+              rgba(20, 28, 42, 0.25) 45%, 
+              rgba(4, 6, 9, 0.95) 62%, 
+              rgba(15, 22, 32, 0.35) 82%, 
+              rgba(2, 3, 5, 0.98) 100%
             ),
             repeating-linear-gradient(90deg, 
               transparent 0px, 
-              transparent 40px, 
-              rgba(0, 0, 0, 0.25) 40px, 
-              rgba(0, 0, 0, 0.25) 80px
+              transparent 45px, 
+              rgba(0, 0, 0, 0.3) 45px, 
+              rgba(0, 0, 0, 0.3) 90px
             )
           `,
-          boxShadow: isParting ? 'none' : 'inset -15px 0 35px rgba(0, 0, 0, 0.9)',
-          borderRight: isParting ? 'none' : '1px solid rgba(197, 160, 89, 0.2)',
+          boxShadow: isParting ? 'none' : 'inset -20px 0 40px rgba(0, 0, 0, 0.95)',
+          borderRight: isParting ? 'none' : '1px solid rgba(223, 190, 122, 0.22)',
         }}
       />
 
-      {/* Right Curtain Panel */}
+      {/* Right Curtain Panel (Slides +100% to right) */}
       <div
+        aria-hidden="true"
         className="absolute top-0 right-0 w-1/2 h-full z-10 will-change-transform"
         style={{
           transform: isParting ? 'translateX(100%)' : 'translateX(0%)',
@@ -132,45 +158,243 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
           backgroundColor: '#040609',
           backgroundImage: `
             linear-gradient(270deg, 
-              rgba(0, 0, 0, 0.8) 0%, 
-              rgba(18, 25, 36, 0.4) 15%, 
-              rgba(5, 8, 12, 0.9) 30%, 
-              rgba(22, 30, 44, 0.3) 48%, 
-              rgba(4, 6, 9, 0.95) 65%, 
-              rgba(15, 21, 31, 0.4) 85%, 
-              rgba(0, 0, 0, 0.98) 100%
+              rgba(0, 0, 0, 0.85) 0%, 
+              rgba(16, 24, 36, 0.35) 12%, 
+              rgba(4, 6, 9, 0.92) 28%, 
+              rgba(20, 28, 42, 0.25) 45%, 
+              rgba(4, 6, 9, 0.95) 62%, 
+              rgba(15, 22, 32, 0.35) 82%, 
+              rgba(2, 3, 5, 0.98) 100%
             ),
             repeating-linear-gradient(270deg, 
               transparent 0px, 
-              transparent 40px, 
-              rgba(0, 0, 0, 0.25) 40px, 
-              rgba(0, 0, 0, 0.25) 80px
+              transparent 45px, 
+              rgba(0, 0, 0, 0.3) 45px, 
+              rgba(0, 0, 0, 0.3) 90px
             )
           `,
-          boxShadow: isParting ? 'none' : 'inset 15px 0 35px rgba(0, 0, 0, 0.9)',
-          borderLeft: isParting ? 'none' : '1px solid rgba(197, 160, 89, 0.2)',
+          boxShadow: isParting ? 'none' : 'inset 20px 0 40px rgba(0, 0, 0, 0.95)',
+          borderLeft: isParting ? 'none' : '1px solid rgba(223, 190, 122, 0.22)',
         }}
       />
 
-      {/* Center Seam Parting Light Ray (Reveals soft golden warmth right before parting) */}
+      {/* Center Seam Parting Light Seam */}
       <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full z-15 pointer-events-none transition-opacity duration-500 ${
-          isParting ? 'opacity-0' : 'opacity-80'
-        }`}
-        style={{
-          background: 'linear-gradient(180deg, transparent 0%, #dfbe7a 50%, transparent 100%)',
-          filter: 'blur(1.5px)',
-        }}
-      />
-
-      {/* Subtle Skip Indicator in corner */}
-      <div
-        className={`absolute bottom-6 right-6 z-30 transition-opacity duration-700 pointer-events-none text-[10px] tracking-[0.25em] uppercase text-white/35 font-mono ${
+        aria-hidden="true"
+        className={`absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full z-15 pointer-events-none transition-opacity duration-500 ${
           isParting ? 'opacity-0' : 'opacity-70'
         }`}
+        style={{
+          background: 'linear-gradient(180deg, transparent 0%, rgba(223, 190, 122, 0.7) 50%, transparent 100%)',
+          filter: 'blur(1px)',
+        }}
+      />
+
+      {/* ============================================================ */}
+      {/* FRAME B — REFINED AIRCRAFT SILHOUETTE WITH OWNER SIGNATURE   */}
+      {/* ============================================================ */}
+      <div
+        aria-hidden="true"
+        className="absolute top-1/2 -translate-y-1/2 z-25 pointer-events-none w-full flex items-center will-change-transform"
+        style={{
+          transform: isFlying
+            ? 'translateX(118vw) translateY(-2.5vh)'
+            : 'translateX(-40vw) translateY(2.5vh)',
+          transition: isFlying
+            ? 'transform 2.15s cubic-bezier(0.25, 0.9, 0.45, 1)'
+            : 'none',
+        }}
       >
-        Click or ESC to skip
+        <div className="relative flex items-center">
+          {/* Subtle Atmospheric Flight Trail */}
+          <div
+            className="w-24 sm:w-40 md:w-56 h-[1.5px] opacity-35 mr-1"
+            style={{
+              background: 'linear-gradient(90deg, transparent 0%, rgba(223, 190, 122, 0.15) 50%, rgba(223, 190, 122, 0.5) 100%)',
+              filter: 'blur(0.5px)',
+            }}
+          />
+
+          {/* Bespoke Aerodynamic Aircraft Silhouette */}
+          <div className="relative shrink-0 flex items-center">
+            <svg
+              className="w-64 sm:w-80 md:w-96 lg:w-[440px] h-auto drop-shadow-[0_12px_32px_rgba(0,0,0,0.95)]"
+              viewBox="0 0 520 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                {/* Upper Fuselage Metallic Specular Gradient */}
+                <linearGradient id="planeBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#1e2a3c" />
+                  <stop offset="28%" stopColor="#2c3e56" />
+                  <stop offset="55%" stopColor="#141c28" />
+                  <stop offset="100%" stopColor="#080c14" />
+                </linearGradient>
+
+                {/* Controlled Fuselage Highlight Zone */}
+                <linearGradient id="fuselageHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#dfbe7a" stopOpacity="0" />
+                  <stop offset="25%" stopColor="#dfbe7a" stopOpacity="0.18" />
+                  <stop offset="75%" stopColor="#dfbe7a" stopOpacity="0.18" />
+                  <stop offset="100%" stopColor="#dfbe7a" stopOpacity="0" />
+                </linearGradient>
+
+                {/* Subtle Wing Shading */}
+                <linearGradient id="wingGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#162232" />
+                  <stop offset="100%" stopColor="#0a0f18" />
+                </linearGradient>
+              </defs>
+
+              {/* Swept Horizontal Stabilizers (Empennage) */}
+              <path
+                d="M 68 60 L 22 72 L 32 75 L 85 63 Z"
+                fill="#0b111a"
+                stroke="rgba(223, 190, 122, 0.35)"
+                strokeWidth="0.8"
+              />
+
+              {/* Swept Vertical Stabilizer (Tail Fin) */}
+              <path
+                d="M 85 58 L 30 18 L 48 18 L 125 58 Z"
+                fill="#0c121c"
+                stroke="rgba(223, 190, 122, 0.45)"
+                strokeWidth="1.0"
+                strokeLinejoin="round"
+              />
+              {/* Tail Fin Gold Leading Edge Strip */}
+              <path
+                d="M 48 18 L 30 18 L 85 58"
+                stroke="#dfbe7a"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                opacity="0.8"
+              />
+
+              {/* Main Fuselage Aerodynamic Body */}
+              <path
+                d="M 18 60 Q 75 58 160 56 Q 300 54 440 56 Q 490 58 510 60 Q 490 62 440 64 Q 300 66 160 64 Q 75 62 18 60 Z"
+                fill="url(#planeBodyGrad)"
+                stroke="rgba(223, 190, 122, 0.55)"
+                strokeWidth="1.2"
+                strokeLinejoin="round"
+              />
+
+              {/* Upper Spine Specular Highlight */}
+              <path
+                d="M 160 56 Q 300 54 440 56 Q 480 57.5 500 59"
+                stroke="#dfbe7a"
+                strokeWidth="0.9"
+                strokeLinecap="round"
+                opacity="0.65"
+              />
+
+              {/* Controlled Mid-Fuselage Highlight Plate */}
+              <rect
+                x="200"
+                y="54"
+                width="190"
+                height="12"
+                rx="2"
+                fill="url(#fuselageHighlight)"
+              />
+
+              {/* Cockpit Canopy Tinted Glass Visor */}
+              <path
+                d="M 425 56 Q 460 56.5 480 58 Q 460 57.5 425 57 Z"
+                fill="#06090e"
+                stroke="#dfbe7a"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                opacity="0.85"
+              />
+
+              {/* Swept Main Wing (Portside / Lower Profile) */}
+              <path
+                d="M 285 64 L 175 98 L 198 99 L 345 64 Z"
+                fill="url(#wingGrad)"
+                stroke="rgba(223, 190, 122, 0.4)"
+                strokeWidth="0.9"
+                strokeLinejoin="round"
+              />
+              {/* Winglet Accent */}
+              <path
+                d="M 175 98 L 170 91 L 175 92 Z"
+                fill="#dfbe7a"
+                opacity="0.8"
+              />
+
+              {/* Underslung Jet Engine Nacelle */}
+              <rect
+                x="250"
+                y="69"
+                width="42"
+                height="11"
+                rx="3"
+                fill="#0e1520"
+                stroke="rgba(223, 190, 122, 0.4)"
+                strokeWidth="0.8"
+              />
+              {/* Subtle Restrained Exhaust Warmth */}
+              <circle
+                cx="250"
+                cy="74.5"
+                r="1.8"
+                fill="#f59e0b"
+                opacity="0.65"
+              />
+
+              {/* Fuselage Inscription: Portfolio Owner's Clean Signature */}
+              <text
+                x="295"
+                y="61"
+                fill="#f8fafc"
+                textAnchor="middle"
+                dominantBaseline="central"
+                fontSize="11.5"
+                fontWeight="700"
+                letterSpacing="0.24em"
+                style={{
+                  fontFamily: "'Cinzel', Georgia, serif",
+                  filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.95))',
+                }}
+              >
+                {formattedName}
+              </text>
+
+              {/* Discreet Underline Below Owner Name */}
+              <line
+                x1="215"
+                y1="67"
+                x2="375"
+                y2="67"
+                stroke="#dfbe7a"
+                strokeWidth="0.75"
+                strokeOpacity="0.45"
+              />
+            </svg>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* ============================================================ */}
+      {/* FRAME D — ACCESSIBLE "SKIP INTRO" ACTION                     */}
+      {/* ============================================================ */}
+      <div
+        className={`absolute bottom-6 right-6 z-30 transition-opacity duration-500 ${
+          isParting ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto'
+        }`}
+      >
+        <button
+          type="button"
+          onClick={handleSkip}
+          aria-label="Skip opening intro"
+          className="text-[11px] font-mono tracking-[0.2em] uppercase text-[#94a3b8]/75 hover:text-[#dfbe7a] transition-all px-3 py-1.5 rounded border border-white/10 hover:border-[#dfbe7a]/40 bg-black/50 hover:bg-black/80 backdrop-blur-md focus-visible:ring-1 focus-visible:ring-[#dfbe7a] focus-visible:outline-none cursor-pointer"
+        >
+          Skip intro
+        </button>
+      </div>
+    </aside>
   );
 };

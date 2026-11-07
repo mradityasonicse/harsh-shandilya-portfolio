@@ -376,3 +376,21 @@ export const PERSONAL_CONFIG: PersonalProfile = {
     details: "Focused on Data Structures, Algorithms, Operating Systems, Database Management Systems, Computer Networks, and Advanced Software Engineering. Active participant in national technical hackathons."
   }
 };
+
+/**
+ * Cinematic Opening Transition Configuration
+ * Easily update the opening airplane-and-curtain reveal settings.
+ */
+export interface IntroConfig {
+  enabled: boolean;
+  ownerName: string;
+  durationMs: number;
+}
+
+export const INTRO_CONFIG: IntroConfig = {
+  enabled: true,
+  // Visible identity displayed on the airplane fuselage (defaults to PERSONAL_CONFIG.name):
+  ownerName: PERSONAL_CONFIG.name,
+  durationMs: 2200,
+};
+

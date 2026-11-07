@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { PERSONAL_CONFIG } from './data/personalConfig';
+import { PERSONAL_CONFIG, INTRO_CONFIG } from './data/personalConfig';
 import { ThreeOceanScene } from './components/canvas/ThreeOceanScene';
 import { Navbar } from './components/ui/Navbar';
 import { CustomCursor } from './components/ui/CustomCursor';
@@ -107,7 +107,12 @@ export const App: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-[#05080c] text-[#f1f5f9] font-sans selection:bg-[#c5a059]/30 selection:text-[#dfbe7a] overflow-x-hidden">
       {/* 0. Cinematic Airplane & Stage Curtains Preloader */}
-      <CinematicPreloader ownerName={profile.name} />
+      {INTRO_CONFIG.enabled && (
+        <CinematicPreloader
+          ownerName={INTRO_CONFIG.ownerName || profile.name}
+          durationMs={INTRO_CONFIG.durationMs}
+        />
+      )}
 
       {/* 1. Procedural 3D WebGL Ocean Canvas (Fixed in Background) */}
       <ThreeOceanScene scrollProgress={scrollProgress} />
