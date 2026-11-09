@@ -9,7 +9,7 @@ interface ExperienceSectionProps {
 
 export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile }) => {
   return (
-    <section id="log" className="min-h-screen py-20 px-4 max-w-5xl mx-auto relative z-10">
+    <section id="log" className="min-h-screen py-24 px-4 max-w-5xl mx-auto relative z-10">
       <SectionBanner
         number="CHRONICLE V"
         title="Chronicle of Service & Work History"
@@ -25,7 +25,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile })
             </div>
 
             {/* Vessel Tenure Card with Border Beam */}
-            <div className="nautical-card border-beam-card rounded-2xl p-6 sm:p-8 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] hover:-translate-y-1">
+            <div className="rounded-2xl p-6 sm:p-8 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] hover:-translate-y-1 bg-[#0a1018]/90">
               {/* Header: Period & Location */}
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#c5a059]/15 pb-3 mb-4">
                 <div className="flex items-center gap-2 text-xs font-mono font-semibold text-[#dfbe7a]">

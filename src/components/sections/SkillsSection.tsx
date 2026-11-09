@@ -39,7 +39,7 @@ const SpotlightQuadrantCard: React.FC<{
       onMouseMove={handleMouseMove}
       onMouseEnter={() => playAudioFx('click')}
       data-cursor="ARMORY"
-      className="nautical-card border-beam-card rounded-2xl p-6 sm:p-8 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative group overflow-hidden backdrop-blur-xl"
+      className="rounded-2xl p-6 sm:p-8 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative group overflow-hidden backdrop-blur-xl bg-[#0a1018]/90"
     >
       {/* Specular Mouse-Reactive Spotlight Overlay */}
       <div
@@ -121,7 +121,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ profile }) => {
   const categories = ['All', 'Frontend', 'Backend', 'Cloud', 'Security'];
 
   return (
-    <section id="armory" className="min-h-screen py-20 px-4 max-w-7xl mx-auto relative z-10">
+    <section id="armory" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
       <SectionBanner
         number="CHRONICLE II"
         title="Technical Armory & Systems Stack"

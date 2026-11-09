@@ -35,7 +35,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({ profil
   };
 
   return (
-    <section id="spoils" className="min-h-screen py-20 px-4 max-w-7xl mx-auto relative z-10">
+    <section id="spoils" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
       <SectionBanner
         number="CHRONICLE IV"
         title="Naval Honors & Proof of Work"
@@ -71,7 +71,7 @@ export const AchievementsSection: React.FC<AchievementsSectionProps> = ({ profil
           <div
             key={item.id}
             onClick={handleCardClick}
-            className="group cursor-pointer nautical-card rounded-2xl p-6 sm:p-7 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 hover:-translate-y-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden backdrop-blur-xl flex flex-col justify-between"
+            className="group cursor-pointer rounded-2xl p-6 sm:p-7 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 hover:-translate-y-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden backdrop-blur-xl flex flex-col justify-between bg-[#0a1018]/90"
           >
             {/* Specular Top Rim Gradient */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#dfbe7a] to-transparent opacity-60" />

@@ -76,7 +76,7 @@ export const CaptainTerminal: React.FC<CaptainTerminalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-[#cbd5e1]">
             <div><span className="text-[#dfbe7a] font-semibold">whoami</span> — Identity, bio & architectural stance</div>
             <div><span className="text-[#dfbe7a] font-semibold">skills</span> — 4-quadrant verified engineering stack</div>
-            <div><span className="text-[#dfbe7a] font-semibold">design</span> — 19 AI tools & 260+ design skills</div>
+            <div><span className="text-[#dfbe7a] font-semibold">ai / design</span> — 20 AI tools & 260+ design skills</div>
             <div><span className="text-[#dfbe7a] font-semibold">screens</span> — 16 Pre-flight app screen benchmarks</div>
             <div><span className="text-[#dfbe7a] font-semibold">inspo</span> — Top landing, footer & design inspo</div>
             <div><span className="text-[#dfbe7a] font-semibold">projects</span> — 8 flagship production codebases</div>
@@ -146,10 +146,10 @@ export const CaptainTerminal: React.FC<CaptainTerminalProps> = ({
         </div>
       );
       setTimeout(() => onOpenResume(), 300);
-    } else if (cmd === 'design' || cmd === 'eye' || cmd === 'godly' || cmd === 'stacks') {
+    } else if (cmd === 'design' || cmd === 'eye' || cmd === 'godly' || cmd === 'stacks' || cmd === 'ai') {
       output = (
         <div className="space-y-2 text-xs font-mono text-[#cbd5e1]">
-          <div className="text-[#dfbe7a] font-bold">16 God-Tier AI & Design Stacks Arsenal:</div>
+          <div className="text-[#dfbe7a] font-bold">20 God-Tier AI & Design Stacks Arsenal:</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pl-1">
             <div><span className="text-[#dfbe7a]">1. modulify.ai</span> — Best AI builder, period.</div>
             <div><span className="text-[#dfbe7a]">2. modulify.ai/templates</span> — Free production templates</div>
@@ -170,6 +170,7 @@ export const CaptainTerminal: React.FC<CaptainTerminalProps> = ({
             <div><span className="text-[#dfbe7a]">17. sent.dm</span> — Almost free SMS developer infra</div>
             <div><span className="text-[#dfbe7a]">18. logotouse.com</span> — Curated premium logo systems</div>
             <div><span className="text-[#dfbe7a]">19. paperanimation.ai</span> — AI tactile & stop-motion</div>
+            <div><span className="text-[#dfbe7a]">20. domaingrowth.co</span> — Top backlinks & SEO launch distribution</div>
           </div>
           <div className="text-[11px] text-[#64748b] pt-1">
             Plus 16 comprehensive design domains (260+ verified skills) active in Chronicle II-B (#design-eye).

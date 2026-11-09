@@ -39,7 +39,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
   };
 
   return (
-    <section id="bottle" className="min-h-screen py-20 px-4 max-w-6xl mx-auto relative z-10">
+    <section id="bottle" className="min-h-screen py-24 px-4 max-w-6xl mx-auto relative z-10">
       <SectionBanner
         number="CHRONICLE VI"
         title="Direct Dispatch & Opportunity Inquiry"
@@ -49,7 +49,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-10">
         {/* Left Side: Modern Naval Dispatch Form */}
         <div className="lg:col-span-7">
-          <div className="nautical-card border-beam-card rounded-2xl p-6 sm:p-8 border border-[#c5a059]/25 shadow-[0_20px_50px_rgba(0,0,0,0.85)]">
+          <div className="rounded-2xl p-6 sm:p-8 border border-[#c5a059]/25 shadow-[0_20px_50px_rgba(0,0,0,0.85)] bg-[#0a1018]/90 backdrop-blur-xl">
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-[#c5a059]/15">
               <span className="font-mono text-xs font-semibold text-[#dfbe7a] flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#dfbe7a]" />

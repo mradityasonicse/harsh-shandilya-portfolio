@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { PersonalProfile } from '../../data/personalConfig';
 import { SectionBanner } from '../ui/SectionBanner';
 import { TreasureModal, type PersonalProject } from '../ui/TreasureModal';
-import { Compass, Sparkles, MapPin, Layers } from 'lucide-react';
+import { Compass, Sparkles, MapPin, Layers, ArrowUpRight, GitBranch } from 'lucide-react';
 import { playAudioFx } from '../ui/AudioEngine';
 
 interface ProjectsSectionProps {
@@ -26,7 +26,7 @@ const SpotlightProjectCard: React.FC<{
       onMouseMove={handleMouseMove}
       onClick={() => onOpen(proj)}
       data-cursor="BLUEPRINT"
-      className="group cursor-pointer nautical-card border-beam-card rounded-2xl p-6 sm:p-7 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 hover:-translate-y-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden backdrop-blur-xl flex flex-col justify-between"
+      className="group cursor-pointer rounded-2xl p-6 sm:p-8 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 hover:-translate-y-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden backdrop-blur-xl flex flex-col justify-between bg-[#0a1018]/90"
     >
       {/* Specular Mouse-Reactive Spotlight Flare */}
       <div
@@ -43,14 +43,14 @@ const SpotlightProjectCard: React.FC<{
 
       <div className="relative z-10">
         {/* Expedition Code & Category Tag */}
-        <div className="flex items-center justify-between gap-2 mb-3">
+        <div className="flex items-center justify-between gap-2 mb-3.5">
           <div className="flex items-center gap-1.5 text-xs font-mono text-[#dfbe7a]">
             <MapPin className="w-3.5 h-3.5 text-[#dfbe7a]" />
             <span className="font-semibold tracking-wider">{proj.islandCode}</span>
           </div>
 
           <span
-            className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase border ${getBadgeColor(
+            className={`px-3 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wider uppercase border ${getBadgeColor(
               proj.type
             )}`}
           >
@@ -59,8 +59,9 @@ const SpotlightProjectCard: React.FC<{
         </div>
 
         {/* Project Title */}
-        <h3 className="text-xl sm:text-2xl font-heading font-bold text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors mb-1.5 leading-tight">
-          {proj.title}
+        <h3 className="text-xl sm:text-2xl font-heading font-bold text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors mb-1.5 leading-tight flex items-center justify-between">
+          <span>{proj.title}</span>
+          <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:text-[#dfbe7a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </h3>
 
         <p className="text-xs font-sans text-[#dfbe7a] italic mb-3.5">
@@ -68,9 +69,21 @@ const SpotlightProjectCard: React.FC<{
         </p>
 
         {/* Description */}
-        <p className="text-xs sm:text-sm text-[#94a3b8] font-sans leading-relaxed mb-5 line-clamp-3 font-normal">
+        <p className="text-xs sm:text-sm text-[#94a3b8] font-sans leading-relaxed mb-5 line-clamp-3 font-light">
           {proj.description}
         </p>
+
+        {/* Highlights */}
+        {proj.highlights && proj.highlights.length > 0 && (
+          <div className="mb-5 space-y-1 text-xs text-[#cbd5e1] font-sans font-light">
+            {proj.highlights.slice(0, 2).map((h, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#dfbe7a] shrink-0" />
+                <span className="truncate">{h}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* Tech Stack Badges */}
         <div className="flex flex-wrap gap-1.5 mb-6">
@@ -86,22 +99,40 @@ const SpotlightProjectCard: React.FC<{
       </div>
 
       {/* Card Footer: Metrics & Actions */}
-      <div className="flex items-center justify-between pt-4 border-t border-[#c5a059]/15 relative z-10">
+      <div className="flex items-center justify-between pt-4 border-t border-[#c5a059]/15 relative z-10 gap-3">
         <div className="text-[11px] font-mono text-[#94a3b8] flex items-center gap-1.5">
           <Layers className="w-3.5 h-3.5 text-[#dfbe7a]" />
           <span className="text-[#dfbe7a] font-semibold">{proj.metrics}</span>
         </div>
 
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onOpen(proj);
-          }}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#05080c] hover:bg-[#dfbe7a] text-[#dfbe7a] hover:text-[#05080c] text-xs font-heading font-bold rounded-lg border border-[#dfbe7a]/40 transition-all shadow-sm cursor-pointer"
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          Blueprint
-        </button>
+        <div className="flex items-center gap-2">
+          {proj.githubUrl && (
+            <a
+              href={proj.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => {
+                e.stopPropagation();
+                playAudioFx('seal');
+              }}
+              title="View Repository"
+              className="p-1.5 rounded-lg bg-[#05080c] text-[#94a3b8] hover:text-[#dfbe7a] border border-white/10 hover:border-[#dfbe7a]/40 transition-all cursor-pointer"
+            >
+              <GitBranch className="w-3.5 h-3.5" />
+            </a>
+          )}
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpen(proj);
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#05080c] hover:bg-[#dfbe7a] text-[#dfbe7a] hover:text-[#05080c] text-xs font-heading font-bold rounded-lg border border-[#dfbe7a]/40 transition-all shadow-sm cursor-pointer"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            Inspect Blueprint
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -138,7 +169,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => 
   };
 
   return (
-    <section id="voyages" className="min-h-screen py-20 px-4 max-w-7xl mx-auto relative z-10">
+    <section id="voyages" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
       <SectionBanner
         number="CHRONICLE III"
         title="Flagship Production Expeditions"
@@ -146,7 +177,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => 
       />
 
       {/* Filter Tabs */}
-      <div className="flex flex-wrap items-center justify-center gap-2 mt-6 mb-10">
+      <div className="flex flex-wrap items-center justify-center gap-2 mt-8 mb-10">
         {filterTabs.map((tab) => {
           const isActive = filter === tab;
           const count = tab === 'All'
@@ -162,7 +193,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => 
               }}
               className={`px-4 py-1.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-200 cursor-pointer ${
                 isActive
-                  ? 'bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] text-[#05080c] font-bold shadow-[0_0_15px_rgba(223,190,122,0.4)]'
+                  ? 'bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] text-[#05080c] font-bold shadow-[0_0_20px_rgba(223,190,122,0.4)]'
                   : 'bg-[#0e1622] text-[#94a3b8] border border-[#c5a059]/25 hover:border-[#dfbe7a] hover:text-[#f1f5f9]'
               }`}
             >

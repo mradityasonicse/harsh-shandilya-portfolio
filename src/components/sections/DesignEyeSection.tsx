@@ -100,7 +100,7 @@ export const DesignEyeSection: React.FC = () => {
       <SectionBanner
         number="CHRONICLE II-B"
         title="The Sovereign Design Eye & AI Stack Arsenal"
-        subtitle="A permanent, god-tier matrix of 19 AI design platforms, 16 app screen pre-flight benchmarks, 16 design domains (260+ skills), and 4 award-winning visual archetypes"
+        subtitle="A permanent, god-tier matrix of 20 AI design platforms, 17 app screen pre-flight benchmarks, 16 design domains (260+ skills), and 4 award-winning visual archetypes"
       />
 
       {/* 2. Mode Navigation Switcher */}
@@ -117,7 +117,7 @@ export const DesignEyeSection: React.FC = () => {
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
-          19 AI Design Stacks
+          20 AI Design Stacks
         </button>
 
         <button
@@ -132,7 +132,7 @@ export const DesignEyeSection: React.FC = () => {
           }`}
         >
           <MonitorCheck className="w-3.5 h-3.5" />
-          16 Screen Benchmarks
+          17 Screen Benchmarks
         </button>
 
         <button
@@ -167,7 +167,7 @@ export const DesignEyeSection: React.FC = () => {
       </div>
 
       {/* =========================================================================
-          TAB 1: 19 GOD-TIER AI & DESIGN STACKS
+          TAB 1: 20 GOD-TIER AI & DESIGN STACKS
          ========================================================================= */}
       {activeTab === 'resources' && (
         <div className="space-y-8 animate-fadeIn">
@@ -177,7 +177,7 @@ export const DesignEyeSection: React.FC = () => {
               <Search className="w-4 h-4 text-[#c5a059] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search 19 AI tools, domain, or skills unlocked..."
+                placeholder="Search 20 AI tools, domain, or skills unlocked..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-[#05080c] border border-white/10 rounded-xl pl-10 pr-4 py-2 text-xs font-mono text-[#f1f5f9] placeholder:text-[#64748b] focus:outline-none focus:border-[#dfbe7a] transition-colors"

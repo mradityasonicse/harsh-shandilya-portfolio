@@ -287,6 +287,19 @@ export const GOD_TIER_RESOURCES: GodTierResource[] = [
     primaryColor: '#f43f5e',
     featuredBadge: 'Tactile Animations',
   },
+  {
+    id: 'domaingrowth-co',
+    number: 20,
+    name: 'DomainGrowth.co',
+    domain: 'domaingrowth.co',
+    url: 'https://domaingrowth.co',
+    tagline: 'Top high-authority backlink directories & distribution.',
+    category: 'Growth & Infra',
+    description: 'Curated high-authority backlink catalogs, launch directories, and domain authority booster networks for newly deployed products.',
+    skillsUnlocked: ['SEO Backlink Engines', 'Launch Distribution', 'Domain Rating Growth', 'Directory Syndication'],
+    primaryColor: '#0ea5e9',
+    featuredBadge: 'Top Backlinks',
+  },
 ];
 
 export const APP_SCREEN_SITES: AppScreenSite[] = [
@@ -449,6 +462,16 @@ export const APP_SCREEN_SITES: AppScreenSite[] = [
     purpose: 'Experimental WebGL shaders, CSS 3D kinetics & cutting-edge UI tutorials',
     category: 'Award & Art Direction',
     primaryHighlight: 'Production code, GLSL fragment equations, and interactive navigation experiments',
+  },
+  {
+    id: 'inspora',
+    number: 17,
+    name: 'Inspora',
+    domain: 'inspora.design',
+    url: 'https://inspora.design',
+    purpose: 'Curated daily feed of fresh, avant-garde digital interface and interaction design releases',
+    category: 'Award & Art Direction',
+    primaryHighlight: 'Fresh modern web designs, interactive micro-states, and cutting-edge visual layouts',
   },
 ];
 
