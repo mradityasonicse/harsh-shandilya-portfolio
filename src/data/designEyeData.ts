@@ -1,0 +1,323 @@
+export interface GodTierResource {
+  id: string;
+  number: number;
+  name: string;
+  domain: string;
+  url: string;
+  tagline: string;
+  category: 'Builder & Templates' | 'Landings & Awards' | 'Motion & Animation' | 'Typography & Icons' | 'App & Product' | 'Growth & Infra';
+  description: string;
+  skillsUnlocked: string[];
+  primaryColor: string;
+  featuredBadge?: string;
+}
+
+export interface DesignEyeArchetype {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  aesthetic: string;
+  description: string;
+  rules: string[];
+  visualSpec: {
+    fontPairing: string;
+    palette: string[];
+    geometry: string;
+    motionPhysics: string;
+  };
+}
+
+export const GOD_TIER_RESOURCES: GodTierResource[] = [
+  {
+    id: 'modulify-ai',
+    number: 1,
+    name: 'Modulify.ai',
+    domain: 'modulify.ai',
+    url: 'https://modulify.ai',
+    tagline: 'Best AI builder, period.',
+    category: 'Builder & Templates',
+    description: 'Autonomous component-driven AI builder engineering production-ready layouts with instant modular assembly.',
+    skillsUnlocked: ['Autonomous Scaffolding', 'Modular UI Assembly', 'Zero-Code Prototyping', 'Design Systems'],
+    primaryColor: '#c5a059',
+    featuredBadge: '#1 AI Builder',
+  },
+  {
+    id: 'modulify-templates',
+    number: 2,
+    name: 'Modulify Templates',
+    domain: 'modulify.ai/templates',
+    url: 'https://modulify.ai/templates',
+    tagline: 'Free production templates.',
+    category: 'Builder & Templates',
+    description: 'Curated architectural component libraries and high-conversion wireframes ready for instant production deployment.',
+    skillsUnlocked: ['Design Pattern Libraries', 'SaaS Landing Boilerplates', 'Responsive Templates', 'Speed-to-Market'],
+    primaryColor: '#dfbe7a',
+    featuredBadge: 'Free Stacks',
+  },
+  {
+    id: 'landdding',
+    number: 3,
+    name: 'Landdding',
+    domain: 'landdding.com',
+    url: 'https://landdding.com',
+    tagline: 'Top notch landings.',
+    category: 'Landings & Awards',
+    description: 'The golden directory of highest-converting, visually magnetic landing page architectures from tier-1 SaaS startups.',
+    skillsUnlocked: ['Hero Section Blueprinting', 'CRO Layouts', 'Visual Hierarchy', 'Social Proof Cadence'],
+    primaryColor: '#38bdf8',
+    featuredBadge: 'Top Notch Landings',
+  },
+  {
+    id: 'motionin-design',
+    number: 4,
+    name: 'Motionin.design',
+    domain: 'motionin.design',
+    url: 'https://motionin.design',
+    tagline: '1 prompt 1 website.',
+    category: 'Motion & Animation',
+    description: 'Natural-language kinetic engine converting simple prompts into fluid, interactive, motion-rich websites.',
+    skillsUnlocked: ['Prompt-to-Website', 'Kinetic Generation', 'Micro-Interactions', 'Interactive Canvas'],
+    primaryColor: '#ec4899',
+    featuredBadge: '1 Prompt 1 Site',
+  },
+  {
+    id: 'iconly-design',
+    number: 5,
+    name: 'Iconly.design',
+    domain: 'iconly.design',
+    url: 'https://iconly.design',
+    tagline: "World's best icons.",
+    category: 'Typography & Icons',
+    description: 'The definitive universal icon system crafted across 5 deliberate styles (Bold, Light, Curved, Bulk, Broken).',
+    skillsUnlocked: ['Universal Icon Systems', 'Vector Precision', 'Figma Icon Libraries', 'Visual Cohesion'],
+    primaryColor: '#a855f7',
+    featuredBadge: 'World Best Icons',
+  },
+  {
+    id: 'fontinlogo',
+    number: 6,
+    name: 'Fontinlogo',
+    domain: 'fontinlogo.com',
+    url: 'https://fontinlogo.com',
+    tagline: 'Fonts behind brands.',
+    category: 'Typography & Icons',
+    description: 'Typography intelligence database decrypting the exact typefaces, weights, and letter-spacings behind world iconic brands.',
+    skillsUnlocked: ['Brand Typography Reverse Engineering', 'Typeface Pairing', 'Letter Spacing Optics', 'Editorial Contrast'],
+    primaryColor: '#eab308',
+    featuredBadge: 'Fonts Behind Brands',
+  },
+  {
+    id: 'on-design',
+    number: 7,
+    name: 'On.design',
+    domain: 'on.design',
+    url: 'https://on.design',
+    tagline: 'Global design community.',
+    category: 'Landings & Awards',
+    description: 'An elite global sanctuary for creative directors, design architects, and design engineers pushing the digital frontier.',
+    skillsUnlocked: ['Creative Direction', 'Peer Feedback Cycles', 'Trend Discovery', 'Design Philosophy'],
+    primaryColor: '#06b6d4',
+    featuredBadge: 'Global Community',
+  },
+  {
+    id: 'godly-website',
+    number: 8,
+    name: 'Godly.website',
+    domain: 'godly.website',
+    url: 'https://godly.website',
+    tagline: 'Award websites inspiration.',
+    category: 'Landings & Awards',
+    description: 'Curated astronomical web experiences celebrating boundary-breaking WebGL, spatial 3D, and typography masterclasses.',
+    skillsUnlocked: ['Awwwards Standard', 'WebGL / GLSL Direction', 'Spatial Depth Layering', 'Kinetic Scroll Parallax'],
+    primaryColor: '#f59e0b',
+    featuredBadge: 'Award Websites',
+  },
+  {
+    id: '60fps-design',
+    number: 9,
+    name: '60fps.design',
+    domain: '60fps.design',
+    url: 'https://60fps.design',
+    tagline: 'Mobile UI animations.',
+    category: 'Motion & Animation',
+    description: 'Curated archive of silky-smooth 60 to 120 FPS mobile interactions, gesture physics, and delightful micro-transitions.',
+    skillsUnlocked: ['Spring Physics Tuning', 'Haptic Touch Design', 'LayoutId Morphing', '60-120 FPS Motion'],
+    primaryColor: '#10b981',
+    featuredBadge: '60-120 FPS UI',
+  },
+  {
+    id: 'footer-design',
+    number: 10,
+    name: 'Footer.design',
+    domain: 'footer.design',
+    url: 'https://footer.design',
+    tagline: 'Footer inspiration.',
+    category: 'Landings & Awards',
+    description: 'Showcase of architectural footers turning page endings into high-converting, memorable brand closures.',
+    skillsUnlocked: ['Architectural Footers', 'Sitemap UX Hierarchy', 'Brand Closure Aesthetics', 'Bottom-Page Retention'],
+    primaryColor: '#6366f1',
+    featuredBadge: 'Footer Inspiration',
+  },
+  {
+    id: 'recent-design',
+    number: 11,
+    name: 'Recent.design',
+    domain: 'recent.design',
+    url: 'https://recent.design',
+    tagline: 'Next level design.',
+    category: 'Landings & Awards',
+    description: 'Real-time telemetry of ultra-modern web trends, brutalist aesthetics, and experimental interactive design languages.',
+    skillsUnlocked: ['Next-Gen Trends', 'Neo-Brutalist Layouts', 'Fluid Container Queries', 'Noise & Glass Overlays'],
+    primaryColor: '#8b5cf6',
+    featuredBadge: 'Next Level Design',
+  },
+  {
+    id: 'posts-design',
+    number: 12,
+    name: 'Posts.design',
+    domain: 'posts.design',
+    url: 'https://posts.design',
+    tagline: 'Big brands posts.',
+    category: 'Typography & Icons',
+    description: 'High-performing social media collaterals and viral carousel architectures from the worlds most recognized consumer brands.',
+    skillsUnlocked: ['High-CTR Thumbnails', 'Social Carousel Layouts', 'Brand Visual Continuity', 'Ad Creative Strategy'],
+    primaryColor: '#ef4444',
+    featuredBadge: 'Big Brands Posts',
+  },
+  {
+    id: 'wonderlist-design',
+    number: 13,
+    name: 'Wonderlist.design',
+    domain: 'wonderlist.design',
+    url: 'https://wonderlist.design',
+    tagline: 'Premium design catalog.',
+    category: 'App & Product',
+    description: 'Hand-picked directory of the most meticulously crafted digital products, interfaces, and bespoke consumer software.',
+    skillsUnlocked: ['Luxury Digital Craft', 'Tactile UI Details', 'Micro-Copy Polish', 'High-Ticket Design Language'],
+    primaryColor: '#14b8a6',
+    featuredBadge: 'Premium Design',
+  },
+  {
+    id: 'mobbin',
+    number: 14,
+    name: 'Mobbin.com',
+    domain: 'mobbin.com',
+    url: 'https://mobbin.com',
+    tagline: 'Real app screens.',
+    category: 'App & Product',
+    description: 'Worlds largest mobile & web UI/UX patterns library featuring 300,000+ real iOS, Android, and web application screenshots.',
+    skillsUnlocked: ['User Flow Breakdown', 'Real-World Mobile UX', 'Onboarding & Paywall UX', 'Production Component Audit'],
+    primaryColor: '#3b82f6',
+    featuredBadge: 'Real App Screens',
+  },
+  {
+    id: 'sent-dm',
+    number: 15,
+    name: 'Sent.dm',
+    domain: 'sent.dm',
+    url: 'https://sent.dm',
+    tagline: 'Almost free SMS.',
+    category: 'Growth & Infra',
+    description: 'High-throughput, friction-free SMS and notification infrastructure built for modern developers and autonomous platforms.',
+    skillsUnlocked: ['Developer Notification Infra', 'Transactional SMS Gateways', 'Low-Cost Dispatch APIs', 'Auth Verification Flows'],
+    primaryColor: '#22c55e',
+    featuredBadge: 'Developer SMS Infra',
+  },
+  {
+    id: 'domaingrowth',
+    number: 16,
+    name: 'Domaingrowth.co',
+    domain: 'domaingrowth.co',
+    url: 'https://domaingrowth.co',
+    tagline: 'Top backlinks & SEO.',
+    category: 'Growth & Infra',
+    description: 'Search visibility acceleration, high-authority backlink architecture, and organic domain rating expansion.',
+    skillsUnlocked: ['Domain Authority Acceleration', 'Programmatic SEO Backlinks', 'Entity Citation Networks', 'Search Engine Trust'],
+    primaryColor: '#f97316',
+    featuredBadge: 'Top Backlinks',
+  },
+];
+
+export const DESIGN_EYE_ARCHETYPES: DesignEyeArchetype[] = [
+  {
+    id: 'white-memory',
+    title: 'White Memory',
+    subtitle: 'Editorial Minimalism & Brutalist Typography',
+    category: 'Editorial Web',
+    aesthetic: 'Crisp Negative Space • Strict Typographic Scale • Monospaced Meta Coordinates',
+    description: 'Inspired by avant-garde art publications and high-end architectural monographs. Prioritizes negative space, deliberate kerning, and rhythmic micro-borders.',
+    rules: [
+      'Zero unnecessary gradients or purple nebula glow slop',
+      'High-contrast black/white spatial hierarchy with hairline dividers',
+      'Large expressive serif display headers paired with clean monospaced telemetry',
+      'Asymmetric photo/content alignment with ample breathing room',
+    ],
+    visualSpec: {
+      fontPairing: 'Playfair Display / Editorial Serif + JetBrains Mono',
+      palette: ['#05080c', '#ffffff', '#94a3b8', '#dfbe7a'],
+      geometry: 'Sharp 4px to 8px radius corners with 1px border cadences',
+      motionPhysics: 'Stiff, swift spring physics (stiffness: 400, damping: 30)',
+    },
+  },
+  {
+    id: 'matcha-3d',
+    title: 'Matcha Botanical 3D',
+    subtitle: 'Spatial Product Presentation & Photoreal Lighting',
+    category: 'Spatial 3D & WebGL',
+    aesthetic: 'Organic Volumetric Lighting • 3D Floating Geometry • Real-Time Specular Reflections',
+    description: 'Transforms single products into legendary 3D artifacts. Utilizes WebGL shaders, depth map parallax, and atmospheric ambient particle dust.',
+    rules: [
+      'Interactive cursor-following 3D perspective mouse tilt',
+      'Realistic material PBR textures with specular reflection highlights',
+      'Dynamic floating particles responding to user mouse inertia',
+      'Deep emerald, obsidian, and 24k gold lighting accents',
+    ],
+    visualSpec: {
+      fontPairing: 'Cabinet Grotesk + Plus Jakarta Sans',
+      palette: ['#06231a', '#10b981', '#dfbe7a', '#f1f5f9'],
+      geometry: 'Soft organic radii with floating shadow depths up to 60px',
+      motionPhysics: 'Fluid inertial damping (stiffness: 180, damping: 20)',
+    },
+  },
+  {
+    id: 'editorial-fashion',
+    title: 'Haute Couture Editorial',
+    subtitle: 'Dynamic Photography Collage & Typographical Masking',
+    category: 'Brand Identity',
+    aesthetic: 'Bold Editorial Crop • Fluid Micro-Cadence • Asymmetric Storytelling',
+    description: 'High-impact visual collages that command attention. Utilizes layered imagery, duotone color grading, and tactile hover states.',
+    rules: [
+      'Dynamic typography overlaying imagery with mix-blend modes',
+      'Hover reveal states that smoothly shift focal points and exposure',
+      'Curated duotone color filters matching brand color temperature',
+      'Strict 8pt rhythm across all card borders and image frames',
+    ],
+    visualSpec: {
+      fontPairing: 'Cinzel Decorative + Inter Variable',
+      palette: ['#180e12', '#f43f5e', '#dfbe7a', '#f8fafc'],
+      geometry: 'Rounded 16px to 24px editorial Bento frames',
+      motionPhysics: 'Elastic snappy transitions with subtle zoom scale on hover',
+    },
+  },
+  {
+    id: 'fintech-glass',
+    title: 'Corporate Sovereign Card',
+    subtitle: 'Dark Frosted Glassmorphism & Metallic Gold Foil',
+    category: 'Fintech & SaaS',
+    aesthetic: 'Specular Brushed Foil • Multi-Layer Acrylic Blur • Micro-Haptic Click Physics',
+    description: 'The pinnacle of high-ticket fintech and luxury enterprise SaaS. Dark smoked glass, micro-dot matrices, and 24k gold specular hairline highlights.',
+    rules: [
+      'Multi-layer backdrop-blur (16px to 24px) over subtle noise/grain',
+      '24k metallic brass/gold foil borders with directional gradient shines',
+      'Micro-haptic audio feedback on tactile button and toggle presses',
+      'Monospaced card chip telemetry, encrypted balances, and security seals',
+    ],
+    visualSpec: {
+      fontPairing: 'Space Grotesk + JetBrains Mono',
+      palette: ['#05080c', '#0f172a', '#c5a059', '#dfbe7a'],
+      geometry: 'Precision 20px chamfered card curves with 1px gold hairline borders',
+      motionPhysics: 'Magnetic spring physics with 3D gyro tilt on mouse movement',
+    },
+  },
+];

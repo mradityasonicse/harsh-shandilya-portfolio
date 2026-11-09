@@ -395,3 +395,8 @@ export const INTRO_CONFIG: IntroConfig = {
   durationMs: 2200,
 };
 
+// Re-export God-Tier AI & Design Stacks for permanent repository access
+export { GOD_TIER_RESOURCES, DESIGN_EYE_ARCHETYPES } from './designEyeData';
+export { DESIGN_DOMAINS } from './designSkillsData';
+
+

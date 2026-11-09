@@ -76,6 +76,7 @@ export const CaptainTerminal: React.FC<CaptainTerminalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-[#cbd5e1]">
             <div><span className="text-[#dfbe7a] font-semibold">whoami</span> — Identity, bio & architectural stance</div>
             <div><span className="text-[#dfbe7a] font-semibold">skills</span> — 4-quadrant verified engineering stack</div>
+            <div><span className="text-[#dfbe7a] font-semibold">design</span> — 16 God-tier AI tools & 260+ design skills</div>
             <div><span className="text-[#dfbe7a] font-semibold">projects</span> — 8 flagship production codebases</div>
             <div><span className="text-[#dfbe7a] font-semibold">honors</span> — Hackathon podiums & certifications</div>
             <div><span className="text-[#dfbe7a] font-semibold">resume</span> — Open printable engineering CV</div>
@@ -143,6 +144,33 @@ export const CaptainTerminal: React.FC<CaptainTerminalProps> = ({
         </div>
       );
       setTimeout(() => onOpenResume(), 300);
+    } else if (cmd === 'design' || cmd === 'eye' || cmd === 'godly' || cmd === 'stacks') {
+      output = (
+        <div className="space-y-2 text-xs font-mono text-[#cbd5e1]">
+          <div className="text-[#dfbe7a] font-bold">16 God-Tier AI & Design Stacks Arsenal:</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pl-1">
+            <div><span className="text-[#dfbe7a]">1. modulify.ai</span> — Best AI builder, period.</div>
+            <div><span className="text-[#dfbe7a]">2. modulify.ai/templates</span> — Free production templates</div>
+            <div><span className="text-[#dfbe7a]">3. landdding.com</span> — Top notch landings</div>
+            <div><span className="text-[#dfbe7a]">4. motionin.design</span> — 1 prompt 1 website</div>
+            <div><span className="text-[#dfbe7a]">5. iconly.design</span> — World's best icons</div>
+            <div><span className="text-[#dfbe7a]">6. fontinlogo.com</span> — Fonts behind brands</div>
+            <div><span className="text-[#dfbe7a]">7. on.design</span> — Global design community</div>
+            <div><span className="text-[#dfbe7a]">8. godly.website</span> — Award websites inspiration</div>
+            <div><span className="text-[#dfbe7a]">9. 60fps.design</span> — Mobile UI animations</div>
+            <div><span className="text-[#dfbe7a]">10. footer.design</span> — Architectural footer inspiration</div>
+            <div><span className="text-[#dfbe7a]">11. recent.design</span> — Next level design trends</div>
+            <div><span className="text-[#dfbe7a]">12. posts.design</span> — Big brands social posts</div>
+            <div><span className="text-[#dfbe7a]">13. wonderlist.design</span> — Premium design catalog</div>
+            <div><span className="text-[#dfbe7a]">14. mobbin.com</span> — Real app screens (300k+ UI patterns)</div>
+            <div><span className="text-[#dfbe7a]">15. sent.dm</span> — Almost free SMS developer infra</div>
+            <div><span className="text-[#dfbe7a]">16. domaingrowth.co</span> — Top backlinks & SEO authority</div>
+          </div>
+          <div className="text-[11px] text-[#64748b] pt-1">
+            Plus 16 comprehensive design domains (260+ verified skills) active in Chronicle II-B (#design-eye).
+          </div>
+        </div>
+      );
     } else if (cmd === 'contact' || cmd === 'email') {
       output = (
         <div className="space-y-1 text-xs font-mono text-[#cbd5e1]">

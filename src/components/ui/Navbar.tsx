@@ -26,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'hero', label: 'Helm' },
     { id: 'legend', label: 'Chronicle' },
     { id: 'armory', label: 'Armory' },
+    { id: 'design-eye', label: 'Design Eye' },
     { id: 'voyages', label: 'Expeditions' },
     { id: 'spoils', label: 'Honors' },
     { id: 'log', label: 'Service Log' },

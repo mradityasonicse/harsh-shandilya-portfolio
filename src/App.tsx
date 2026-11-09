@@ -10,6 +10,7 @@ import { AudioEngine } from './components/ui/AudioEngine';
 import { HeroSection } from './components/sections/HeroSection';
 import { AboutSection } from './components/sections/AboutSection';
 import { SkillsSection } from './components/sections/SkillsSection';
+import { DesignEyeSection } from './components/sections/DesignEyeSection';
 import { ProjectsSection } from './components/sections/ProjectsSection';
 import { AchievementsSection } from './components/sections/AchievementsSection';
 import { ExperienceSection } from './components/sections/ExperienceSection';
@@ -52,7 +53,7 @@ export const App: React.FC = () => {
       setScrollProgress(e.progress);
       ScrollTrigger.update();
 
-      const sections = ['hero', 'legend', 'armory', 'voyages', 'spoils', 'log', 'bottle'];
+      const sections = ['hero', 'legend', 'armory', 'design-eye', 'voyages', 'spoils', 'log', 'bottle'];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
@@ -145,6 +146,7 @@ export const App: React.FC = () => {
         />
         <AboutSection profile={profile} />
         <SkillsSection profile={profile} />
+        <DesignEyeSection />
         <ProjectsSection profile={profile} />
         <AchievementsSection profile={profile} />
         <ExperienceSection profile={profile} />
