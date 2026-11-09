@@ -76,7 +76,9 @@ export const CaptainTerminal: React.FC<CaptainTerminalProps> = ({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1 text-[#cbd5e1]">
             <div><span className="text-[#dfbe7a] font-semibold">whoami</span> — Identity, bio & architectural stance</div>
             <div><span className="text-[#dfbe7a] font-semibold">skills</span> — 4-quadrant verified engineering stack</div>
-            <div><span className="text-[#dfbe7a] font-semibold">design</span> — 16 God-tier AI tools & 260+ design skills</div>
+            <div><span className="text-[#dfbe7a] font-semibold">design</span> — 19 AI tools & 260+ design skills</div>
+            <div><span className="text-[#dfbe7a] font-semibold">screens</span> — 16 Pre-flight app screen benchmarks</div>
+            <div><span className="text-[#dfbe7a] font-semibold">inspo</span> — Top landing, footer & design inspo</div>
             <div><span className="text-[#dfbe7a] font-semibold">projects</span> — 8 flagship production codebases</div>
             <div><span className="text-[#dfbe7a] font-semibold">honors</span> — Hackathon podiums & certifications</div>
             <div><span className="text-[#dfbe7a] font-semibold">resume</span> — Open printable engineering CV</div>
@@ -160,14 +162,57 @@ export const CaptainTerminal: React.FC<CaptainTerminalProps> = ({
             <div><span className="text-[#dfbe7a]">9. 60fps.design</span> — Mobile UI animations</div>
             <div><span className="text-[#dfbe7a]">10. footer.design</span> — Architectural footer inspiration</div>
             <div><span className="text-[#dfbe7a]">11. recent.design</span> — Next level design trends</div>
-            <div><span className="text-[#dfbe7a]">12. posts.design</span> — Big brands social posts</div>
-            <div><span className="text-[#dfbe7a]">13. wonderlist.design</span> — Premium design catalog</div>
-            <div><span className="text-[#dfbe7a]">14. mobbin.com</span> — Real app screens (300k+ UI patterns)</div>
-            <div><span className="text-[#dfbe7a]">15. sent.dm</span> — Almost free SMS developer infra</div>
-            <div><span className="text-[#dfbe7a]">16. domaingrowth.co</span> — Top backlinks & SEO authority</div>
+            <div><span className="text-[#dfbe7a]">12. backgrounds.supply</span> — Procedural textures</div>
+            <div><span className="text-[#dfbe7a]">13. posts.design</span> — Big brands social posts</div>
+            <div><span className="text-[#dfbe7a]">14. beui.dev</span> — Animated UI components</div>
+            <div><span className="text-[#dfbe7a]">15. wonderlist.design</span> — Figma designs & catalog</div>
+            <div><span className="text-[#dfbe7a]">16. mobbin.com</span> — Real app screens (300k+ UI patterns)</div>
+            <div><span className="text-[#dfbe7a]">17. sent.dm</span> — Almost free SMS developer infra</div>
+            <div><span className="text-[#dfbe7a]">18. logotouse.com</span> — Curated premium logo systems</div>
+            <div><span className="text-[#dfbe7a]">19. paperanimation.ai</span> — AI tactile & stop-motion</div>
           </div>
           <div className="text-[11px] text-[#64748b] pt-1">
             Plus 16 comprehensive design domains (260+ verified skills) active in Chronicle II-B (#design-eye).
+          </div>
+        </div>
+      );
+    } else if (cmd === 'screens' || cmd === 'check') {
+      output = (
+        <div className="space-y-2 text-xs font-mono text-[#cbd5e1]">
+          <div className="text-[#dfbe7a] font-bold">Sites I Check Before Designing Any App Screen (Pre-Flight):</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-[11px] pl-1">
+            <div><span className="text-[#dfbe7a]">1. Mobbin</span> (mobbin.com) — 300k+ real app flows</div>
+            <div><span className="text-[#dfbe7a]">2. Pageflows</span> (pageflows.com) — Live user interaction videos</div>
+            <div><span className="text-[#dfbe7a]">3. Refero</span> (refero.design) — Real product screens by UI element</div>
+            <div><span className="text-[#dfbe7a]">4. Screenlane</span> (screenlane.com) — Daily mobile & web inspiration</div>
+            <div><span className="text-[#dfbe7a]">5. UI Garage</span> (uigarage.net) — Handpicked multi-platform patterns</div>
+            <div><span className="text-[#dfbe7a]">6. Scrnshts</span> (scrnshts.club) — App Store showcase designs</div>
+            <div><span className="text-[#dfbe7a]">7. Page UI</span> (pageui.design) — Clean web section components</div>
+            <div><span className="text-[#dfbe7a]">8. Collect UI</span> (collectui.com) — Daily UI micro-states</div>
+            <div><span className="text-[#dfbe7a]">9. Land-book</span> (land-book.com) — Best landing page structures</div>
+            <div><span className="text-[#dfbe7a]">10. Godly</span> (godly.website) — Award-winning dark mode web</div>
+            <div><span className="text-[#dfbe7a]">11. Awwwards</span> (awwwards.com) — Global creative direction</div>
+            <div><span className="text-[#dfbe7a]">12. Dribbble</span> (dribbble.com) — Visual exploratory craft</div>
+            <div><span className="text-[#dfbe7a]">13. Behance</span> (behance.net) — Comprehensive case studies</div>
+            <div><span className="text-[#dfbe7a]">14. Pinterest</span> (pinterest.com) — Moodboarding & typography</div>
+            <div><span className="text-[#dfbe7a]">15. Muzli</span> (muz.li) — Designer news & trending digest</div>
+            <div><span className="text-[#dfbe7a]">16. Codrops</span> (tympanus.net/codrops) — WebGL shaders & CSS kinetics</div>
+          </div>
+          <div className="text-[11px] text-emerald-400 pt-1">
+            ✓ Benchmark against these before writing a single line of UI code.
+          </div>
+        </div>
+      );
+    } else if (cmd === 'inspo') {
+      output = (
+        <div className="space-y-1.5 text-xs font-mono text-[#cbd5e1]">
+          <div className="text-[#dfbe7a] font-bold">Top Curated Design Inspo Sites:</div>
+          <div className="space-y-1 text-[11px] pl-2">
+            <div><span className="text-[#dfbe7a]">1. landdding.com</span> — Top notch landing page architectures</div>
+            <div><span className="text-[#dfbe7a]">2. collectui.com</span> — Daily UI components & micro-states</div>
+            <div><span className="text-[#dfbe7a]">3. inspora.design</span> — New cutting-edge design releases</div>
+            <div><span className="text-[#dfbe7a]">4. footer.design</span> — High-converting architectural footers</div>
+            <div><span className="text-[#dfbe7a]">5. land-book.com</span> — Best-in-class product landing inspo</div>
           </div>
         </div>
       );

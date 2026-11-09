@@ -1,6 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import { SectionBanner } from '../ui/SectionBanner';
-import { GOD_TIER_RESOURCES, DESIGN_EYE_ARCHETYPES, type GodTierResource } from '../../data/designEyeData';
+import {
+  GOD_TIER_RESOURCES,
+  APP_SCREEN_SITES,
+  DESIGN_EYE_ARCHETYPES,
+  type GodTierResource,
+} from '../../data/designEyeData';
 import { DESIGN_DOMAINS } from '../../data/designSkillsData';
 import {
   ExternalLink,
@@ -15,19 +20,21 @@ import {
   ShieldCheck,
   X,
   CreditCard,
+  MonitorCheck,
 } from 'lucide-react';
 import { playAudioFx } from '../ui/AudioEngine';
 
 export const DesignEyeSection: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'resources' | 'domains' | 'archetypes'>('resources');
+  const [activeTab, setActiveTab] = useState<'resources' | 'screens' | 'domains' | 'archetypes'>('resources');
   const [resourceCategory, setResourceCategory] = useState<string>('All');
+  const [screenCategory, setScreenCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedDomainId, setSelectedDomainId] = useState<string>(DESIGN_DOMAINS[0].id);
   const [selectedArchetypeId, setSelectedArchetypeId] = useState<string>(DESIGN_EYE_ARCHETYPES[0].id);
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [inspectResource, setInspectResource] = useState<GodTierResource | null>(null);
 
-  // Filtered 16 God-Tier Tools
+  // Filtered 19 God-Tier AI & Design Tools
   const filteredResources = useMemo(() => {
     return GOD_TIER_RESOURCES.filter((res) => {
       const matchesCategory = resourceCategory === 'All' || res.category === resourceCategory;
@@ -39,6 +46,19 @@ export const DesignEyeSection: React.FC = () => {
       return matchesCategory && matchesSearch;
     });
   }, [resourceCategory, searchQuery]);
+
+  // Filtered 16 Pre-flight Screen Sites
+  const filteredScreenSites = useMemo(() => {
+    return APP_SCREEN_SITES.filter((site) => {
+      const matchesCategory = screenCategory === 'All' || site.category === screenCategory;
+      const matchesSearch =
+        site.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        site.domain.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        site.purpose.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        site.primaryHighlight.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+  }, [screenCategory, searchQuery]);
 
   const selectedDomain = useMemo(() => {
     return DESIGN_DOMAINS.find((d) => d.id === selectedDomainId) || DESIGN_DOMAINS[0];
@@ -55,7 +75,7 @@ export const DesignEyeSection: React.FC = () => {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  const categories = [
+  const resourceCategories = [
     'All',
     'Builder & Templates',
     'Landings & Awards',
@@ -65,13 +85,22 @@ export const DesignEyeSection: React.FC = () => {
     'Growth & Infra',
   ];
 
+  const screenCategories = [
+    'All',
+    'User Flows & Screens',
+    'Award & Art Direction',
+    'Components & Micro-UI',
+    'Visual & 3D Craft',
+    'Trend Radar',
+  ];
+
   return (
     <section id="design-eye" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
       {/* 1. Master Section Banner */}
       <SectionBanner
         number="CHRONICLE II-B"
         title="The Sovereign Design Eye & AI Stack Arsenal"
-        subtitle="A permanent, god-tier matrix of the world's 16 elite AI & design platforms, 16 design domain masteries, and 4 award-winning visual archetypes"
+        subtitle="A permanent, god-tier matrix of 19 AI design platforms, 16 app screen pre-flight benchmarks, 16 design domains (260+ skills), and 4 award-winning visual archetypes"
       />
 
       {/* 2. Mode Navigation Switcher */}
@@ -81,14 +110,29 @@ export const DesignEyeSection: React.FC = () => {
             playAudioFx('click');
             setActiveTab('resources');
           }}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+          className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
             activeTab === 'resources'
               ? 'bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] text-[#05080c] font-bold shadow-[0_0_25px_rgba(223,190,122,0.45)] scale-105'
               : 'bg-[#0e1622] text-[#94a3b8] border border-[#c5a059]/30 hover:border-[#dfbe7a] hover:text-[#f1f5f9]'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
-          16 God-Tier AI & Design Stacks
+          19 AI Design Stacks
+        </button>
+
+        <button
+          onClick={() => {
+            playAudioFx('click');
+            setActiveTab('screens');
+          }}
+          className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+            activeTab === 'screens'
+              ? 'bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] text-[#05080c] font-bold shadow-[0_0_25px_rgba(223,190,122,0.45)] scale-105'
+              : 'bg-[#0e1622] text-[#94a3b8] border border-[#c5a059]/30 hover:border-[#dfbe7a] hover:text-[#f1f5f9]'
+          }`}
+        >
+          <MonitorCheck className="w-3.5 h-3.5" />
+          16 Screen Benchmarks
         </button>
 
         <button
@@ -96,14 +140,14 @@ export const DesignEyeSection: React.FC = () => {
             playAudioFx('click');
             setActiveTab('domains');
           }}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+          className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
             activeTab === 'domains'
               ? 'bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] text-[#05080c] font-bold shadow-[0_0_25px_rgba(223,190,122,0.45)] scale-105'
               : 'bg-[#0e1622] text-[#94a3b8] border border-[#c5a059]/30 hover:border-[#dfbe7a] hover:text-[#f1f5f9]'
           }`}
         >
           <Layers className="w-3.5 h-3.5" />
-          16 Design Domains (260+ Skills)
+          16 Domains (260+ Skills)
         </button>
 
         <button
@@ -111,30 +155,29 @@ export const DesignEyeSection: React.FC = () => {
             playAudioFx('click');
             setActiveTab('archetypes');
           }}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
+          className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer ${
             activeTab === 'archetypes'
               ? 'bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] text-[#05080c] font-bold shadow-[0_0_25px_rgba(223,190,122,0.45)] scale-105'
               : 'bg-[#0e1622] text-[#94a3b8] border border-[#c5a059]/30 hover:border-[#dfbe7a] hover:text-[#f1f5f9]'
           }`}
         >
           <Eye className="w-3.5 h-3.5" />
-          4 God-Level Visual Archetypes
+          4 Visual Archetypes
         </button>
       </div>
 
       {/* =========================================================================
-          TAB 1: 16 GOD-TIER AI & DESIGN STACKS (From User's Tweet Image)
+          TAB 1: 19 GOD-TIER AI & DESIGN STACKS
          ========================================================================= */}
       {activeTab === 'resources' && (
         <div className="space-y-8 animate-fadeIn">
           {/* Search & Filter Bar */}
           <div className="p-4 sm:p-6 rounded-2xl bg-[#0a1018]/90 border border-[#c5a059]/25 backdrop-blur-xl shadow-[0_15px_40px_rgba(0,0,0,0.8)] flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Search Input */}
             <div className="relative w-full md:w-96">
               <Search className="w-4 h-4 text-[#c5a059] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search tools, domain, or skills unlocked..."
+                placeholder="Search 19 AI tools, domain, or skills unlocked..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full bg-[#05080c] border border-white/10 rounded-xl pl-10 pr-4 py-2 text-xs font-mono text-[#f1f5f9] placeholder:text-[#64748b] focus:outline-none focus:border-[#dfbe7a] transition-colors"
@@ -149,9 +192,8 @@ export const DesignEyeSection: React.FC = () => {
               )}
             </div>
 
-            {/* Category Filter Pills */}
             <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-              {categories.map((cat) => {
+              {resourceCategories.map((cat) => {
                 const isActive = resourceCategory === cat;
                 return (
                   <button
@@ -173,19 +215,17 @@ export const DesignEyeSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Stats Header */}
           <div className="flex items-center justify-between px-2 text-xs font-mono text-[#94a3b8]">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#dfbe7a] animate-pulse" />
               Showing <span className="text-[#dfbe7a] font-bold">{filteredResources.length}</span> curated AI & design powerhouses
             </div>
             <div className="hidden sm:block text-[#64748b]">
-              Bookmark verified • 100% production utility
+              Designing with AI? Save this • 100% production utility
             </div>
           </div>
 
-          {/* Bento Grid of 16 Tools */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {filteredResources.map((res) => {
               const isCopied = copiedId === res.id;
               return (
@@ -194,13 +234,11 @@ export const DesignEyeSection: React.FC = () => {
                   onMouseEnter={() => playAudioFx('click')}
                   className="group relative rounded-2xl p-5 bg-[#0a1018]/90 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.85)] flex flex-col justify-between overflow-hidden backdrop-blur-xl hover:-translate-y-1"
                 >
-                  {/* Subtle Corner Accent Glow */}
                   <div
                     className="absolute -top-16 -right-16 w-32 h-32 rounded-full blur-2xl opacity-20 pointer-events-none group-hover:opacity-40 transition-opacity"
                     style={{ backgroundColor: res.primaryColor }}
                   />
 
-                  {/* Top Bar: Number + Category */}
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-[10px] font-mono font-bold text-[#dfbe7a] bg-[#dfbe7a]/10 border border-[#dfbe7a]/30 px-2 py-0.5 rounded-md">
@@ -213,7 +251,6 @@ export const DesignEyeSection: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Title & Domain */}
                     <h3 className="text-base font-heading font-bold text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors flex items-center justify-between">
                       {res.name}
                     </h3>
@@ -221,19 +258,16 @@ export const DesignEyeSection: React.FC = () => {
                       {res.domain}
                     </div>
 
-                    {/* Tweet Tagline Quote */}
                     <div className="p-2.5 rounded-xl bg-[#05080c]/80 border border-white/5 mb-3">
                       <p className="text-xs font-heading font-semibold text-[#f8fafc] italic">
                         "{res.tagline}"
                       </p>
                     </div>
 
-                    {/* Description */}
                     <p className="text-[11px] text-[#94a3b8] font-sans leading-relaxed mb-4 line-clamp-2 font-light">
                       {res.description}
                     </p>
 
-                    {/* Skills Unlocked Badges */}
                     <div className="space-y-1.5 mb-5">
                       <span className="text-[9px] font-mono uppercase tracking-wider text-[#64748b] block">
                         Superpower Stacks:
@@ -251,7 +285,6 @@ export const DesignEyeSection: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Actions: Copy Link & Visit External */}
                   <div className="pt-3 border-t border-white/5 flex items-center justify-between gap-2 mt-auto">
                     <button
                       onClick={() => handleCopyLink(res.url, res.id)}
@@ -289,11 +322,120 @@ export const DesignEyeSection: React.FC = () => {
       )}
 
       {/* =========================================================================
-          TAB 2: 16 COMPREHENSIVE DESIGN DOMAINS (260+ Verified Skills)
+          TAB 2: 16 APP SCREEN PRE-FLIGHT BENCHMARKS (Sites Checked Before Any Screen)
+         ========================================================================= */}
+      {activeTab === 'screens' && (
+        <div className="space-y-8 animate-fadeIn">
+          {/* Header Banner */}
+          <div className="p-6 rounded-2xl bg-[#0a1018]/90 border border-[#c5a059]/25 backdrop-blur-xl flex flex-col md:flex-row gap-4 items-center justify-between shadow-xl">
+            <div>
+              <span className="text-xs font-mono uppercase tracking-widest text-[#dfbe7a] block mb-1">
+                Zero-Vibe-Coding Pre-Flight Gate
+              </span>
+              <h3 className="text-xl sm:text-2xl font-heading font-bold text-white">
+                Sites I Check Before Designing Any App Screen
+              </h3>
+              <p className="text-xs text-[#94a3b8] font-sans mt-1">
+                Mandatory operational rule: Never design an app screen blindly. Always benchmark against these 16 verified archives.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-1.5">
+              {screenCategories.map((cat) => {
+                const isActive = screenCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      playAudioFx('click');
+                      setScreenCategory(cat);
+                    }}
+                    className={`px-3 py-1 rounded-lg text-[11px] font-mono whitespace-nowrap transition-all cursor-pointer ${
+                      isActive
+                        ? 'bg-[#dfbe7a]/20 border border-[#dfbe7a] text-[#dfbe7a] font-semibold'
+                        : 'bg-[#05080c]/60 border border-white/5 text-[#94a3b8] hover:text-white hover:border-white/20'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Grid of 16 Screen Benchmark Sites */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {filteredScreenSites.map((site) => {
+              const isCopied = copiedId === site.id;
+              return (
+                <div
+                  key={site.id}
+                  onMouseEnter={() => playAudioFx('click')}
+                  className="rounded-2xl p-5 bg-[#0a1018]/90 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all duration-300 shadow-lg flex flex-col justify-between group hover:-translate-y-1"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-[10px] font-mono font-bold text-[#dfbe7a] bg-[#dfbe7a]/10 border border-[#dfbe7a]/30 px-2 py-0.5 rounded-md">
+                        #{String(site.number).padStart(2, '0')}
+                      </span>
+                      <span className="text-[10px] font-mono text-[#94a3b8] uppercase">
+                        {site.category}
+                      </span>
+                    </div>
+
+                    <h4 className="text-lg font-heading font-bold text-white group-hover:text-[#dfbe7a] transition-colors">
+                      {site.name}
+                    </h4>
+                    <div className="text-[11px] font-mono text-[#c5a059] mb-3">
+                      {site.domain}
+                    </div>
+
+                    <div className="p-3 rounded-xl bg-[#05080c] border border-white/5 mb-3">
+                      <span className="text-[9px] font-mono uppercase text-[#64748b] block mb-1">
+                        Screen Inspection Focus:
+                      </span>
+                      <p className="text-xs font-sans text-[#f1f5f9] leading-relaxed">
+                        {site.purpose}
+                      </p>
+                    </div>
+
+                    <p className="text-[11px] font-sans text-[#94a3b8] leading-relaxed mb-4">
+                      <span className="text-[#dfbe7a] font-semibold">Highlight: </span>
+                      {site.primaryHighlight}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-white/5 flex items-center justify-between gap-2 mt-auto">
+                    <button
+                      onClick={() => handleCopyLink(site.url, site.id)}
+                      title="Copy URL"
+                      className="p-2 rounded-lg bg-[#05080c] border border-white/10 text-[#94a3b8] hover:text-[#dfbe7a] transition-all cursor-pointer"
+                    >
+                      {isCopied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                    </button>
+
+                    <a
+                      href={site.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => playAudioFx('seal')}
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#0e1622] hover:bg-[#dfbe7a] border border-[#c5a059]/40 hover:border-[#dfbe7a] text-xs font-mono text-[#dfbe7a] hover:text-[#05080c] font-bold transition-all cursor-pointer ml-auto"
+                    >
+                      Open {site.name} <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================================
+          TAB 3: 16 COMPREHENSIVE DESIGN DOMAINS (260+ Verified Skills)
          ========================================================================= */}
       {activeTab === 'domains' && (
         <div className="space-y-8 animate-fadeIn">
-          {/* Domain Horizontal Selector */}
           <div className="p-3 rounded-2xl bg-[#0a1018]/90 border border-[#c5a059]/25 backdrop-blur-xl shadow-lg flex items-center gap-2 overflow-x-auto">
             {DESIGN_DOMAINS.map((dom) => {
               const isSelected = dom.id === selectedDomainId;
@@ -319,7 +461,6 @@ export const DesignEyeSection: React.FC = () => {
             })}
           </div>
 
-          {/* Selected Domain Showcase Header */}
           <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0a1018] via-[#0e1622] to-[#05080c] border border-[#c5a059]/30 shadow-[0_20px_50px_rgba(0,0,0,0.85)] relative overflow-hidden">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#c5a059]/15 pb-6 mb-6">
               <div>
@@ -347,7 +488,6 @@ export const DesignEyeSection: React.FC = () => {
               "{selectedDomain.description}"
             </p>
 
-            {/* Skills Grid for this domain */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
               {selectedDomain.skills.map((skill) => (
                 <div
@@ -364,7 +504,6 @@ export const DesignEyeSection: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Bar */}
                   <div className="w-full h-1.5 bg-[#141f2e] rounded-full overflow-hidden my-1.5 relative">
                     <div
                       className="h-full bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] rounded-full transition-all duration-1000"
@@ -386,11 +525,10 @@ export const DesignEyeSection: React.FC = () => {
       )}
 
       {/* =========================================================================
-          TAB 3: 4 GOD-LEVEL VISUAL ARCHETYPES (From Tweet's Bottom Showcase)
+          TAB 4: 4 GOD-LEVEL VISUAL ARCHETYPES
          ========================================================================= */}
       {activeTab === 'archetypes' && (
         <div className="space-y-8 animate-fadeIn">
-          {/* Archetype Selector Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {DESIGN_EYE_ARCHETYPES.map((arch) => {
               const isSelected = arch.id === selectedArchetypeId;
@@ -427,9 +565,7 @@ export const DesignEyeSection: React.FC = () => {
             })}
           </div>
 
-          {/* Archetype Inspector & Interactive Live Showcase */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Left: Specifications & Design Grammar (5 cols) */}
             <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-[#0a1018]/90 border border-[#c5a059]/30 shadow-xl space-y-6">
               <div>
                 <span className="text-[10px] font-mono uppercase tracking-widest text-[#dfbe7a] block mb-1">
@@ -447,7 +583,6 @@ export const DesignEyeSection: React.FC = () => {
                 {selectedArchetype.description}
               </p>
 
-              {/* Core Visual Rules */}
               <div className="space-y-2 pt-2 border-t border-white/5">
                 <span className="text-xs font-heading font-bold text-[#f1f5f9] block">
                   Mandatory Execution Rules:
@@ -462,7 +597,6 @@ export const DesignEyeSection: React.FC = () => {
                 </ul>
               </div>
 
-              {/* Technical Spec Matrix */}
               <div className="pt-4 border-t border-white/5 space-y-3 font-mono text-[11px]">
                 <div>
                   <span className="text-[#64748b] block">Font Pairing:</span>
@@ -493,12 +627,9 @@ export const DesignEyeSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Right: Live Interactive Sandbox Component (7 cols) */}
             <div className="lg:col-span-7 p-6 sm:p-10 rounded-2xl bg-[#05080c] border border-[#c5a059]/40 shadow-[0_25px_60px_rgba(0,0,0,0.9)] relative overflow-hidden min-h-[460px] flex items-center justify-center">
-              {/* Background ambient lighting */}
               <div className="absolute inset-0 bg-gradient-to-tr from-[#dfbe7a]/5 via-transparent to-cyan-500/5 pointer-events-none" />
 
-              {/* Archetype 1: White Memory Minimalist Editorial */}
               {selectedArchetype.id === 'white-memory' && (
                 <div className="w-full max-w-md p-6 bg-white text-black rounded-lg shadow-2xl space-y-4 border border-neutral-200">
                   <div className="flex items-center justify-between border-b border-black/10 pb-3 text-[10px] font-mono tracking-widest uppercase">
@@ -529,13 +660,11 @@ export const DesignEyeSection: React.FC = () => {
                 </div>
               )}
 
-              {/* Archetype 2: Matcha 3D Floating Geometry */}
               {selectedArchetype.id === 'matcha-3d' && (
                 <div className="w-full max-w-md p-8 rounded-3xl bg-gradient-to-b from-[#0b241c] to-[#040f0c] border border-emerald-500/30 shadow-[0_20px_50px_rgba(16,185,129,0.25)] text-center relative group">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 rounded-full inline-block mb-4">
                     SPATIAL ARTIFACT • MATCHA ORIGIN
                   </span>
-                  {/* Floating 3D Cylinder / Canister Simulation */}
                   <div className="w-32 h-44 mx-auto my-4 rounded-2xl bg-gradient-to-b from-[#10b981] via-[#059669] to-[#047857] shadow-[0_20px_40px_rgba(16,185,129,0.4)] flex flex-col items-center justify-between p-4 transform group-hover:scale-105 group-hover:-rotate-3 transition-all duration-500 border border-white/20">
                     <span className="text-[9px] font-mono text-white tracking-widest">CEREMONIAL</span>
                     <div className="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center text-white font-bold text-xs">
@@ -552,7 +681,6 @@ export const DesignEyeSection: React.FC = () => {
                 </div>
               )}
 
-              {/* Archetype 3: Haute Couture Editorial Collage */}
               {selectedArchetype.id === 'editorial-fashion' && (
                 <div className="w-full max-w-md p-6 rounded-2xl bg-[#140c10] border border-rose-500/30 shadow-2xl relative overflow-hidden">
                   <div className="flex items-center justify-between text-[10px] font-mono text-rose-400 mb-3">
@@ -576,13 +704,10 @@ export const DesignEyeSection: React.FC = () => {
                 </div>
               )}
 
-              {/* Archetype 4: Corporate Sovereign Fintech Card */}
               {selectedArchetype.id === 'fintech-glass' && (
                 <div className="w-full max-w-sm rounded-2xl p-6 bg-gradient-to-br from-[#111827]/90 via-[#0b1320]/95 to-[#05080c] border border-[#dfbe7a]/60 shadow-[0_25px_60px_rgba(223,190,122,0.3)] backdrop-blur-2xl relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
-                  {/* Gold Specular Shine Beam */}
                   <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-transparent via-[#dfbe7a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-                  {/* Top: Card Issuer & Contactless */}
                   <div className="flex items-center justify-between mb-8 relative z-10">
                     <div className="flex items-center gap-2">
                       <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#c5a059] to-[#dfbe7a] flex items-center justify-center shadow-md">
@@ -597,17 +722,14 @@ export const DesignEyeSection: React.FC = () => {
                     </span>
                   </div>
 
-                  {/* Gold Chip */}
                   <div className="w-11 h-8 rounded-md bg-gradient-to-br from-[#dfbe7a] via-[#c5a059] to-[#8d6f30] border border-white/30 shadow-inner mb-6 relative z-10 flex items-center justify-center">
                     <div className="w-6 h-4 border border-black/20 rounded-sm" />
                   </div>
 
-                  {/* Encrypted Card Number */}
                   <div className="text-base font-mono tracking-widest text-[#f1f5f9] mb-4 relative z-10">
                     •••• •••• •••• 2026
                   </div>
 
-                  {/* Footer: Cardholder & Expiry */}
                   <div className="flex items-center justify-between text-[11px] font-mono relative z-10 border-t border-white/10 pt-3">
                     <div>
                       <span className="text-[#64748b] text-[9px] block">CARDHOLDER</span>
@@ -626,12 +748,11 @@ export const DesignEyeSection: React.FC = () => {
       )}
 
       {/* =========================================================================
-          INSPECTION MODAL FOR ANY OF THE 16 TOOLS
+          INSPECTION MODAL FOR TOOLS
          ========================================================================= */}
       {inspectResource && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
           <div className="relative w-full max-w-xl rounded-2xl bg-[#0a1018] border border-[#dfbe7a] p-6 sm:p-8 shadow-[0_25px_70px_rgba(0,0,0,0.95)] space-y-6">
-            {/* Close Button */}
             <button
               onClick={() => setInspectResource(null)}
               className="absolute top-5 right-5 p-2 rounded-full bg-white/5 border border-white/10 text-[#94a3b8] hover:text-white transition-colors cursor-pointer"
@@ -639,7 +760,6 @@ export const DesignEyeSection: React.FC = () => {
               <X className="w-4 h-4" />
             </button>
 
-            {/* Header */}
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xs font-mono font-bold text-[#dfbe7a] bg-[#dfbe7a]/10 border border-[#dfbe7a]/30 px-2.5 py-0.5 rounded-md">
@@ -657,7 +777,6 @@ export const DesignEyeSection: React.FC = () => {
               </p>
             </div>
 
-            {/* Quote Pitch */}
             <div className="p-3.5 rounded-xl bg-[#05080c] border border-white/10">
               <span className="text-[10px] font-mono uppercase text-[#64748b] block mb-1">
                 Curator Verdict:
@@ -671,7 +790,6 @@ export const DesignEyeSection: React.FC = () => {
               {inspectResource.description}
             </p>
 
-            {/* Skills & Superpowers */}
             <div>
               <span className="text-xs font-heading font-bold text-[#f1f5f9] block mb-2">
                 Engineering & Design Superpowers:
@@ -688,7 +806,6 @@ export const DesignEyeSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Modal Actions */}
             <div className="pt-4 border-t border-white/10 flex items-center justify-between">
               <button
                 onClick={() => handleCopyLink(inspectResource.url, inspectResource.id)}

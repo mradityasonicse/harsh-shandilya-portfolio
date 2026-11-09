@@ -396,7 +396,7 @@ export const INTRO_CONFIG: IntroConfig = {
 };
 
 // Re-export God-Tier AI & Design Stacks for permanent repository access
-export { GOD_TIER_RESOURCES, DESIGN_EYE_ARCHETYPES } from './designEyeData';
+export { GOD_TIER_RESOURCES, APP_SCREEN_SITES, DESIGN_EYE_ARCHETYPES } from './designEyeData';
 export { DESIGN_DOMAINS } from './designSkillsData';
 
 
