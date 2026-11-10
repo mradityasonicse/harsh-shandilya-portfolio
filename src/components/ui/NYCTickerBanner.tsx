@@ -10,7 +10,7 @@ export const NYCTickerBanner: React.FC = () => {
     { text: "6+ VERIFIED CREDENTIALS", icon: Award },
     { text: "JAVA & DATA STRUCTURES", icon: Cpu },
     { text: "LINUX & NETWORK AUDITING", icon: Terminal },
-    { text: "RUNGTA UNIVERSITY • BHILAI / RAIPUR", icon: ArrowUpRight },
+    { text: "RUNGTA UNIVERSITY • BHILAI", icon: ArrowUpRight },
   ];
 
   return (

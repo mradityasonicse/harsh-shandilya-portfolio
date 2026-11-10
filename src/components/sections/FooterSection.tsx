@@ -58,7 +58,7 @@ export const FooterSection: React.FC = () => {
 
             <div className="pt-2 space-y-1.5 text-[11px] font-mono text-[var(--text-muted)]">
               <div className="flex items-center gap-2">
-                <span>Station: Bhilai / Raipur, Chhattisgarh, India</span>
+                <span>Station: Bhilai, Chhattisgarh, India</span>
               </div>
               <div className="flex items-center gap-2">
                 <span>Role: Google Student Ambassador '26 • AWS SBG RCET Lead</span>

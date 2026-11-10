@@ -82,7 +82,7 @@ export const PERSONAL_CONFIG: PersonalProfile = {
   role: "Cybersecurity & Software Developer",
   subRole: "B.Tech CSE (Cyber Security) • Google Student Ambassador '26 • AWS Student Builder Lead",
   tagline: "Building reliable software, practical cloud architectures, and secure systems with active community leadership.",
-  location: "Bhilai / Raipur, Chhattisgarh, India",
+  location: "Bhilai, Chhattisgarh, India",
   email: "hshandilya2008@gmail.com",
   phone: "+91 7647088605",
   photoUrl: "/harsh-cutout.png",
