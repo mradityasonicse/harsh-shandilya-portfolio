@@ -37,16 +37,16 @@ export const FooterSection: React.FC = () => {
                 <Shield className="w-5 h-5 text-[#dfbe7a]" />
               </div>
               <div>
-                <h3 className="text-lg font-heading font-bold text-white tracking-wide">
+                <h3 className="text-lg font-heading font-medium text-white tracking-tight">
                   Harsh Kumar Shandilya
                 </h3>
-                <span className="text-[11px] font-mono text-[#c5a059] block">
+                <span className="text-[11px] font-mono text-[#c5a059] uppercase tracking-wider block">
                   B.Tech CSE (Cyber Security) • Rungta University
                 </span>
               </div>
             </div>
 
-            <p className="text-xs text-[#94a3b8] font-sans leading-relaxed font-light">
+            <p className="text-sm text-[#94a3b8] font-sans leading-relaxed font-normal">
               Building secure software, practical cloud architectures, and reliable applications with hands-on student leadership as Google Student Ambassador 2026 and AWS Student Builder Lead.
             </p>
 

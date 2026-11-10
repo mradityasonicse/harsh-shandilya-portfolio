@@ -72,10 +72,10 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, profi
         <div className="space-y-6">
           {/* Header */}
           <div className="text-center border-b border-[#c5a059]/20 print:border-black/20 pb-6">
-            <h1 className="text-3xl sm:text-4xl font-heading font-bold text-[#f1f5f9] print:text-black tracking-wide mb-1">
+            <h1 className="text-3xl sm:text-4xl font-h1 font-black text-[#f1f5f9] print:text-black tracking-[-0.04em] mb-1">
               {profile.name}
             </h1>
-            <p className="text-sm sm:text-base font-heading font-semibold text-[#dfbe7a] print:text-neutral-800 uppercase tracking-wider">
+            <p className="text-sm sm:text-base font-heading font-medium text-[#dfbe7a] print:text-neutral-800 uppercase tracking-normal">
               {profile.role}
             </p>
             <p className="text-xs font-mono text-[#94a3b8] print:text-neutral-600 mt-1">

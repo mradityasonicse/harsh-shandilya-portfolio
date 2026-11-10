@@ -90,12 +90,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         <span
           className="font-black uppercase tracking-tight leading-none transition-all duration-1000 transform will-change-transform text-center"
           style={{
-            fontFamily: "'Bebas Neue', 'Anton', Impact, sans-serif",
-            fontSize: 'clamp(60px, 18vw, 360px)',
+            fontFamily: "var(--font-geist), sans-serif",
+            fontWeight: 900,
+            fontSize: 'clamp(55px, 16vw, 320px)',
             backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(223,190,122,0.6) 45%, rgba(197,160,89,0.2) 80%, rgba(5,8,12,0.95) 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-            letterSpacing: '0.03em',
+            letterSpacing: '-0.04em',
             filter: 'drop-shadow(0 25px 60px rgba(0, 0, 0, 0.9))',
             opacity: hasLoaded ? 0.95 : 0,
             transform: hasLoaded ? 'translateY(0) scale(1)' : 'translateY(25px) scale(0.96)',
@@ -190,16 +191,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               hasLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'
             }`}
           >
-            {/* Greeting subtitle */}
-            <div className="text-sm sm:text-base font-serif italic text-[#dfbe7a] tracking-wider mb-1 flex items-center gap-2.5">
+            {/* Greeting subtitle: Space Grotesk Medium 500 */}
+            <div className="text-xs sm:text-sm font-heading font-medium text-[#dfbe7a] tracking-normal mb-2 flex items-center gap-2.5">
               <span>Cybersecurity & Software Developer</span>
               <span className="inline-block w-8 h-[1px] bg-[#dfbe7a]/50" />
             </div>
 
-            {/* Giant White & Gold Heading */}
+            {/* Giant Heading (H1): Geist Sans Black / Ultra-Bold 900 with tight -0.04em letter-spacing */}
             <h1
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight uppercase leading-[0.88] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)]"
-              style={{ fontFamily: "'Bebas Neue', 'Anton', Impact, sans-serif" }}
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-8.5xl font-black text-white uppercase leading-[0.92] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)]"
+              style={{
+                fontFamily: "var(--font-geist), sans-serif",
+                fontWeight: 900,
+                letterSpacing: '-0.04em'
+              }}
             >
               HARSH<br />
               <span className="bg-gradient-to-r from-white via-[#dfbe7a] to-[#c5a059] bg-clip-text text-transparent">
@@ -207,13 +212,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               </span>
             </h1>
 
-            {/* Sub-role Pill */}
+            {/* Sub-role Pill: Space Mono All-Caps Micro-Copy */}
             <div className="inline-block mt-3 px-3 py-1.5 rounded-lg bg-[#0e1622]/90 border border-[#c5a059]/40 text-[#dfbe7a] font-mono text-[11px] font-bold uppercase tracking-wider shadow-md backdrop-blur-md">
               B.TECH CSE (CYBER SECURITY) • RUNGTA UNIVERSITY
             </div>
 
-            {/* Bio statement */}
-            <p className="mt-3 sm:mt-4 text-xs sm:text-sm text-[#cbd5e1] font-sans leading-relaxed max-w-md drop-shadow-md font-light">
+            {/* Bio statement: Geist Sans Regular 400 with comfortable line-height */}
+            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-[#cbd5e1] font-sans leading-relaxed max-w-md drop-shadow-md font-normal">
               "{profile.tagline}"
             </p>
 

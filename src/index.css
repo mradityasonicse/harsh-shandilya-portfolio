@@ -14,31 +14,72 @@
     --crimson-seal: #881337;
     --slate-text: #94a3b8;
     --bone-text: #f1f5f9;
+
+    /* SOTA Modern Dev Tools Typography (Vercel / Linear Aesthetic) */
+    --font-geist: 'Geist', 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-grotesk: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'Space Mono', 'JetBrains Mono', monospace;
+
+    /* System 1: "The Vercel Studio" (Ultra-Clean & Professional) Tokens */
+    --canvas-bg: #F8FAFC;
+    --surface-card: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-secondary: #64748B;
+    --tech-accent: #0284C7;
+    --tech-accent-hover: #0369a1;
+    --border-grid: #E2E8F0;
+    --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
   }
 
   body {
     background-color: var(--abyss-deep);
     color: var(--bone-text);
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-geist);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, h3, h4, .font-heading {
-    font-family: 'Cinzel', Georgia, serif;
-    letter-spacing: 0.04em;
+  /* • Heading (H1): Geist Sans (Black or Ultra-Bold) */
+  /* Vibe: Sharp, mechanical, and authoritative. Weight: 900 or 800. Letter-spacing: -0.04em */
+  h1, .font-h1, .font-display {
+    font-family: var(--font-geist);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
   }
 
-  .font-display {
-    font-family: 'Cinzel Decorative', 'Cinzel', serif;
-    letter-spacing: 0.05em;
+  /* • Subheading (H2 / H3): Space Grotesk (Medium) */
+  /* Vibe: A tech-forward sans-serif with slight geometric quirks. Weight: 500 for section titles */
+  h2, h3, .font-heading, .font-subheading {
+    font-family: var(--font-grotesk);
+    font-weight: 500;
+    letter-spacing: -0.025em;
   }
 
-  .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+  h4, h5, h6 {
+    font-family: var(--font-grotesk);
+    font-weight: 500;
+    letter-spacing: -0.015em;
   }
 
-  .font-sans {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  /* • Body Text: Geist Sans (Regular) */
+  /* Vibe: Highly legible, clean, invisible. Weight: 400, size: 16px, open line-height: 1.6 */
+  p, .font-body, .font-sans {
+    font-family: var(--font-geist);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* • Micro-copy / Labels (Tech Stack tags, Dates): Space Mono (Regular or Bold) */
+  /* Vibe: Pure terminal/developer syntax. Use this in all-caps for labels like REACT, TYPESCRIPT, 2026 */
+  .font-mono, .label-mono, .tag-mono, code, kbd, pre {
+    font-family: var(--font-mono);
+    letter-spacing: 0.03em;
   }
 }
 
@@ -213,4 +254,47 @@
 
 .brass-btn-outline:active {
   transform: translateY(0px) scale(0.98);
+}
+
+/* =========================================================================
+   System 1: "The Vercel Studio" Modernist Dot Matrix Grid Engine
+   ========================================================================= */
+.light-dot-grid {
+  background-color: #f8fafc;
+  background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.light-dot-grid-spotlight {
+  position: relative;
+  background-color: #f8fafc;
+  background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.light-dot-grid-spotlight::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    650px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
+    rgba(2, 132, 199, 0.08),
+    transparent 80%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.vercel-studio-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vercel-studio-card:hover {
+  border-color: #0284c7;
+  box-shadow: 0 12px 30px -4px rgba(2, 132, 199, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+  transform: translateY(-2px);
 }

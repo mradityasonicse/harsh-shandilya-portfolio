@@ -78,16 +78,16 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile })
                       </div>
                     </div>
 
-                    {/* Title & Role */}
-                    <h3 className="text-xl sm:text-2xl font-heading font-bold text-[#f1f5f9] mb-1">
+                    {/* Title & Role: Space Grotesk Medium 500 */}
+                    <h3 className="text-xl sm:text-2xl font-heading font-medium text-[#f1f5f9] mb-1 tracking-[-0.02em]">
                       {exp.role}
                     </h3>
-                    <div className="text-xs font-mono font-medium text-[#dfbe7a] mb-3">
+                    <div className="text-xs font-mono font-bold text-[#dfbe7a] mb-3 uppercase tracking-wider">
                       {exp.organization}
                     </div>
 
-                    {/* Narrative Description */}
-                    <p className="text-xs sm:text-sm text-[#94a3b8] font-sans leading-relaxed mb-5 font-light">
+                    {/* Narrative Description: Geist Sans Regular 400 */}
+                    <p className="text-sm text-[#94a3b8] font-sans leading-relaxed mb-5 font-normal">
                       {exp.description}
                     </p>
 
@@ -97,7 +97,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile })
                         Key Responsibilities & Impact:
                       </h4>
                       {exp.achievements.map((ach) => (
-                        <div key={ach} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#cbd5e1] font-sans">
+                        <div key={ach} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#cbd5e1] font-sans font-normal leading-relaxed">
                           <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
                           <span>{ach}</span>
                         </div>
@@ -126,20 +126,21 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile })
                   <Calendar className="w-4 h-4 text-[#dfbe7a]" />
                   <span>{profile.education.period}</span>
                 </div>
-                <span className="px-3 py-1 bg-emerald-500/15 text-emerald-400 font-mono text-xs font-bold rounded-full border border-emerald-500/30">
+                <span className="px-3 py-1 bg-emerald-500/15 text-emerald-400 font-mono text-xs font-bold rounded-full border border-emerald-500/30 uppercase tracking-wider">
                   {profile.education.grade}
                 </span>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-heading font-bold text-[#f1f5f9] mb-1.5">
+              {/* Education Degree: Space Grotesk Medium 500 */}
+              <h3 className="text-xl sm:text-2xl font-heading font-medium text-[#f1f5f9] mb-1.5 tracking-[-0.02em]">
                 {profile.education.degree}
               </h3>
-              <div className="text-sm font-mono text-[#dfbe7a] mb-4 flex items-center gap-2">
+              <div className="text-sm font-mono text-[#dfbe7a] mb-4 flex items-center gap-2 font-semibold">
                 <BookOpen className="w-4 h-4" />
                 {profile.education.institution}
               </div>
 
-              <p className="text-xs sm:text-sm text-[#94a3b8] font-sans leading-relaxed mb-4 font-light">
+              <p className="text-sm text-[#94a3b8] font-sans leading-relaxed mb-4 font-normal">
                 {profile.education.details}
               </p>
 

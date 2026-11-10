@@ -56,7 +56,7 @@ const SpotlightQuadrantCard: React.FC<{
             {getEngineeringIcon(idx)}
           </div>
           <div>
-            <h3 className="text-lg sm:text-xl font-heading font-bold text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors leading-tight">
+            <h3 className="text-lg sm:text-xl font-heading font-medium text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors leading-tight">
               {category.category}
             </h3>
             <span className="text-[10px] font-mono text-[#94a3b8] tracking-widest uppercase block mt-0.5">
@@ -65,12 +65,12 @@ const SpotlightQuadrantCard: React.FC<{
           </div>
         </div>
 
-        <span className="text-[10px] font-mono text-[#dfbe7a] bg-[#dfbe7a]/10 border border-[#dfbe7a]/30 px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold">
+        <span className="text-[10px] font-mono text-[#dfbe7a] bg-[#dfbe7a]/10 border border-[#dfbe7a]/30 px-2.5 py-1 rounded-full uppercase tracking-wider font-bold">
           Core Engine
         </span>
       </div>
 
-      <p className="text-xs text-[#94a3b8] font-sans mb-6 leading-relaxed relative z-10 font-light">
+      <p className="text-sm text-[#94a3b8] font-sans mb-6 leading-relaxed relative z-10 font-normal">
         "{category.lore}"
       </p>
 
@@ -82,7 +82,7 @@ const SpotlightQuadrantCard: React.FC<{
             className="p-3.5 rounded-xl bg-[#05080c]/80 border border-white/5 hover:border-[#dfbe7a]/50 transition-all flex flex-col justify-between group/skill hover:-translate-y-0.5 shadow-sm"
           >
             <div className="flex items-start justify-between gap-2 mb-2">
-              <span className="text-xs font-heading font-bold text-[#f1f5f9] group-hover/skill:text-[#dfbe7a] transition-colors flex items-center gap-1.5">
+              <span className="text-xs font-heading font-medium text-[#f1f5f9] group-hover/skill:text-[#dfbe7a] transition-colors flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#dfbe7a]" />
                 {skill.name}
               </span>

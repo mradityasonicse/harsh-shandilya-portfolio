@@ -22,14 +22,14 @@ export const SectionBanner: React.FC<SectionBannerProps> = ({ number, title, sub
         <div className="h-[1px] w-12 md:w-28 bg-gradient-to-l from-transparent via-[#c5a059]/40 to-[#dfbe7a]" />
       </div>
 
-      {/* Main Elegant Header */}
-      <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-[#f1f5f9] tracking-tight leading-tight max-w-3xl">
+      {/* Main Subheading (H2): Space Grotesk Medium 500 with slight geometric quirks */}
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-medium text-[#f1f5f9] tracking-[-0.025em] leading-tight max-w-3xl">
         {title}
       </h2>
 
-      {/* Cartographic Subtitle */}
+      {/* Subtitle: Geist Sans Regular 400 with open line-height 1.6 */}
       {subtitle && (
-        <p className="mt-3 text-sm md:text-base text-[#94a3b8] font-sans max-w-2xl leading-relaxed font-light">
+        <p className="mt-3 text-sm md:text-base text-[#94a3b8] font-sans font-normal max-w-2xl leading-relaxed">
           {subtitle}
         </p>
       )}

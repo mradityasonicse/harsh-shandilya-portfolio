@@ -60,26 +60,26 @@ const SpotlightProjectCard: React.FC<{
           </span>
         </div>
 
-        {/* Project Title */}
-        <h3 className="text-xl sm:text-2xl font-heading font-bold text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors mb-1.5 leading-tight flex items-center justify-between">
+        {/* Project Title: Space Grotesk Medium 500 */}
+        <h3 className="text-xl sm:text-2xl font-heading font-medium text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors mb-1.5 leading-tight flex items-center justify-between tracking-[-0.02em]">
           <span>{proj.title}</span>
           <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:text-[#dfbe7a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </h3>
 
-        <p className="text-xs font-sans text-[#dfbe7a] italic mb-4">
+        <p className="text-xs font-sans text-[#dfbe7a] font-normal mb-4">
           "{proj.tagline}"
         </p>
 
         {/* Structured 4-Field Architecture Dossier (Problem, Contribution, Tools, Outcome) */}
-        <div className="space-y-3.5 mb-5 text-xs font-sans">
+        <div className="space-y-3.5 mb-5 text-xs font-sans font-normal">
           {/* 1. Problem */}
           {proj.problem && (
             <div className="p-3 rounded-xl bg-[#05080c]/80 border border-white/5 space-y-1">
-              <div className="flex items-center gap-1.5 font-mono font-semibold text-rose-400 text-[11px] uppercase tracking-wider">
+              <div className="flex items-center gap-1.5 font-mono font-bold text-rose-400 text-[10px] uppercase tracking-wider">
                 <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                 Problem
               </div>
-              <p className="text-[#94a3b8] font-light leading-relaxed pl-5">
+              <p className="text-[#94a3b8] font-normal leading-relaxed pl-5">
                 {proj.problem}
               </p>
             </div>
@@ -88,11 +88,11 @@ const SpotlightProjectCard: React.FC<{
           {/* 2. My Contribution */}
           {proj.contribution && (
             <div className="p-3 rounded-xl bg-[#05080c]/80 border border-[#dfbe7a]/15 space-y-1">
-              <div className="flex items-center gap-1.5 font-mono font-semibold text-[#dfbe7a] text-[11px] uppercase tracking-wider">
+              <div className="flex items-center gap-1.5 font-mono font-bold text-[#dfbe7a] text-[10px] uppercase tracking-wider">
                 <Wrench className="w-3.5 h-3.5 shrink-0" />
                 My Contribution
               </div>
-              <p className="text-[#cbd5e1] font-light leading-relaxed pl-5">
+              <p className="text-[#cbd5e1] font-normal leading-relaxed pl-5">
                 {proj.contribution}
               </p>
             </div>
@@ -101,27 +101,27 @@ const SpotlightProjectCard: React.FC<{
           {/* 3. Outcome */}
           {proj.outcome && (
             <div className="p-3 rounded-xl bg-[#05080c]/80 border border-emerald-500/15 space-y-1">
-              <div className="flex items-center gap-1.5 font-mono font-semibold text-emerald-400 text-[11px] uppercase tracking-wider">
+              <div className="flex items-center gap-1.5 font-mono font-bold text-emerald-400 text-[10px] uppercase tracking-wider">
                 <TrendingUp className="w-3.5 h-3.5 shrink-0" />
                 Outcome & Impact
               </div>
-              <p className="text-[#cbd5e1] font-light leading-relaxed pl-5">
+              <p className="text-[#cbd5e1] font-normal leading-relaxed pl-5">
                 {proj.outcome}
               </p>
             </div>
           )}
         </div>
 
-        {/* 4. Tools Used Badges */}
+        {/* 4. Tools Used Badges: Space Mono Uppercase */}
         <div className="space-y-1.5 mb-5">
-          <div className="text-[10px] font-mono text-[#94a3b8] uppercase tracking-wider">
+          <div className="text-[10px] font-mono text-[#94a3b8] uppercase tracking-wider font-bold">
             Tools Used:
           </div>
           <div className="flex flex-wrap gap-1.5">
             {tools.map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-0.5 bg-[#05080c] text-[#cbd5e1] text-[10px] font-mono rounded-md border border-white/10 group-hover:border-[#dfbe7a]/40 transition-colors shadow-sm"
+                className="px-2.5 py-0.5 bg-[#05080c] text-[#cbd5e1] text-[10px] font-mono uppercase tracking-wider rounded-md border border-white/10 group-hover:border-[#dfbe7a]/40 transition-colors shadow-sm"
               >
                 {tech}
               </span>

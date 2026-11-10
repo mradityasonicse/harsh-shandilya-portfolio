@@ -30,16 +30,18 @@ export const ResumeSection: React.FC<ResumeSectionProps> = ({ profile, onOpenRes
               Verified Developer Resume
             </div>
 
-            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#f1f5f9] leading-tight">
+            {/* Subheading (H3): Space Grotesk Medium 500 */}
+            <h3 className="text-2xl sm:text-3xl font-heading font-medium text-[#f1f5f9] leading-tight tracking-[-0.025em]">
               {profile.name} — {profile.role}
             </h3>
 
-            <p className="text-sm font-sans text-[#94a3b8] leading-relaxed font-light">
+            {/* Body Text: Geist Sans Regular 400 with open line-height 1.6 */}
+            <p className="text-base text-[#94a3b8] font-sans font-normal leading-relaxed">
               Official curriculum vitae documenting B.Tech Computer Science (Cyber Security) studies at Rungta University, Google Student Ambassador 2026 tenure, AWS Student Builder Group leadership, and practical software projects.
             </p>
 
             {/* Quick-Scan Highlights from Resume */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-sans text-[#cbd5e1]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-sans font-normal text-[#cbd5e1]">
               <div className="flex items-center gap-2">
                 <GraduationCap className="w-4 h-4 text-[#dfbe7a] shrink-0" />
                 <span>B.Tech CSE (Cyber Security)</span>
@@ -59,7 +61,7 @@ export const ResumeSection: React.FC<ResumeSectionProps> = ({ profile, onOpenRes
             </div>
           </div>
 
-          {/* Right Column: Prominent Action Buttons */}
+          {/* Right Column: Prominent Action Buttons with Space Mono */}
           <div className="flex flex-col sm:flex-row lg:flex-col gap-4 w-full lg:w-auto shrink-0">
             {/* 1. View Resume Button */}
             <button
@@ -68,7 +70,7 @@ export const ResumeSection: React.FC<ResumeSectionProps> = ({ profile, onOpenRes
                 onOpenResume();
               }}
               data-cursor="DOSSIER"
-              className="px-6 py-4 rounded-xl brass-btn text-xs font-heading font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-lg cursor-pointer"
+              className="px-6 py-4 rounded-xl brass-btn text-xs font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-lg cursor-pointer"
             >
               <Eye className="w-4 h-4" />
               <span>View Full Resume</span>
@@ -80,7 +82,7 @@ export const ResumeSection: React.FC<ResumeSectionProps> = ({ profile, onOpenRes
               download="Harsh_Kumar_Shandilya_Resume.pdf"
               onClick={() => playAudioFx('seal')}
               data-cursor="DOWNLOAD"
-              className="px-6 py-4 rounded-xl bg-[#0e1622] hover:bg-[#141f2e] text-[#dfbe7a] hover:text-white border border-[#c5a059]/40 hover:border-[#dfbe7a] text-xs font-heading font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all cursor-pointer shadow-md"
+              className="px-6 py-4 rounded-xl bg-[#0e1622] hover:bg-[#141f2e] text-[#dfbe7a] hover:text-white border border-[#c5a059]/40 hover:border-[#dfbe7a] text-xs font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all cursor-pointer shadow-md"
             >
               <Download className="w-4 h-4" />
               <span>Download PDF Resume</span>

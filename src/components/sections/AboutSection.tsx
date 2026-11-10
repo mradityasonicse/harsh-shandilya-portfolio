@@ -95,10 +95,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
             {/* Tab Contents with smooth fade */}
             {activeTab === 'bio' && (
               <div className="space-y-4 animate-fadeIn">
-                <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#f1f5f9]">
+                <h3 className="text-2xl sm:text-3xl font-heading font-medium text-[#f1f5f9] tracking-[-0.02em]">
                   Building Practical Software, Cloud & Cybersecurity Systems
                 </h3>
-                <p className="text-sm sm:text-base text-[#cbd5e1] font-sans leading-relaxed font-light">
+                <p className="text-base text-[#cbd5e1] font-sans font-normal leading-relaxed">
                   {profile.aboutBio}
                 </p>
 

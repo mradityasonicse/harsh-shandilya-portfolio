@@ -63,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Compass className="w-4 h-4 text-[#dfbe7a] group-hover:rotate-45 transition-transform duration-500" />
           </div>
           <div>
-            <span className="font-heading font-bold text-base text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors tracking-wide block leading-tight">
+            <span className="font-heading font-medium text-base text-[#f1f5f9] group-hover:text-[#dfbe7a] transition-colors tracking-tight block leading-tight">
               {profile.name}
             </span>
             <span className="text-[10px] font-mono text-[#94a3b8] tracking-widest uppercase block">
@@ -72,7 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </button>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links: Space Grotesk Medium 500 */}
         <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
@@ -80,9 +80,9 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`text-xs font-heading tracking-widest uppercase transition-all duration-200 relative py-1 cursor-pointer ${
+                className={`text-xs font-heading font-medium tracking-wider uppercase transition-all duration-200 relative py-1 cursor-pointer ${
                   isActive
-                    ? 'text-[#dfbe7a] font-bold drop-shadow-[0_0_10px_rgba(223,190,122,0.4)]'
+                    ? 'text-[#dfbe7a] font-semibold drop-shadow-[0_0_10px_rgba(223,190,122,0.4)]'
                     : 'text-[#94a3b8] hover:text-[#f1f5f9]'
                 }`}
               >

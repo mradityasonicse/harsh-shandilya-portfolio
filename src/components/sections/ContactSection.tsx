@@ -65,17 +65,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                 <div className="w-14 h-14 mx-auto rounded-full bg-[#dfbe7a]/15 border border-[#dfbe7a] flex items-center justify-center text-[#dfbe7a] shadow-[0_0_20px_rgba(223,190,122,0.3)]">
                   <Check className="w-7 h-7 text-[#dfbe7a]" />
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-[#f1f5f9]">
+                {/* Subheading (H3): Space Grotesk Medium 500 */}
+                <h3 className="text-2xl font-heading font-medium text-[#f1f5f9] tracking-[-0.02em]">
                   Transmission Successfully Dispatched!
                 </h3>
-                <p className="text-sm font-sans text-[#94a3b8] max-w-md mx-auto leading-relaxed font-light">
+                {/* Body Text: Geist Sans Regular 400 */}
+                <p className="text-base font-sans text-[#94a3b8] max-w-md mx-auto leading-relaxed font-normal">
                   Your inquiry has been delivered directly to {profile.name}. Expect an expedited reply at your registered email coordinates.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="contact-name" className="block text-xs font-mono font-medium text-[#dfbe7a] uppercase tracking-wider mb-1.5">
+                  {/* Micro-copy Label: Space Mono All-Caps */}
+                  <label htmlFor="contact-name" className="block text-xs font-mono font-bold text-[#dfbe7a] uppercase tracking-wider mb-1.5">
                     Your Name / Organization:
                   </label>
                   <input
@@ -86,12 +89,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                     placeholder="e.g. Engineering Director / Recruiter"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-[#05080c]/80 border border-[#c5a059]/30 focus:border-[#dfbe7a] rounded-xl px-4 py-3 text-sm font-sans text-[#f1f5f9] outline-none transition-all placeholder:text-[#64748b]"
+                    className="w-full bg-[#05080c]/80 border border-[#c5a059]/30 focus:border-[#dfbe7a] rounded-xl px-4 py-3 text-base font-sans text-[#f1f5f9] outline-none transition-all placeholder:text-[#64748b]"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="contact-email" className="block text-xs font-mono font-medium text-[#dfbe7a] uppercase tracking-wider mb-1.5">
+                  {/* Micro-copy Label: Space Mono All-Caps */}
+                  <label htmlFor="contact-email" className="block text-xs font-mono font-bold text-[#dfbe7a] uppercase tracking-wider mb-1.5">
                     Your Work Email:
                   </label>
                   <input
@@ -102,12 +106,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                     placeholder="recruiter@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-[#05080c]/80 border border-[#c5a059]/30 focus:border-[#dfbe7a] rounded-xl px-4 py-3 text-sm font-sans text-[#f1f5f9] outline-none transition-all placeholder:text-[#64748b]"
+                    className="w-full bg-[#05080c]/80 border border-[#c5a059]/30 focus:border-[#dfbe7a] rounded-xl px-4 py-3 text-base font-sans text-[#f1f5f9] outline-none transition-all placeholder:text-[#64748b]"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="contact-message" className="block text-xs font-mono font-medium text-[#dfbe7a] uppercase tracking-wider mb-1.5">
+                  {/* Micro-copy Label: Space Mono All-Caps */}
+                  <label htmlFor="contact-message" className="block text-xs font-mono font-bold text-[#dfbe7a] uppercase tracking-wider mb-1.5">
                     Inquiry Scope & Requirements:
                   </label>
                   <textarea
@@ -118,18 +123,36 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                     placeholder="Provide details regarding role, tech stack, or engineering project requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-[#05080c]/80 border border-[#c5a059]/30 focus:border-[#dfbe7a] rounded-xl px-4 py-3 text-sm font-sans text-[#f1f5f9] outline-none transition-all placeholder:text-[#64748b]"
+                    className="w-full bg-[#05080c]/80 border border-[#c5a059]/30 focus:border-[#dfbe7a] rounded-xl px-4 py-3 text-base font-sans text-[#f1f5f9] outline-none transition-all placeholder:text-[#64748b]"
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  data-cursor="TRANSMIT"
-                  className="w-full py-3.5 px-6 rounded-xl brass-btn text-xs font-heading font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <Send className="w-4 h-4" />
-                  Transmit Direct Message
-                </button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  <button
+                    type="submit"
+                    data-cursor="TRANSMIT"
+                    className="w-full py-3.5 px-4 rounded-xl brass-btn text-xs font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <Send className="w-4 h-4" />
+                    Transmit Email
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      playAudioFx('click');
+                      const cleanPhone = (profile.phone || '+917647088605').replace(/[^0-9]/g, '');
+                      const txt = formData.message 
+                        ? `Hi Harsh! Name: ${formData.name || 'Visitor'}\nEmail: ${formData.email || 'N/A'}\nMessage: ${formData.message}`
+                        : `Hi Harsh, I saw your portfolio and would like to connect!`;
+                      window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(txt)}`, '_blank');
+                    }}
+                    data-cursor="WHATSAPP"
+                    className="w-full py-3.5 px-4 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-400 hover:text-black border border-emerald-500/40 text-xs font-mono font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all"
+                  >
+                    <span>💬 Chat on WhatsApp</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </form>
             )}
           </div>

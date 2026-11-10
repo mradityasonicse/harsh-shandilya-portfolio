@@ -45,17 +45,17 @@ export const TreasureModal: React.FC<TreasureModalProps> = ({ project, onClose }
           </span>
         </div>
 
-        {/* Title & Tagline */}
-        <h3 className="text-2xl sm:text-3xl font-heading font-bold text-[#f1f5f9] mb-1.5 leading-tight">
+        {/* Title & Tagline: Space Grotesk Medium 500 */}
+        <h3 className="text-2xl sm:text-3xl font-heading font-medium text-[#f1f5f9] mb-1.5 leading-tight tracking-[-0.02em]">
           {project.title}
         </h3>
-        <p className="text-xs sm:text-sm font-sans text-[#dfbe7a] mb-5">
+        <p className="text-xs sm:text-sm font-sans font-normal text-[#dfbe7a] mb-5">
           "{project.tagline}"
         </p>
 
         {/* Architecture & Scope Description */}
         <div className="p-4 sm:p-5 bg-[#05080c]/80 rounded-xl border-l-2 border-[#dfbe7a] border-y border-r border-white/5 mb-6">
-          <p className="text-xs sm:text-sm text-[#cbd5e1] font-sans leading-relaxed">
+          <p className="text-sm text-[#cbd5e1] font-sans font-normal leading-relaxed">
             {project.description}
           </p>
         </div>
@@ -64,10 +64,10 @@ export const TreasureModal: React.FC<TreasureModalProps> = ({ project, onClose }
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
           {project.problem && (
             <div className="p-3.5 rounded-xl bg-[#0a1018] border border-rose-500/20">
-              <div className="text-[11px] font-mono font-bold text-rose-400 uppercase tracking-wider mb-1">
+              <div className="text-[10px] font-mono font-bold text-rose-400 uppercase tracking-wider mb-1">
                 The Problem
               </div>
-              <p className="text-xs text-[#94a3b8] font-sans leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-[#94a3b8] font-sans leading-relaxed font-normal">
                 {project.problem}
               </p>
             </div>
@@ -75,10 +75,10 @@ export const TreasureModal: React.FC<TreasureModalProps> = ({ project, onClose }
 
           {project.contribution && (
             <div className="p-3.5 rounded-xl bg-[#0a1018] border border-[#dfbe7a]/25">
-              <div className="text-[11px] font-mono font-bold text-[#dfbe7a] uppercase tracking-wider mb-1">
+              <div className="text-[10px] font-mono font-bold text-[#dfbe7a] uppercase tracking-wider mb-1">
                 My Contribution
               </div>
-              <p className="text-xs text-[#cbd5e1] font-sans leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-[#cbd5e1] font-sans leading-relaxed font-normal">
                 {project.contribution}
               </p>
             </div>
@@ -86,10 +86,10 @@ export const TreasureModal: React.FC<TreasureModalProps> = ({ project, onClose }
 
           {project.outcome && (
             <div className="p-3.5 rounded-xl bg-[#0a1018] border border-emerald-500/20 sm:col-span-2">
-              <div className="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">
+              <div className="text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">
                 Outcome & Quantifiable Impact
               </div>
-              <p className="text-xs text-[#cbd5e1] font-sans leading-relaxed font-light">
+              <p className="text-xs sm:text-sm text-[#cbd5e1] font-sans leading-relaxed font-normal">
                 {project.outcome}
               </p>
             </div>
