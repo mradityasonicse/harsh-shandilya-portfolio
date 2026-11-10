@@ -130,7 +130,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     fontFamily: 'var(--font-serif), Georgia, serif',
                   }}
                 >
-                  Shandilaya
+                  Shandilya
                 </span>
               </span>
             </h1>

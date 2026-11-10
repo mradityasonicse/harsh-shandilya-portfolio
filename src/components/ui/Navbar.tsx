@@ -65,7 +65,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Name & Subtitle - Zero Awkward Wrapping */}
           <div className="flex flex-col min-w-0 justify-center">
             <span className="font-heading text-xs xs:text-sm sm:text-base lg:text-lg font-bold tracking-tight text-[#173f32] dark:text-[#faf8f1] group-hover:opacity-80 transition-opacity whitespace-nowrap leading-tight">
-              HARSH KUMAR SHANDILAYA
+              HARSH KUMAR SHANDILYA
             </span>
             <span className="text-[9px] xs:text-[10px] sm:text-[11px] font-mono tracking-wider text-[#4a685b] dark:text-[#9fc1b4] uppercase mt-0.5 block font-medium whitespace-nowrap leading-none">
               <span className="sm:hidden">Cybersecurity &amp; Dev</span>

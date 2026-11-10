@@ -65,7 +65,7 @@ export const ResumeSection: React.FC<ResumeSectionProps> = ({ profile, onOpenRes
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>AWS Student Builder Group Lead</span>
+                <span>Student Builder Group Leader</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
@@ -91,7 +91,7 @@ export const ResumeSection: React.FC<ResumeSectionProps> = ({ profile, onOpenRes
             {/* 2. Download Real PDF Resume Button */}
             <a
               href="/Harsh_Resume.pdf"
-              download="Harsh_Kumar_Shandilaya_Resume.pdf"
+              download="Harsh_Kumar_Shandilya_Resume.pdf"
               className="nyc-btn-secondary group"
             >
               <Download className="w-4 h-4 text-[#173f32] dark:text-[#faf8f1]" />

@@ -32,14 +32,14 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, profi
               Curriculum Vitae
             </span>
             <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-              Harsh Kumar Shandilaya • Official Resume
+              Harsh Kumar Shandilya • Official Resume
             </span>
           </div>
 
           <div className="flex items-center gap-2.5">
             <a
               href="/Harsh_Resume.pdf"
-              download="Harsh_Kumar_Shandilaya_Resume.pdf"
+              download="Harsh_Kumar_Shandilya_Resume.pdf"
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-[#0e1622] dark:hover:bg-[#141f2e] text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 text-xs font-mono font-bold uppercase transition-all cursor-pointer shadow-sm"
             >
               <Download className="w-3.5 h-3.5" />

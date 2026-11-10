@@ -33,7 +33,7 @@ export const FooterSection: React.FC = () => {
                   <div className="w-full h-full rounded-full overflow-hidden bg-[var(--canvas-bg)] flex items-center justify-center">
                     <img
                       src="/profile-photo.jpg"
-                      alt="Harsh Kumar Shandilaya"
+                      alt="Harsh Kumar Shandilya"
                       className="w-full h-full object-cover object-top filter contrast-[1.05]"
                       onError={(e) => {
                         (e.currentTarget as HTMLImageElement).src = '/profile-photo.svg';
@@ -44,7 +44,7 @@ export const FooterSection: React.FC = () => {
               </div>
               <div>
                 <h3 className="text-base font-display font-medium text-[var(--text-primary)] tracking-tight leading-snug">
-                  Harsh Kumar Shandilaya
+                  Harsh Kumar Shandilya
                 </h3>
                 <span className="text-[11px] font-mono text-[var(--text-muted)] uppercase tracking-wider block">
                   B.Tech CSE (Cyber Security) • Rungta University
@@ -53,7 +53,7 @@ export const FooterSection: React.FC = () => {
             </div>
 
             <p className="text-sm text-[var(--text-muted)] font-sans leading-relaxed font-normal">
-              Building secure software, practical cloud architectures, and reliable applications with hands-on student leadership as Google Student Ambassador 2026 and AWS Student Builder Lead.
+              Building secure software, practical cloud architectures, and reliable applications with hands-on student leadership as Google Student Ambassador 2026 and Student Builder Group Leader.
             </p>
 
             <div className="pt-2 space-y-1.5 text-[11px] font-mono text-[var(--text-muted)]">
@@ -189,7 +189,7 @@ export const FooterSection: React.FC = () => {
                 </a>
                 <a
                   href="/Harsh_Resume.pdf"
-                  download="Harsh_Kumar_Shandilaya_Resume.pdf"
+                  download="Harsh_Kumar_Shandilya_Resume.pdf"
                   className="px-3.5 py-1 rounded-full bg-[var(--text-primary)] hover:opacity-90 text-[var(--canvas-bg)] font-medium shadow-xs active:scale-95"
                 >
                   Resume
@@ -202,7 +202,7 @@ export const FooterSection: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--text-muted)]">
           <div>
-            © 2026 Harsh Kumar Shandilaya. All rights reserved. Built with React 19, TypeScript & Tailwind CSS.
+            © 2026 Harsh Kumar Shandilya. All rights reserved. Built with React 19, TypeScript & Tailwind CSS.
           </div>
 
           <button

@@ -15,7 +15,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
       <SectionBanner
         number="01 // ABOUT"
         title="About & Engineering Background"
-        subtitle="B.Tech Computer Science (Cyber Security) student, Google Student Ambassador & AWS Student Builder Group Lead"
+        subtitle="B.Tech Computer Science (Cyber Security) student, Google Student Ambassador & Student Builder Group Leader"
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start mt-4 sm:mt-6">
@@ -176,7 +176,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
                   {profile.role}
                 </p>
                 <p className="text-xs text-[#3d5f52] dark:text-[#a0c2b5] font-sans mt-1">
-                  B.Tech CSE (Cyber Security) • Rungta University • AWS Student Builder Lead
+                  B.Tech CSE (Cyber Security) • Rungta University • Student Builder Group Leader
                 </p>
               </div>
             </div>
@@ -198,7 +198,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
                 <Cpu className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                 <span>AWS Lead</span>
               </div>
-              <div className="text-base font-bold text-[#173f32] dark:text-[#faf8f1]">Student Builder</div>
+              <div className="text-base font-bold text-[#173f32] dark:text-[#faf8f1]">Student Builder Group Leader</div>
               <div className="text-xs text-[#3d5f52] dark:text-[#a0c2b5] font-sans mt-0.5 font-medium">RCET media & content lead</div>
             </div>
 

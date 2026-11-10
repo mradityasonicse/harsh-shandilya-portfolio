@@ -4,7 +4,7 @@ import { Shield, Sparkles, Award, Terminal, Cloud, Cpu, ArrowUpRight } from 'luc
 export const NYCTickerBanner: React.FC = () => {
   const items = [
     { text: "GOOGLE STUDENT AMBASSADOR '26", icon: Sparkles },
-    { text: "AWS STUDENT BUILDER GROUP LEAD", icon: Cloud },
+    { text: "STUDENT BUILDER GROUP LEADER", icon: Cloud },
     { text: "B.TECH CSE (CYBER SECURITY)", icon: Shield },
     { text: "DEFENSIVE SYSTEM ARCHITECTURE", icon: Terminal },
     { text: "6+ VERIFIED CREDENTIALS", icon: Award },

@@ -77,10 +77,10 @@ export interface PersonalProfile {
 }
 
 export const PERSONAL_CONFIG: PersonalProfile = {
-  name: "Harsh Kumar Shandilaya",
+  name: "Harsh Kumar Shandilya",
   moniker: "Harsh",
   role: "Cybersecurity & Software Developer",
-  subRole: "B.Tech CSE (Cyber Security) • Google Student Ambassador '26 • AWS Student Builder Lead",
+  subRole: "B.Tech CSE (Cyber Security) • Google Student Ambassador '26 • Student Builder Group Leader",
   tagline: "Building reliable software, practical cloud architectures, and secure systems with active community leadership.",
   location: "Bhilai, Chhattisgarh, India",
   email: "hshandilya2008@gmail.com",
@@ -90,13 +90,13 @@ export const PERSONAL_CONFIG: PersonalProfile = {
   linkedinUrl: "https://www.linkedin.com/in/harsh-kumar-shandilya-78b223372/",
   twitterUrl: "https://x.com",
   resumeUrl: "/Harsh_Resume.pdf",
-  aboutBio: "I am a B.Tech Computer Science & Engineering (Cyber Security) student at Rungta International Skills University with active focus on software development, cloud computing, and defensive cybersecurity. Serving as Google Student Ambassador 2026 and Media & Content Lead at AWS Student Builder Group RCET, I combine practical programming in Java and C with hands-on Linux system security and campus tech event leadership.",
+  aboutBio: "I am a B.Tech Computer Science & Engineering (Cyber Security) student at Rungta International Skills University with active focus on software development, cloud computing, and defensive cybersecurity. Serving as Google Student Ambassador 2026 and Student Builder Group Leader at RCET, I combine practical programming in Java and C with hands-on Linux system security and campus tech event leadership.",
   lookingForWork: "Seeking Software Engineering, Cybersecurity, and Cloud Computing internships where I can contribute technical skills, build verifiable software, and grow as an engineer.",
   codePhilosophy: "Clean, verifiable, and secure code. Grounded in solid computer science fundamentals, defensive security practices, and continuous community-driven learning.",
   
   stats: [
     { label: "Community Leadership", value: "Google Ambassador '26", subtext: "Tech Events & AI Tool Adoption" },
-    { label: "Cloud Builder Lead", value: "AWS SBG RCET", subtext: "Media & Content Strategy" },
+    { label: "Student Builder Group Leader", value: "AWS SBG RCET", subtext: "Media & Content Strategy" },
     { label: "Verified Credentials", value: "6+ Certifications", subtext: "Cybersecurity, Java, ML & Cloud" },
     { label: "Core Academic Focus", value: "B.Tech CSE", subtext: "Cyber Security Specialization" }
   ],
@@ -307,7 +307,7 @@ export const PERSONAL_CONFIG: PersonalProfile = {
     },
     {
       period: "Mar 2026 - Present",
-      role: "Media & Content Lead",
+      role: "Student Builder Group Leader",
       organization: "AWS Student Builder Group RCET",
       location: "Rungta College of Engineering & Technology",
       description: "Directing technical media strategy, workshop announcements, and educational cloud content for the official AWS Student Builder Group at RCET.",
@@ -349,6 +349,6 @@ export interface IntroConfig {
 
 export const INTRO_CONFIG: IntroConfig = {
   enabled: false,
-  ownerName: "HARSH KUMAR SHANDILAYA",
+  ownerName: "HARSH KUMAR SHANDILYA",
   durationMs: 1800,
 };
