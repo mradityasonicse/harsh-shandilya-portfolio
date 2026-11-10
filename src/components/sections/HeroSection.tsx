@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { PersonalProfile } from '../../data/personalConfig';
-import { ChevronDown, FileText, Compass, Sparkles, ArrowUpRight, Zap } from 'lucide-react';
-import { playAudioFx } from '../ui/AudioEngine';
+import { ChevronDown, FileText, ArrowUpRight, Zap, Code2, Trophy, Cloud, ShieldCheck, GraduationCap } from 'lucide-react';
 
 interface HeroSectionProps {
   profile: PersonalProfile;
@@ -16,40 +15,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }) => {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
-  const [mouseTilt, setMouseTilt] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const timer = setTimeout(() => setHasLoaded(true), 100);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setMouseTilt({ x, y });
-  };
-
-  const handleMouseLeave = () => {
-    setMouseTilt({ x: 0, y: 0 });
-  };
-
   const handleViewMyWork = () => {
-    playAudioFx('seal');
     if (typeof window !== 'undefined' && window.__lenis) {
       window.__lenis.scrollTo('#projects');
     } else {
-      const el = document.getElementById('projects') || document.getElementById('voyages');
+      const el = document.getElementById('projects');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleContactMe = () => {
-    playAudioFx('click');
     if (typeof window !== 'undefined' && window.__lenis) {
       window.__lenis.scrollTo('#contact');
     } else {
-      const el = document.getElementById('contact') || document.getElementById('bottle');
+      const el = document.getElementById('contact');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -60,57 +45,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
-      data-alias="home"
       aria-label="Introduction Hero Poster"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="min-h-screen relative flex flex-col justify-between pt-28 sm:pt-24 pb-10 px-4 sm:px-6 md:px-10 lg:px-14 overflow-hidden z-10 selection:bg-[#dfbe7a]/30"
+      className="relative min-h-[88vh] sm:min-h-screen flex flex-col justify-center pt-20 sm:pt-24 pb-6 sm:pb-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
     >
-      {/* Anchor helper for #home navigation */}
-      <div id="home" className="absolute top-0 left-0 pointer-events-none" />
-      {/* ============================================================ */}
-      {/* 1. ATMOSPHERIC BACKDROP & VOLUMETRIC SPECULAR LIGHTING      */}
-      {/* ============================================================ */}
+      {/* 1. REAL PROFILE PHOTO CUTOUT - STEADY & CLEAN (Desktop Centered Channel, Hidden on Mobile for Crisp Contrast) */}
       <div
-        aria-hidden="true"
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] sm:w-[1100px] sm:h-[1100px] rounded-full pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(circle, rgba(223, 190, 122, 0.12) 0%, rgba(197, 160, 89, 0.04) 40%, transparent 70%)',
-          filter: 'blur(80px)',
-        }}
-      />
-
-      {/* ============================================================ */}
-      {/* 2. GRAND ARCHITECTURAL NAME BACKDROP: "HARSH SHANDILYA"     */}
-      {/* ============================================================ */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-10 overflow-hidden"
-      >
-        <span
-          className="font-black uppercase tracking-tight leading-none transition-all duration-1000 transform will-change-transform text-center"
-          style={{
-            fontFamily: "var(--font-geist), sans-serif",
-            fontWeight: 900,
-            fontSize: 'clamp(55px, 16vw, 320px)',
-            backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(223,190,122,0.6) 45%, rgba(197,160,89,0.2) 80%, rgba(5,8,12,0.95) 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            letterSpacing: '-0.04em',
-            filter: 'drop-shadow(0 25px 60px rgba(0, 0, 0, 0.9))',
-            opacity: hasLoaded ? 0.95 : 0,
-            transform: hasLoaded ? 'translateY(0) scale(1)' : 'translateY(25px) scale(0.96)',
-          }}
-        >
-          HARSH
-        </span>
-      </div>
-
-      {/* ============================================================ */}
-      {/* 3. FOREGROUND 3D INTERACTIVE PORTRAIT WITH GYRO TILT (z-20) */}
-      {/* ============================================================ */}
-      <div
-        className="absolute inset-x-0 bottom-0 flex justify-center items-end pointer-events-none z-20 overflow-hidden"
+        className="hidden lg:flex absolute inset-x-0 bottom-0 justify-center items-end pointer-events-none z-20 overflow-hidden"
         style={{
           height: '76vh',
           maxHeight: '740px',
@@ -120,18 +60,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           className={`relative h-full flex items-end justify-center transition-all duration-700 ${
             hasLoaded ? 'opacity-100' : 'opacity-0 translate-y-8'
           }`}
-          style={{
-            transform: `perspective(1000px) rotateY(${mouseTilt.x * 10}deg) rotateX(${-mouseTilt.y * 6}deg) scale3d(1.02, 1.02, 1.02)`,
-            transformStyle: 'preserve-3d',
-            transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-          }}
         >
           {!imgError ? (
             <img
               src={primaryPhoto}
               alt={`${profile.name} - ${profile.role}`}
               onError={() => setImgError(true)}
-              className="h-full w-auto max-w-[90vw] md:max-w-[560px] lg:max-w-[660px] object-contain object-bottom drop-shadow-[0_30px_80px_rgba(0,0,0,0.98)]"
+              className="h-full w-auto max-w-[460px] object-contain object-bottom drop-shadow-[0_25px_60px_rgba(0,0,0,0.12)] dark:drop-shadow-[0_30px_80px_rgba(0,0,0,0.95)]"
               style={{
                 maskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
                 WebkitMaskImage: 'linear-gradient(to bottom, black 82%, transparent 100%)',
@@ -148,168 +83,192 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <img
                 src={fallbackPhoto}
                 alt={profile.name}
-                className="w-full h-auto object-contain object-bottom opacity-80 drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)]"
+                className="w-full h-auto object-contain object-bottom opacity-80 drop-shadow-[0_20px_40px_rgba(0,0,0,0.1)] dark:drop-shadow-[0_20px_40px_rgba(0,0,0,0.9)]"
               />
             </div>
           )}
         </div>
       </div>
 
-      {/* ============================================================ */}
-      {/* 4. GOD-LEVEL EDITORIAL POSTER ARCHITECTURE (z-30)           */}
-      {/* ============================================================ */}
-      <div className="relative z-30 w-full max-w-7xl mx-auto flex-1 flex flex-col justify-between pointer-events-none pt-4">
-        {/* Top Status Telemetry Ribbon */}
-        <div
-          className={`flex flex-wrap items-center justify-between gap-3 pointer-events-auto transition-all duration-700 ${
-            hasLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-          }`}
-        >
-          {/* Status badge */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0a1018]/90 border border-[#dfbe7a]/40 backdrop-blur-xl shadow-lg">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#10b981] animate-pulse" />
-            <span className="text-[11px] font-mono text-[#dfbe7a] uppercase tracking-wider font-bold">
-              GOOGLE STUDENT AMBASSADOR '26 • AWS SBG RCET LEAD
-            </span>
-          </div>
-
-          {/* Location & Status */}
-          <div className="hidden sm:inline-flex items-center gap-4 text-[11px] font-mono text-[#94a3b8] tracking-widest uppercase">
-            <span className="flex items-center gap-1.5 text-emerald-400">
-              <Zap className="w-3.5 h-3.5" /> OPEN TO INTERNSHIPS
-            </span>
-            <span>•</span>
-            <span className="text-[#cbd5e1]">{profile.location}</span>
-          </div>
-        </div>
-
+      {/* 2. HERO CONTENT ARCHITECTURE (z-30) */}
+      <div className="relative z-30 w-full max-w-7xl mx-auto flex flex-col gap-6 sm:gap-8 pointer-events-none pt-2">
         {/* Main 12-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center my-auto py-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center py-2 sm:py-4">
           {/* Left Column: Heading, Role, Tagline, CTAs (5 cols) */}
           <div
             className={`lg:col-span-5 pointer-events-auto transition-all duration-700 delay-200 ${
               hasLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-6'
             }`}
           >
-            {/* Greeting subtitle: Space Grotesk Medium 500 */}
-            <div className="text-xs sm:text-sm font-heading font-medium text-[#dfbe7a] tracking-normal mb-2 flex items-center gap-2.5">
-              <span>Cybersecurity & Software Developer</span>
-              <span className="inline-block w-8 h-[1px] bg-[#dfbe7a]/50" />
+            {/* Role subtitle & status badge */}
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="nyc-badge-pill">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
+                Cybersecurity & Software Developer
+              </span>
             </div>
 
-            {/* Giant Heading (H1): Geist Sans Black / Ultra-Bold 900 with tight -0.04em letter-spacing */}
+            {/* Monumental Editorial Heading (H1) — NYC Kinetic Text Reveal: Grotesque + Instrument Serif Italic */}
             <h1
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-8.5xl font-black text-white uppercase leading-[0.92] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)]"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-7.5xl font-black text-[#173f32] dark:text-[#faf8f1] uppercase leading-[0.92] tracking-[-0.035em]"
               style={{
-                fontFamily: "var(--font-geist), sans-serif",
+                fontFamily: 'var(--font-sans), sans-serif',
                 fontWeight: 900,
-                letterSpacing: '-0.04em'
               }}
             >
-              HARSH<br />
-              <span className="bg-gradient-to-r from-white via-[#dfbe7a] to-[#c5a059] bg-clip-text text-transparent">
-                SHANDILYA
+              <span className="nyc-word-mask mr-3 sm:mr-4">
+                <span className="nyc-word-reveal nyc-delay-1">HARSH</span>
+              </span>
+              <span className="nyc-word-mask">
+                <span className="nyc-word-reveal nyc-delay-2">KUMAR</span>
+              </span>
+              <br />
+              <span className="nyc-word-mask mt-1 sm:mt-1.5">
+                <span
+                  className="nyc-word-reveal nyc-delay-3 font-serif italic font-normal text-[#173f32] dark:text-[#e4f1eb] normal-case"
+                  style={{
+                    fontFamily: 'var(--font-serif), Georgia, serif',
+                  }}
+                >
+                  Shandilaya
+                </span>
               </span>
             </h1>
 
-            {/* Sub-role Pill: Space Mono All-Caps Micro-Copy */}
-            <div className="inline-block mt-3 px-3 py-1.5 rounded-lg bg-[#0e1622]/90 border border-[#c5a059]/40 text-[#dfbe7a] font-mono text-[11px] font-bold uppercase tracking-wider shadow-md backdrop-blur-md">
-              B.TECH CSE (CYBER SECURITY) • RUNGTA UNIVERSITY
+            {/* Sub-role & University: Crisp & High Contrast */}
+            <div className="mt-3.5 flex flex-wrap items-center gap-2 text-xs sm:text-sm font-semibold text-[#284e40] dark:text-[#c2dfd4] tracking-wide uppercase">
+              <span className="text-[#173f32] dark:text-[#faf8f1] font-bold">B.TECH CSE (CYBER SECURITY)</span>
+              <span className="text-[#4a685b] dark:text-[#7ba192]">•</span>
+              <span className="text-[#284e40] dark:text-[#c2dfd4]">RUNGTA UNIVERSITY</span>
             </div>
 
-            {/* Bio statement: Geist Sans Regular 400 with comfortable line-height */}
-            <p className="mt-3 sm:mt-4 text-sm sm:text-base text-[#cbd5e1] font-sans leading-relaxed max-w-md drop-shadow-md font-normal">
+            {/* Bio statement: High-Contrast, Crystal Clear */}
+            <p className="mt-3.5 text-base sm:text-lg text-[#284e40] dark:text-[#c2dfd4] font-sans leading-relaxed max-w-lg font-normal">
               "{profile.tagline}"
             </p>
 
-            {/* Tactical CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mt-5 sm:mt-7">
+            {/* Clean NYC Action Buttons - High Contrast, Rounded Pill Geometry */}
+            <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 mt-5 sm:mt-7">
               <button
                 onClick={handleViewMyWork}
-                data-cursor="WORK"
-                className="flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] hover:from-[#dfbe7a] hover:to-[#f1f5f9] text-[#05080c] rounded-xl text-xs font-mono font-bold uppercase tracking-wider shadow-[0_10px_30px_rgba(223,190,122,0.4)] hover:shadow-[0_14px_40px_rgba(223,190,122,0.6)] transition-all cursor-pointer group"
+                className="nyc-btn-primary group w-full sm:w-auto"
               >
-                <Compass className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
-                View My Work
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <Code2 className="w-4 h-4 text-emerald-400 dark:text-[#071510]" />
+                <span>View My Work</span>
+                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
               </button>
 
               <button
                 onClick={handleContactMe}
-                data-cursor="CONTACT"
-                className="flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-[#0a1018]/90 hover:bg-[#141f2e] text-[#dfbe7a] border border-[#dfbe7a]/40 hover:border-[#dfbe7a] rounded-xl text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer shadow-md group"
+                className="nyc-btn-secondary group flex-1 sm:flex-initial"
               >
-                <Zap className="w-4 h-4 text-[#dfbe7a] group-hover:scale-110 transition-transform" />
-                Contact Me
+                <Zap className="w-4 h-4 text-amber-500 group-hover:scale-110 transition-transform" />
+                <span>Contact Me</span>
               </button>
 
               {onOpenResume && (
                 <button
-                  onClick={() => {
-                    playAudioFx('seal');
-                    onOpenResume();
-                  }}
-                  data-cursor="RESUME"
-                  className="flex items-center gap-1.5 px-4 py-3 sm:py-3.5 bg-[#0a1018]/60 hover:bg-[#121926] text-[#cbd5e1] hover:text-[#dfbe7a] border border-[#c5a059]/30 hover:border-[#dfbe7a] rounded-xl text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
+                  onClick={onOpenResume}
+                  className="nyc-btn-secondary group flex-1 sm:flex-initial"
                 >
-                  <FileText className="w-3.5 h-3.5 text-[#dfbe7a]" />
-                  Resume
+                  <FileText className="w-4 h-4 text-[#4a685b] dark:text-[#a0c2b5]" />
+                  <span>Resume</span>
                 </button>
               )}
             </div>
 
-            {/* Location coordinates */}
-            <div className="flex items-center gap-2 mt-4 text-[11px] font-mono text-[#94a3b8] tracking-widest uppercase">
+            {/* Location coordinates - Crisp & Legible */}
+            <div className="flex items-center gap-2 mt-4 text-xs font-medium text-[#4a685b] dark:text-[#9fc1b4] tracking-wide">
               <span className="text-sm">📍</span>
-              <span>{profile.location.toUpperCase()}</span>
+              <span className="font-semibold text-[#173f32] dark:text-[#faf8f1]">{profile.location}</span>
+            </div>
+
+            {/* Mobile / Tablet Credentials Bento Grid (2x2 Grid) */}
+            <div className="lg:hidden grid grid-cols-2 gap-2.5 mt-5">
+              {profile.stats.map((stat, i) => {
+                const getIcon = (idx: number) => {
+                  switch (idx) {
+                    case 0: return <Trophy className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />;
+                    case 1: return <Cloud className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />;
+                    case 2: return <ShieldCheck className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />;
+                    case 3: return <GraduationCap className="w-3.5 h-3.5 text-[#173f32] dark:text-[#34d399]" />;
+                    default: return null;
+                  }
+                };
+
+                return (
+                  <div
+                    key={`mob-${stat.label}`}
+                    className="p-3 sm:p-3.5 rounded-2xl bg-white/95 dark:bg-[#0e241c]/90 border border-[#173f32]/12 dark:border-[#faf8f1]/10 shadow-xs"
+                  >
+                    <div className="text-[10px] text-[#4a685b] dark:text-[#a0c2b5] font-mono uppercase tracking-wider flex items-center justify-between mb-1 font-semibold">
+                      <span className="flex items-center gap-1">{getIcon(i)} {stat.label}</span>
+                      <span className="text-[#173f32] dark:text-[#34d399] font-bold">#0{i + 1}</span>
+                    </div>
+                    <div className="text-sm sm:text-base font-bold text-[#173f32] dark:text-[#faf8f1] leading-tight">
+                      {stat.value}
+                    </div>
+                    <div className="text-[10px] text-[#4a685b] dark:text-[#a0c2b5] font-sans mt-0.5 font-medium truncate">
+                      {stat.subtext}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           {/* Center Column Spacer for Cutout Portrait (4 cols) */}
           <div className="hidden lg:block lg:col-span-4 h-32" />
 
-          {/* Right Column: Stacked Telemetry Metric Cards (3 cols) */}
+          {/* Right Column: Stacked Architectural Metric Cards (3 cols) */}
           <div
             className={`hidden lg:flex lg:col-span-3 pointer-events-auto flex-col gap-3 justify-center items-end transition-all duration-700 delay-300 ${
               hasLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
             }`}
           >
-            {profile.stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                onMouseEnter={() => playAudioFx('click')}
-                className="w-full sm:w-auto min-w-[220px] p-4 rounded-2xl bg-[#0a1018]/85 border border-[#c5a059]/20 hover:border-[#dfbe7a] transition-all backdrop-blur-xl group/stat text-right shadow-[0_10px_30px_rgba(0,0,0,0.85)] hover:-translate-x-1"
-              >
-                <div className="text-[10px] text-[#94a3b8] font-mono uppercase tracking-wider flex items-center justify-end gap-2 mb-1">
-                  <span>{stat.label}</span>
-                  <span className="text-[10px] text-[#dfbe7a] font-bold">#0{i + 1}</span>
+            {profile.stats.map((stat, i) => {
+              const getIcon = (idx: number) => {
+                switch (idx) {
+                  case 0: return <Trophy className="w-4 h-4 text-amber-600 dark:text-amber-400" />;
+                  case 1: return <Cloud className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />;
+                  case 2: return <ShieldCheck className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />;
+                  case 3: return <GraduationCap className="w-4 h-4 text-[#173f32] dark:text-[#34d399]" />;
+                  default: return null;
+                }
+              };
+
+              return (
+                <div
+                  key={stat.label}
+                  className="w-full sm:w-auto min-w-[220px] p-4 rounded-2xl bg-white/95 dark:bg-[#0e241c]/90 border border-[#173f32]/12 dark:border-[#faf8f1]/10 hover:border-[#173f32]/35 dark:hover:border-[#34d399]/40 transition-all backdrop-blur-xl group/stat text-right shadow-[0_4px_20px_rgba(23,63,50,0.04)] dark:shadow-[0_10px_30px_rgba(0,0,0,0.6)] hover:-translate-x-1"
+                >
+                  <div className="text-xs text-[#4a685b] dark:text-[#a0c2b5] font-mono uppercase tracking-wider flex items-center justify-end gap-2 mb-1.5 font-semibold">
+                    <span className="flex items-center gap-1.5">{getIcon(i)} {stat.label}</span>
+                    <span className="text-xs text-[#173f32] dark:text-[#34d399] font-bold">#0{i + 1}</span>
+                  </div>
+                  <div className="text-xl sm:text-2xl font-bold text-[#173f32] dark:text-[#faf8f1] transition-colors">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-[#4a685b] dark:text-[#a0c2b5] font-sans mt-0.5 font-medium">
+                    {stat.subtext}
+                  </div>
                 </div>
-                <div className="text-2xl font-mono font-bold text-white group-hover/stat:text-[#dfbe7a] transition-colors">
-                  {stat.value}
-                </div>
-                <div className="text-[10px] text-[#64748b] font-sans mt-0.5">
-                  {stat.subtext}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
-        {/* Bottom Bar: Quick Telemetry & Scroll Cue */}
-        <div className="flex items-center justify-between pointer-events-auto pt-3 border-t border-white/5">
-          <div className="flex items-center gap-2 text-[10px] font-mono text-[#64748b] uppercase tracking-widest">
-            <Sparkles className="w-3 h-3 text-[#dfbe7a]" />
-            <span>Awwwards & Godly Standard • Zero Vibe Coding</span>
+        {/* Bottom Bar: Clean Status & Scroll Cue - Zero Blinking Dots */}
+        <div className="flex items-center justify-between pointer-events-auto pt-3 mt-2 sm:mt-4 border-t border-[#173f32]/12 dark:border-[#faf8f1]/10">
+          <div className="flex items-center gap-2 text-[10px] font-mono text-[#4a685b] dark:text-[#a0c2b5] uppercase tracking-widest font-semibold">
+            <span>AVAILABLE FOR INTERNSHIPS & ROLES</span>
           </div>
 
           <button
-            onClick={() => {
-              playAudioFx('seal');
-              onExplore();
-            }}
-            className="flex items-center gap-1.5 text-[11px] font-mono text-[#94a3b8] hover:text-[#dfbe7a] transition-colors cursor-pointer group"
+            onClick={onExplore}
+            className="flex items-center gap-1.5 text-[11px] font-mono text-[#173f32] hover:text-[#102d24] dark:text-[#c2dfd4] dark:hover:text-white transition-colors cursor-pointer group active:scale-95 font-semibold"
           >
-            <span className="tracking-widest uppercase">NAVIGATE EXPEDITIONS</span>
+            <span className="tracking-widest uppercase">SCROLL TO EXPLORE</span>
             <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
           </button>
         </div>

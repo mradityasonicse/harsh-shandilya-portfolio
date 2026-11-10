@@ -2,299 +2,524 @@
 
 @layer base {
   :root {
-    --abyss-deep: #05080c;
-    --abyss-surface: #090e17;
-    --abyss-card: #0e1622;
-    --abyss-border: rgba(197, 160, 89, 0.18);
-    --brass-primary: #c5a059;
-    --brass-light: #dfbe7a;
-    --brass-glow: rgba(223, 190, 122, 0.35);
-    --ocean-teal: #06b6d4;
-    --emerald-signal: #10b981;
-    --crimson-seal: #881337;
-    --slate-text: #94a3b8;
-    --bone-text: #f1f5f9;
+    /* =========================================================================
+       CONCEPT: NOTYOURCOLLEGE (NYC) WARM PAPER & FOREST GREEN THEME SYSTEM
+       ========================================================================= */
+    --canvas-bg: #faf8f1;
+    --canvas-paper: #ffffff;
+    --canvas-dots: rgba(23, 63, 50, 0.08);
+    --surface-card: #ffffff;
+    --surface-card-subtle: #f5f2e8;
+    --surface-hover: #fcfbfa;
+    --text-primary: #173f32;
+    --text-secondary: #284e40;
+    --text-muted: #4a685b;
+    --text-subtle: #6b887c;
+    --accent-emerald: #10b981;
+    --accent-forest: #173f32;
+    --accent-forest-hover: #102d24;
+    --accent-amber: #d97706;
+    --border-hairline: rgba(23, 63, 50, 0.12);
+    --border-hover: #173f32;
+    --card-shadow: 0 4px 20px -2px rgba(23, 63, 50, 0.05), 0 1px 3px rgba(23, 63, 50, 0.03);
 
-    /* SOTA Modern Dev Tools Typography (Vercel / Linear Aesthetic) */
-    --font-geist: 'Geist', 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-grotesk: 'Space Grotesk', system-ui, sans-serif;
+    /* High-Impact Editorial & Digital Agency Typography System */
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-geist: 'Geist', 'Plus Jakarta Sans', sans-serif;
+    --font-grotesk: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
     --font-mono: 'Space Mono', 'JetBrains Mono', monospace;
+  }
 
-    /* System 1: "The Vercel Studio" (Ultra-Clean & Professional) Tokens */
-    --canvas-bg: #F8FAFC;
-    --surface-card: #FFFFFF;
-    --text-primary: #0F172A;
-    --text-secondary: #64748B;
-    --tech-accent: #0284C7;
-    --tech-accent-hover: #0369a1;
-    --border-grid: #E2E8F0;
-    --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  html.dark, :root.dark, .dark {
+    --canvas-bg: #05080c;
+    --canvas-paper: #090e17;
+    --canvas-dots: rgba(255, 255, 255, 0.12);
+    --surface-card: rgba(10, 16, 24, 0.95);
+    --surface-card-subtle: #090e17;
+    --surface-hover: #121926;
+    --text-primary: #ffffff;
+    --text-secondary: #f8fafc;
+    --text-muted: #cbd5e1;
+    --text-subtle: #94a3b8;
+    --accent-blue: #38bdf8;
+    --accent-blue-hover: #0ea5e9;
+    --accent-emerald: #10b981;
+    --border-hairline: rgba(255, 255, 255, 0.14);
+    --border-hover: rgba(56, 189, 248, 0.6);
+    --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
   }
 
   body {
-    background-color: var(--abyss-deep);
-    color: var(--bone-text);
-    font-family: var(--font-geist);
+    background-color: var(--canvas-bg);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
     font-weight: 400;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.35s ease;
   }
 
-  /* • Heading (H1): Geist Sans (Black or Ultra-Bold) */
-  /* Vibe: Sharp, mechanical, and authoritative. Weight: 900 or 800. Letter-spacing: -0.04em */
+  /* Editorial Serif Headings */
+  .font-serif, .serif-heading {
+    font-family: var(--font-serif);
+  }
+
+  /* Heading (H1): Ultra-crisp, high-contrast title */
   h1, .font-h1, .font-display {
-    font-family: var(--font-geist);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    line-height: 0.95;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.96;
+    color: var(--text-primary);
   }
 
-  /* • Subheading (H2 / H3): Space Grotesk (Medium) */
-  /* Vibe: A tech-forward sans-serif with slight geometric quirks. Weight: 500 for section titles */
+  /* Subheading (H2 / H3): Clean, bold, legible */
   h2, h3, .font-heading, .font-subheading {
     font-family: var(--font-grotesk);
-    font-weight: 500;
-    letter-spacing: -0.025em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
   }
 
   h4, h5, h6 {
     font-family: var(--font-grotesk);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.015em;
+    color: var(--text-primary);
   }
 
-  /* • Body Text: Geist Sans (Regular) */
-  /* Vibe: Highly legible, clean, invisible. Weight: 400, size: 16px, open line-height: 1.6 */
+  /* Body Text: High-Contrast, Crystal Clear */
   p, .font-body, .font-sans {
-    font-family: var(--font-geist);
+    font-family: var(--font-sans);
     font-weight: 400;
     font-size: 1rem;
     line-height: 1.6;
+    color: var(--text-secondary);
   }
 
-  /* • Micro-copy / Labels (Tech Stack tags, Dates): Space Mono (Regular or Bold) */
-  /* Vibe: Pure terminal/developer syntax. Use this in all-caps for labels like REACT, TYPESCRIPT, 2026 */
+  /* Micro-copy / Labels: Space Mono Uppercase Terminal Syntax */
   .font-mono, .label-mono, .tag-mono, code, kbd, pre {
     font-family: var(--font-mono);
     letter-spacing: 0.03em;
   }
 }
 
-/* Precision Nautical Scrollbar */
-::-webkit-scrollbar {
-  width: 7px;
-}
-::-webkit-scrollbar-track {
-  background: #05080c;
-  border-left: 1px solid rgba(197, 160, 89, 0.1);
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #c5a059 0%, #1e293b 100%);
-  border-radius: 9999px;
-  border: 1px solid rgba(223, 190, 122, 0.3);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #dfbe7a;
-  box-shadow: 0 0 12px rgba(223, 190, 122, 0.6);
+/* =========================================================================
+   1. NOTYOURCOLLEGE (NYC) WARM PAPER & FOREST DOT MATRIX GRID ENGINE
+   ========================================================================= */
+.light-dot-grid {
+  background-color: #faf8f1;
+  background-image: radial-gradient(rgba(23, 63, 50, 0.08) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
 }
 
-/* Luxury Cartographic Card Engine */
-.nautical-card {
-  background: linear-gradient(145deg, rgba(14, 22, 34, 0.85) 0%, rgba(9, 14, 23, 0.95) 100%);
-  border: 1px solid rgba(197, 160, 89, 0.22);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(223, 190, 122, 0.2);
-  backdrop-filter: blur(16px);
-  position: relative;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.nautical-card:hover {
-  border-color: rgba(223, 190, 122, 0.55);
-  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.85), 0 0 30px rgba(197, 160, 89, 0.15);
-}
-
-/* Brass Hairline Border */
-.brass-border {
-  border: 1px solid rgba(197, 160, 89, 0.25);
-}
-
-/* Deep Oceanic Vignette */
-.vignette-overlay {
-  box-shadow: inset 0 0 120px rgba(5, 8, 12, 0.95), inset 0 0 200px rgba(3, 5, 8, 0.85);
-  pointer-events: none;
-}
-
-/* Cartographic Grid Background Pattern */
-.cartography-grid {
-  background-image: 
-    linear-gradient(to right, rgba(197, 160, 89, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(197, 160, 89, 0.04) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-
-/* Subtle Shimmer for High-Value Metrics */
-.gold-sheen {
-  background: linear-gradient(
-    110deg,
-    #c5a059 0%,
-    #dfbe7a 25%,
-    #fff2cc 50%,
-    #dfbe7a 75%,
-    #c5a059 100%
-  );
-  background-size: 200% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: sheen 4s linear infinite;
-}
-
-@keyframes sheen {
-  to {
-    background-position: 200% center;
-  }
-}
-
-/* Animated Perimeter Glowing Border Beam */
-.border-beam-card {
-  position: relative;
-}
-
-.border-beam-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    transparent 30%,
-    #dfbe7a 50%,
-    transparent 70%,
-    transparent 100%
-  );
-  background-size: 200% 200%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: beamSpin 5s linear infinite;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-@keyframes beamSpin {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-
-/* Gentle Maritime Heave Animation */
-@keyframes oceanHeave {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-6px) rotate(0.4deg);
-  }
-}
-
-.animate-ocean-heave {
-  animation: oceanHeave 6s ease-in-out infinite;
-}
-
-/* Clean Button Styles with Tactile Feedback */
-.brass-btn {
-  background: linear-gradient(180deg, #dfbe7a 0%, #c5a059 100%);
-  color: #05080c;
-  font-family: 'Cinzel', serif;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid #dfbe7a;
-  box-shadow: 0 4px 20px rgba(197, 160, 89, 0.35);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.brass-btn:hover {
-  background: linear-gradient(180deg, #fff0c7 0%, #dfbe7a 100%);
-  box-shadow: 0 0 30px rgba(223, 190, 122, 0.65);
-  transform: translateY(-2px) scale(1.02);
-}
-
-.brass-btn:active {
-  transform: translateY(0px) scale(0.98);
-}
-
-.brass-btn-outline {
-  background: rgba(14, 22, 34, 0.8);
-  color: #dfbe7a;
-  font-family: 'Cinzel', serif;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid rgba(197, 160, 89, 0.4);
-  backdrop-filter: blur(8px);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.brass-btn-outline:hover {
-  background: rgba(197, 160, 89, 0.15);
-  border-color: #dfbe7a;
-  color: #fff;
-  box-shadow: 0 0 25px rgba(197, 160, 89, 0.35);
-  transform: translateY(-2px) scale(1.02);
-}
-
-.brass-btn-outline:active {
-  transform: translateY(0px) scale(0.98);
+.dark-dot-grid {
+  background-color: #071510;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
 }
 
 /* =========================================================================
-   System 1: "The Vercel Studio" Modernist Dot Matrix Grid Engine
+   2. NOTYOURCOLLEGE (NYC) KINETIC TEXT ANIMATION ENGINE
    ========================================================================= */
-.light-dot-grid {
-  background-color: #f8fafc;
-  background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
+@keyframes nycWordReveal {
+  0% {
+    transform: translateY(115%) rotate(2deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%) rotate(0deg);
+    opacity: 1;
+  }
 }
 
-.light-dot-grid-spotlight {
+@keyframes nycFadeUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nyc-word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  line-height: 1.08;
+}
+
+.nyc-word-reveal {
+  display: inline-block;
+  animation: nycWordReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.nyc-delay-1 { animation-delay: 0.1s; }
+.nyc-delay-2 { animation-delay: 0.22s; }
+.nyc-delay-3 { animation-delay: 0.36s; }
+.nyc-delay-4 { animation-delay: 0.5s; }
+.nyc-delay-5 { animation-delay: 0.65s; }
+
+.nyc-fade-up {
+  animation: nycFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* NYC Magnetic Animated Link Underline */
+.nyc-link-hover {
   position: relative;
-  background-color: #f8fafc;
-  background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
+  display: inline-block;
+  text-decoration: none;
 }
 
-.light-dot-grid-spotlight::before {
+.nyc-link-hover::after {
   content: '';
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(
-    650px circle at var(--mouse-x, 50vw) var(--mouse-y, 50vh),
-    rgba(2, 132, 199, 0.08),
-    transparent 80%
-  );
-  pointer-events: none;
-  z-index: 1;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #173f32;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.vercel-studio-card {
+.nyc-link-hover:hover::after {
+  width: 100%;
+}
+
+.dark .nyc-link-hover::after {
+  background-color: #34d399;
+}
+
+/* =========================================================================
+   3. NOTYOURCOLLEGE (NYC) PILL BUTTONS & MICRO-INTERACTIONS
+   ========================================================================= */
+.nyc-btn-primary {
+  background-color: #173f32;
+  color: #faf8f1;
+  border: 1px solid #173f32;
+  border-radius: 9999px;
+  padding: 0.875rem 1.85rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.015em;
+  box-shadow: 0 4px 14px -2px rgba(23, 63, 50, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.nyc-btn-primary:hover {
+  background-color: #102d24;
+  border-color: #102d24;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -4px rgba(23, 63, 50, 0.35);
+  color: #ffffff;
+}
+
+.nyc-btn-primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.dark .nyc-btn-primary {
+  background-color: #faf8f1;
+  color: #071510;
+  border-color: #faf8f1;
+  box-shadow: 0 4px 14px -2px rgba(0, 0, 0, 0.5);
+}
+
+.dark .nyc-btn-primary:hover {
   background-color: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  border-color: #ffffff;
+  color: #000000;
+  box-shadow: 0 10px 24px -4px rgba(52, 211, 153, 0.3);
+}
+
+.nyc-btn-secondary {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #173f32;
+  border: 1px solid rgba(23, 63, 50, 0.22);
+  border-radius: 9999px;
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.015em;
+  box-shadow: 0 2px 6px rgba(23, 63, 50, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.nyc-btn-secondary:hover {
+  background-color: #ffffff;
+  border-color: #173f32;
+  color: #173f32;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px -3px rgba(23, 63, 50, 0.12);
+}
+
+.nyc-btn-secondary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.dark .nyc-btn-secondary {
+  background-color: rgba(14, 36, 28, 0.85);
+  color: #faf8f1;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark .nyc-btn-secondary:hover {
+  background-color: rgba(23, 63, 50, 0.95);
+  border-color: #34d399;
+  color: #ffffff;
+}
+
+/* Signature NYC Floating Pill Badge */
+.nyc-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  padding: 0.45rem 1.15rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(23, 63, 50, 0.16);
+  color: #173f32;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 2px 8px rgba(23, 63, 50, 0.04);
+  backdrop-filter: blur(12px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.vercel-studio-card:hover {
-  border-color: #0284c7;
-  box-shadow: 0 12px 30px -4px rgba(2, 132, 199, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+.nyc-badge-pill:hover {
+  border-color: rgba(23, 63, 50, 0.35);
+  background-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.dark .nyc-badge-pill {
+  background-color: rgba(14, 36, 28, 0.7);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #e4f1eb;
+}
+
+/* =========================================================================
+   4. ARCHITECTURAL BLUEPRINT COMPONENTS & SURFACES
+   ========================================================================= */
+.blueprint-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-primary);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.blueprint-card:hover {
+  border-color: var(--border-hover);
   transform: translateY(-2px);
 }
+
+/* Architectural CAD Corner Ticks (+) */
+.blueprint-corners {
+  position: relative;
+}
+
+.blueprint-corners::before,
+.blueprint-corners::after {
+  content: '+';
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  color: rgba(23, 63, 50, 0.4);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.blueprint-corners::before {
+  top: 8px;
+  left: 10px;
+}
+
+.blueprint-corners::after {
+  bottom: 8px;
+  right: 10px;
+}
+
+/* Clean Modernist Action Buttons */
+.btn-blueprint-primary {
+  background-color: #173f32;
+  color: #faf8f1;
+  border: 1px solid #173f32;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px -2px rgba(23, 63, 50, 0.25);
+}
+
+.btn-blueprint-primary:hover {
+  background-color: #102d24;
+  border-color: #102d24;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -4px rgba(23, 63, 50, 0.35);
+}
+
+.btn-blueprint-primary:active {
+  transform: scale(0.97);
+}
+
+.dark .btn-blueprint-primary {
+  background-color: #faf8f1;
+  color: #071510;
+  border-color: #faf8f1;
+}
+
+.dark .btn-blueprint-primary:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
+}
+
+.btn-blueprint-secondary {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #173f32;
+  border: 1px solid rgba(23, 63, 50, 0.22);
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(23, 63, 50, 0.04);
+}
+
+.btn-blueprint-secondary:hover {
+  background-color: #ffffff;
+  border-color: #173f32;
+  color: #173f32;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px -3px rgba(23, 63, 50, 0.12);
+}
+
+.dark .btn-blueprint-secondary {
+  background-color: rgba(14, 36, 28, 0.85);
+  color: #faf8f1;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dark .btn-blueprint-secondary:hover {
+  background-color: rgba(23, 63, 50, 0.95);
+  border-color: #34d399;
+  color: #ffffff;
+}
+
+/* Clean Button standard */
+.brass-btn {
+  background-color: #173f32;
+  color: #faf8f1;
+  border: 1px solid #173f32;
+  border-radius: 9999px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px -2px rgba(23, 63, 50, 0.25);
+}
+
+.brass-btn:hover {
+  background-color: #102d24;
+  transform: translateY(-2px);
+}
+
+.dark .brass-btn {
+  background-color: #faf8f1;
+  color: #071510;
+  border-color: #faf8f1;
+}
+
+.dark .brass-btn:hover {
+  background-color: #f1f5f9;
+}
+
+/* Precision Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--canvas-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* Hero Watermark Text */
+.hero-watermark {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.06) 0%, rgba(15, 23, 42, 0.01) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .hero-watermark {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(5, 8, 12, 0) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================================================
+   NYC INFINITE EDITORIAL MARQUEE TICKER
+   ========================================================================= */
+@keyframes nycMarquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-nyc-marquee {
+  display: flex;
+  width: max-content;
+  animation: nycMarquee 32s linear infinite;
+  will-change: transform;
+}
+
+.animate-nyc-marquee:hover {
+  animation-play-state: paused;
+}
+

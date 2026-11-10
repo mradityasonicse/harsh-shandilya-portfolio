@@ -3,10 +3,9 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PERSONAL_CONFIG, INTRO_CONFIG } from './data/personalConfig';
-import { ThreeOceanScene } from './components/canvas/ThreeOceanScene';
+import { ModernistDotGrid } from './components/canvas/ModernistDotGrid';
 import { Navbar } from './components/ui/Navbar';
-import { CustomCursor } from './components/ui/CustomCursor';
-import { AudioEngine } from './components/ui/AudioEngine';
+import { NYCTickerBanner } from './components/ui/NYCTickerBanner';
 import { HeroSection } from './components/sections/HeroSection';
 import { AboutSection } from './components/sections/AboutSection';
 import { SkillsSection } from './components/sections/SkillsSection';
@@ -16,8 +15,6 @@ import { ResumeSection } from './components/sections/ResumeSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { FooterSection } from './components/sections/FooterSection';
 import { ResumeModal } from './components/ui/ResumeModal';
-import { SoundboardBar } from './components/ui/SoundboardBar';
-import { VoyageHUD } from './components/ui/VoyageHUD';
 import { CinematicPreloader } from './components/ui/CinematicPreloader';
 
 // Register GSAP plugins
@@ -30,9 +27,7 @@ declare global {
 }
 
 export const App: React.FC = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('hero');
-  const [audioPlaying, setAudioPlaying] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const profile = PERSONAL_CONFIG;
 
@@ -46,8 +41,7 @@ export const App: React.FC = () => {
 
     window.__lenis = lenis;
 
-    lenis.on('scroll', (e: { progress: number }) => {
-      setScrollProgress(e.progress);
+    lenis.on('scroll', () => {
       ScrollTrigger.update();
 
       const sections = [
@@ -101,14 +95,14 @@ export const App: React.FC = () => {
     if (window.__lenis) {
       window.__lenis.scrollTo('#projects');
     } else {
-      const el = document.getElementById('projects') || document.getElementById('voyages');
+      const el = document.getElementById('projects');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <div className="relative min-h-screen bg-[#05080c] text-[#f1f5f9] font-sans selection:bg-[#c5a059]/30 selection:text-[#dfbe7a] overflow-x-hidden">
-      {/* 0. Cinematic Airplane & Stage Curtains Preloader */}
+    <div className="relative min-h-screen font-sans bg-[#faf8f1] text-[#173f32] selection:bg-[#173f32]/20 selection:text-[#173f32] overflow-x-hidden">
+      {/* 0. Cinematic Preloader (Disabled by default) */}
       {INTRO_CONFIG.enabled && (
         <CinematicPreloader
           ownerName={INTRO_CONFIG.ownerName || profile.name}
@@ -116,35 +110,27 @@ export const App: React.FC = () => {
         />
       )}
 
-      {/* 1. Procedural 3D WebGL Ocean Canvas (Fixed in Background) */}
-      <ThreeOceanScene scrollProgress={scrollProgress} />
+      {/* 1. The Modernist Dot Matrix Grid Canvas (Static Grid + Cursor Spotlight) */}
+      <ModernistDotGrid isDark={false} />
 
-      {/* 2. Custom Gold Compass Cursor */}
-      <CustomCursor />
-
-      {/* 3. Procedural Web Audio Ocean Soundscape */}
-      <AudioEngine isPlaying={audioPlaying} />
-
-      {/* 4. Deep Oceanic Vignette Overlay */}
-      <div className="fixed inset-0 vignette-overlay z-20 pointer-events-none" />
-
-      {/* 5. Precision Naval Astrolabe Navigation Bar */}
+      {/* 2. Precision Navigation Bar */}
       <Navbar
-        audioPlaying={audioPlaying}
-        onToggleAudio={() => setAudioPlaying(!audioPlaying)}
         activeSection={activeSection}
         profile={profile}
         onOpenResume={() => setIsResumeOpen(true)}
       />
 
-      {/* 6. Main Flow: Home -> About -> Skills -> Projects -> Experience -> Resume -> Contact */}
-      <main className="relative z-10 flex flex-col space-y-16 md:space-y-24">
+      {/* 3. Main Flow: Home -> About -> Skills -> Projects -> Experience -> Resume -> Contact */}
+      <main className="relative z-10 flex flex-col">
         {/* 1. Home */}
         <HeroSection
           profile={profile}
           onExplore={handleExplore}
           onOpenResume={() => setIsResumeOpen(true)}
         />
+
+        {/* NYC Flowing Marquee Ticker */}
+        <NYCTickerBanner />
 
         {/* 2. About */}
         <AboutSection profile={profile} />
@@ -155,10 +141,10 @@ export const App: React.FC = () => {
         {/* 4. Projects */}
         <ProjectsSection profile={profile} />
 
-        {/* 5. Experience (Work History, Internships, Education, Milestones) */}
+        {/* 5. Experience */}
         <ExperienceSection profile={profile} />
 
-        {/* 6. Resume (View / Download CV Button) */}
+        {/* 6. Resume */}
         <ResumeSection
           profile={profile}
           onOpenResume={() => setIsResumeOpen(true)}
@@ -171,26 +157,14 @@ export const App: React.FC = () => {
         />
       </main>
 
-      {/* 7. Naval Astrolabe Crest Footer */}
+      {/* 4. Footer */}
       <FooterSection />
 
-      {/* 8. Official Architectural CV Modal */}
+      {/* 5. Official Resume Modal */}
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
         profile={profile}
-      />
-
-      {/* 9. Floating Nautical Soundscape Controller (Bottom Right) */}
-      <SoundboardBar
-        ambientPlaying={audioPlaying}
-        onToggleAmbient={() => setAudioPlaying(!audioPlaying)}
-      />
-
-      {/* 10. Floating Voyage Coordinates & Circular Progress HUD (Bottom Left) */}
-      <VoyageHUD
-        scrollProgress={scrollProgress}
-        activeSection={activeSection}
       />
     </div>
   );

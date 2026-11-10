@@ -31,18 +31,20 @@ export interface PersonalProfile {
   skills: {
     category: string;
     themeLabel: string;
-    lore: string;
+    focus: string;
+    lore?: string;
     skills: { name: string; level: number; category: string }[];
   }[];
   projects: {
     id: string;
     title: string;
     tagline: string;
-    islandCode: string;
+    projectCode: string;
+    islandCode?: string;
     description: string;
     highlights: string[];
     techStack: string[];
-    type: 'Full-Stack SaaS' | '3D & AI' | 'Distributed System' | 'Cyber Security';
+    type: 'Java & Algorithms' | 'Frontend Engineering' | 'Cybersecurity & Linux';
     metrics: string;
     demoUrl: string;
     githubUrl: string;
@@ -75,11 +77,11 @@ export interface PersonalProfile {
 }
 
 export const PERSONAL_CONFIG: PersonalProfile = {
-  name: "Harsh Kumar Shandilya",
+  name: "Harsh Kumar Shandilaya",
   moniker: "Harsh",
   role: "Cybersecurity & Software Developer",
   subRole: "B.Tech CSE (Cyber Security) • Google Student Ambassador '26 • AWS Student Builder Lead",
-  tagline: "Building secure software, practical cloud architectures, and reliable applications with hands-on technical leadership.",
+  tagline: "Building reliable software, practical cloud architectures, and secure systems with active community leadership.",
   location: "Bhilai / Raipur, Chhattisgarh, India",
   email: "hshandilya2008@gmail.com",
   phone: "+91 7647088605",
@@ -88,8 +90,8 @@ export const PERSONAL_CONFIG: PersonalProfile = {
   linkedinUrl: "https://www.linkedin.com/in/harsh-kumar-shandilya-78b223372/",
   twitterUrl: "https://x.com",
   resumeUrl: "/Harsh_Resume.pdf",
-  aboutBio: "I am a B.Tech Computer Science & Engineering (Cyber Security) student at Rungta International Skills University with active interests in software development, cloud computing, and cybersecurity. Serving as Google Student Ambassador 2026 and Media & Content Lead at AWS Student Builder Group RCET, I combine practical programming in Java and C with hands-on Linux security and active community event leadership.",
-  lookingForWork: "Seeking Software Engineering, Cybersecurity, and Cloud Computing internships where I can contribute technical skills, build reliable software, and grow as an engineer.",
+  aboutBio: "I am a B.Tech Computer Science & Engineering (Cyber Security) student at Rungta International Skills University with active focus on software development, cloud computing, and defensive cybersecurity. Serving as Google Student Ambassador 2026 and Media & Content Lead at AWS Student Builder Group RCET, I combine practical programming in Java and C with hands-on Linux system security and campus tech event leadership.",
+  lookingForWork: "Seeking Software Engineering, Cybersecurity, and Cloud Computing internships where I can contribute technical skills, build verifiable software, and grow as an engineer.",
   codePhilosophy: "Clean, verifiable, and secure code. Grounded in solid computer science fundamentals, defensive security practices, and continuous community-driven learning.",
   
   stats: [
@@ -102,10 +104,11 @@ export const PERSONAL_CONFIG: PersonalProfile = {
   skills: [
     {
       category: "Development",
-      themeLabel: "Programming & Web Core",
-      lore: "Core languages and web technologies for building practical applications and computational algorithms.",
+      themeLabel: "Programming & Algorithms",
+      focus: "Core languages, data structures, and algorithms for building high-performance applications.",
+      lore: "Core languages, data structures, and algorithms for building high-performance applications.",
       skills: [
-        { name: "Java (Core & Object-Oriented)", level: 88, category: "Language" },
+        { name: "Java (Core & OOP)", level: 88, category: "Language" },
         { name: "C Programming", level: 85, category: "Low-Level" },
         { name: "Python", level: 82, category: "Language" },
         { name: "JavaScript & React", level: 80, category: "Web Frontend" },
@@ -114,36 +117,39 @@ export const PERSONAL_CONFIG: PersonalProfile = {
     },
     {
       category: "Cybersecurity",
-      themeLabel: "Systems Defense & Penetration Testing",
-      lore: "Practical security testing, Linux environments, and defensive cybersecurity principles.",
+      themeLabel: "Systems Defense & Auditing",
+      focus: "Practical security testing, Linux environments, packet analysis, and defensive cybersecurity principles.",
+      lore: "Practical security testing, Linux environments, packet analysis, and defensive cybersecurity principles.",
       skills: [
         { name: "Kali Linux", level: 86, category: "Security OS" },
         { name: "Basic Penetration Testing", level: 80, category: "Security Testing" },
-        { name: "Network Security & Protocols", level: 82, category: "Networking" },
-        { name: "Linux System Administration", level: 84, category: "OS & CLI" },
-        { name: "Cyber Essentials & Defenses", level: 85, category: "Security Principles" }
+        { name: "Wireshark Packet Analysis", level: 82, category: "Networking" },
+        { name: "Linux Administration & Bash", level: 84, category: "OS & CLI" },
+        { name: "Cyber Essentials & Hardening", level: 85, category: "Security Principles" }
       ]
     },
     {
       category: "Tools & Cloud",
-      themeLabel: "Infrastructure, Databases & Workflow",
+      themeLabel: "Infrastructure, DB & Workflows",
+      focus: "Database storage, cloud fundamentals, and developer collaboration workflows.",
       lore: "Database storage, cloud fundamentals, and developer collaboration workflows.",
       skills: [
         { name: "MySQL", level: 82, category: "Relational DB" },
         { name: "AWS Cloud Fundamentals", level: 80, category: "Cloud Services" },
         { name: "Git & GitHub Version Control", level: 86, category: "Developer Tools" },
-        { name: "File I/O & Bitstream Algorithms", level: 84, category: "Algorithms" }
+        { name: "File I/O & Bitstream Streams", level: 84, category: "Algorithms" }
       ]
     },
     {
       category: "Leadership",
-      themeLabel: "Event Organization & Mentorship",
-      lore: "Guiding student communities, organizing technical workshops, and technical communication.",
+      themeLabel: "Community & Tech Advocacy",
+      focus: "Guiding student communities, organizing technical workshops, and developer communication.",
+      lore: "Guiding student communities, organizing technical workshops, and developer communication.",
       skills: [
         { name: "Technical Event Organization", level: 92, category: "Community" },
         { name: "Developer Tool Promotion", level: 90, category: "Advocacy" },
         { name: "Problem Solving", level: 88, category: "Analytical" },
-        { name: "Cross-Functional Collaboration", level: 86, category: "Teamwork" }
+        { name: "Technical Writing & Media", level: 86, category: "Communication" }
       ]
     }
   ],
@@ -153,43 +159,67 @@ export const PERSONAL_CONFIG: PersonalProfile = {
       id: "file-compression-simulator",
       title: "File Compression Simulator",
       tagline: "Java simulation tool demonstrating Huffman coding & run-length encoding with bitrate analysis",
-      islandCode: "PROJECT 01 • JAVA & ALGORITHMS",
+      projectCode: "PROJ-01 // JAVA",
+      islandCode: "PROJ-01 // JAVA",
       description: "An algorithmic Java application designed to simulate and evaluate lossless file compression and decompression techniques using Huffman coding trees and run-length encoding (RLE), with file size reduction metrics and performance benchmarking.",
-      problem: "Uncompressed text and data streams incur high bandwidth costs and excessive local storage footprints during transmission.",
+      problem: "Uncompressed text and binary streams incur excessive bandwidth overhead and inflated storage footprints during transmission.",
       contribution: "Architected Huffman tree nodes, priority queue frequency mapping, binary bitstream serialization, and an interactive CLI test harness.",
       toolsUsed: ["Java", "Data Structures", "Huffman Coding", "File Streams", "CLI"],
       outcome: "Achieved 30% to 50% compression ratios on sample text datasets with sub-second execution speeds.",
       highlights: [
-        "Implemented variable-length prefix code trees with frequency analysis",
+        "Implemented variable-length prefix code trees with symbol frequency analysis",
         "Engineered bit-level file input/output streams for encoded binary formats",
         "Validated decompression integrity with 100% byte-for-byte fidelity checks"
       ],
       techStack: ["Java", "Data Structures", "Huffman Coding", "Algorithms"],
-      type: "Distributed System",
+      type: "Java & Algorithms",
       metrics: "30-50% Size Reduction • Sub-second Processing",
       demoUrl: "https://github.com/hackthesparrow/Java-Project-",
       githubUrl: "https://github.com/hackthesparrow/Java-Project-"
     },
     {
       id: "personal-portfolio-web",
-      title: "Responsive Web Mini Projects & Portfolio",
+      title: "Interactive Web Mini Projects & UI Suite",
       tagline: "Suite of responsive frontend applications, DOM utilities, and modular components",
-      islandCode: "PROJECT 02 • WEB DEVELOPMENT",
+      projectCode: "PROJ-02 // WEB",
+      islandCode: "PROJ-02 // WEB",
       description: "A portfolio and interactive web tools repository demonstrating responsive UI design, accessible layout systems, and clean JavaScript component architecture.",
       problem: "Creating high-converting, mobile-friendly interfaces without layout shifts, visual clutter, or unresponsive viewports.",
       contribution: "Engineered responsive layout grids, dark-mode themes, modular CSS styles, and performant interactions.",
-      toolsUsed: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
+      toolsUsed: ["JavaScript", "React", "HTML5", "CSS3", "Tailwind CSS"],
       outcome: "Delivered fast, accessible frontend interfaces with 0ms CLS and mobile-first responsiveness.",
       highlights: [
         "Crafted responsive components tested across mobile and desktop viewports",
         "Zero layout shift with optimized typography and accessible contrast ratios",
         "Clean modular repository architecture for continuous open-source contribution"
       ],
-      techStack: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS"],
-      type: "Full-Stack SaaS",
+      techStack: ["JavaScript", "React", "HTML5", "CSS3", "Tailwind CSS"],
+      type: "Frontend Engineering",
       metrics: "100% Responsive • Accessible Design",
       demoUrl: "https://github.com/hackthesparrow/Web-Mini_Projects",
       githubUrl: "https://github.com/hackthesparrow/Web-Mini_Projects"
+    },
+    {
+      id: "network-security-audit-lab",
+      title: "Network Security & Vulnerability Analysis Lab",
+      tagline: "Hands-on penetration testing labs, packet dissection, and security auditing with Kali Linux & Wireshark",
+      projectCode: "PROJ-03 // CYBERSEC",
+      islandCode: "PROJ-03 // CYBERSEC",
+      description: "Practical cybersecurity laboratory environments demonstrating network packet capture, Nmap service reconnaissance, CIA triad defense models, and defensive vulnerability scanning.",
+      problem: "Unsecured network services, unmonitored open ports, and unencrypted transmission protocols leave systems exposed to interception and unauthorized lateral access.",
+      contribution: "Configured isolated Kali Linux audit environments, performed Wireshark packet dissections, executed Nmap port fingerprinting scans, and documented hardening runbooks.",
+      toolsUsed: ["Kali Linux", "Wireshark", "Nmap", "Bash", "Network Protocols"],
+      outcome: "Audited network traffic patterns, mapped vulnerable service ports, and verified defensive security configurations.",
+      highlights: [
+        "Analyzed TCP 3-way handshakes, DNS queries, and HTTP headers using Wireshark captures",
+        "Conducted host discovery and service version fingerprinting with Nmap NSE scripts",
+        "Documented vulnerability assessment workflows and remediation checklists"
+      ],
+      techStack: ["Kali Linux", "Wireshark", "Nmap", "Bash", "Security Auditing"],
+      type: "Cybersecurity & Linux",
+      metrics: "Packet Inspection • Port Reconnaissance • Kali Linux",
+      demoUrl: "https://github.com/hackthesparrow",
+      githubUrl: "https://github.com/hackthesparrow"
     }
   ],
 
@@ -319,6 +349,6 @@ export interface IntroConfig {
 
 export const INTRO_CONFIG: IntroConfig = {
   enabled: false,
-  ownerName: "HARSH",
+  ownerName: "HARSH KUMAR SHANDILAYA",
   durationMs: 1800,
 };
