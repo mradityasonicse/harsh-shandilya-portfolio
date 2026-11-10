@@ -29,7 +29,26 @@ declare global {
 export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('nyc_portfolio_theme');
+      if (saved) return saved === 'dark';
+    }
+    return false;
+  });
   const profile = PERSONAL_CONFIG;
+
+  // Sync theme with document class & localStorage
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDark) {
+      root.classList.add('dark');
+      localStorage.setItem('nyc_portfolio_theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('nyc_portfolio_theme', 'light');
+    }
+  }, [isDark]);
 
   // Initialize Lenis Inertia Smooth Scroll
   useEffect(() => {
@@ -101,7 +120,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="relative min-h-screen font-sans bg-[#faf8f1] text-[#173f32] selection:bg-[#173f32]/20 selection:text-[#173f32] overflow-x-hidden">
+    <div className="relative min-h-screen font-sans bg-[var(--canvas-bg)] text-[var(--text-primary)] transition-colors duration-300 selection:bg-[#112d24]/20 selection:text-[#112d24] overflow-x-hidden">
       {/* 0. Cinematic Preloader (Disabled by default) */}
       {INTRO_CONFIG.enabled && (
         <CinematicPreloader
@@ -111,12 +130,14 @@ export const App: React.FC = () => {
       )}
 
       {/* 1. The Modernist Dot Matrix Grid Canvas (Static Grid + Cursor Spotlight) */}
-      <ModernistDotGrid isDark={false} />
+      <ModernistDotGrid isDark={isDark} />
 
-      {/* 2. Precision Navigation Bar */}
+      {/* 2. Precision Navigation Bar with Theme Switcher */}
       <Navbar
         activeSection={activeSection}
         profile={profile}
+        isDark={isDark}
+        onToggleTheme={() => setIsDark((prev) => !prev)}
         onOpenResume={() => setIsResumeOpen(true)}
       />
 

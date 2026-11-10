@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import type { PersonalProfile } from '../../data/personalConfig';
-import { Menu, X, ArrowUpRight, FileText } from 'lucide-react';
+import { Menu, X, ArrowUpRight, FileText, Sun, Moon } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: string;
   profile: PersonalProfile;
+  isDark?: boolean;
+  onToggleTheme?: () => void;
   onOpenResume: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
   activeSection,
   profile,
+  isDark = false,
+  onToggleTheme,
   onOpenResume,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -93,8 +97,24 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </div>
 
-        {/* Right Action: Clean Resume Button & Mobile Menu Toggle */}
+        {/* Right Action: Clean Resume Button, Theme Toggle & Mobile Menu Toggle */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Theme Toggle Button */}
+          {onToggleTheme && (
+            <button
+              onClick={onToggleTheme}
+              className="w-8.5 h-8.5 sm:w-10 sm:h-10 rounded-full border border-[#173f32]/20 dark:border-[#faf8f1]/20 bg-white/90 dark:bg-[#0e241c] text-[#173f32] dark:text-[#faf8f1] flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95 transition-all shadow-xs"
+              title={isDark ? "Switch to Warm Paper Theme" : "Switch to Dark Forest Theme"}
+              aria-label="Toggle Theme Mode"
+            >
+              {isDark ? (
+                <Sun className="w-4 h-4 text-amber-400" />
+              ) : (
+                <Moon className="w-4 h-4 text-[#112d24]" />
+              )}
+            </button>
+          )}
+
           {/* NYC Forest Green Pill Resume Button */}
           <button
             onClick={onOpenResume}
@@ -119,7 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="lg:hidden bg-[#faf8f1] dark:bg-[#071510] border-b border-[#173f32]/12 dark:border-[#faf8f1]/10 px-4 py-4 space-y-1.5 backdrop-blur-2xl">
+        <div className="lg:hidden bg-[#faf8f1] dark:bg-[#071510] border-b border-[#173f32]/12 dark:border-[#faf8f1]/10 px-4 py-4 space-y-2 backdrop-blur-2xl">
           {navLinks.map((link) => (
             <button
               key={link.id}
@@ -129,6 +149,20 @@ export const Navbar: React.FC<NavbarProps> = ({
               {link.label}
             </button>
           ))}
+          {onToggleTheme && (
+            <button
+              onClick={() => {
+                onToggleTheme();
+                setMobileOpen(false);
+              }}
+              className="w-full flex items-center justify-between py-2.5 px-3 text-sm font-sans tracking-tight text-[#173f32] dark:text-[#faf8f1] hover:bg-white/60 dark:hover:bg-white/5 rounded-xl transition-colors cursor-pointer font-semibold border-t border-[#173f32]/10 dark:border-white/10 pt-3"
+            >
+              <span>Appearance Mode</span>
+              <span className="flex items-center gap-1.5 text-xs font-mono uppercase bg-[#173f32]/10 dark:bg-white/10 px-2.5 py-1 rounded-full">
+                {isDark ? '🌙 Dark Forest' : '☀️ Warm Paper'}
+              </span>
+            </button>
+          )}
         </div>
       )}
     </nav>

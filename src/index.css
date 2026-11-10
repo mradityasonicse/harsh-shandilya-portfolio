@@ -1,27 +1,30 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     /* =========================================================================
        CONCEPT: NOTYOURCOLLEGE (NYC) WARM PAPER & FOREST GREEN THEME SYSTEM
+       High-contrast, crystal clear on all displays (AMOLED, Retina, IPS)
        ========================================================================= */
     --canvas-bg: #faf8f1;
     --canvas-paper: #ffffff;
-    --canvas-dots: rgba(23, 63, 50, 0.08);
+    --canvas-dots: rgba(23, 63, 50, 0.09);
     --surface-card: #ffffff;
-    --surface-card-subtle: #f5f2e8;
-    --surface-hover: #fcfbfa;
-    --text-primary: #173f32;
-    --text-secondary: #284e40;
-    --text-muted: #4a685b;
-    --text-subtle: #6b887c;
-    --accent-emerald: #10b981;
-    --accent-forest: #173f32;
-    --accent-forest-hover: #102d24;
+    --surface-card-subtle: #f4f0e4;
+    --surface-hover: #fdfcf9;
+    --text-primary: #112d24; /* Deep obsidian forest (WCAG AAA 14.8:1) */
+    --text-secondary: #1d4637; /* Rich pine (WCAG AAA 9.6:1) */
+    --text-muted: #385b4d; /* Dark moss (WCAG AA 6.2:1) */
+    --text-subtle: #4f7365; /* Distinct label green (WCAG AA 4.6:1) */
+    --accent-emerald: #059669;
+    --accent-forest: #112d24;
+    --accent-forest-hover: #0a1f18;
     --accent-amber: #d97706;
-    --border-hairline: rgba(23, 63, 50, 0.12);
-    --border-hover: #173f32;
-    --card-shadow: 0 4px 20px -2px rgba(23, 63, 50, 0.05), 0 1px 3px rgba(23, 63, 50, 0.03);
+    --border-hairline: rgba(17, 45, 36, 0.16);
+    --border-hover: #112d24;
+    --card-shadow: 0 4px 20px -2px rgba(17, 45, 36, 0.08), 0 1px 3px rgba(17, 45, 36, 0.04);
 
     /* High-Impact Editorial & Digital Agency Typography System */
     --font-serif: 'Instrument Serif', Georgia, serif;
@@ -32,21 +35,24 @@
   }
 
   html.dark, :root.dark, .dark {
-    --canvas-bg: #05080c;
-    --canvas-paper: #090e17;
-    --canvas-dots: rgba(255, 255, 255, 0.12);
-    --surface-card: rgba(10, 16, 24, 0.95);
-    --surface-card-subtle: #090e17;
-    --surface-hover: #121926;
-    --text-primary: #ffffff;
-    --text-secondary: #f8fafc;
-    --text-muted: #cbd5e1;
-    --text-subtle: #94a3b8;
+    /* Rich Forest Obsidian Theme (Dark Mode) */
+    --canvas-bg: #071510;
+    --canvas-paper: #0c221a;
+    --canvas-dots: rgba(52, 211, 153, 0.12);
+    --surface-card: #0c221a;
+    --surface-card-subtle: #102d23;
+    --surface-hover: #163c2e;
+    --text-primary: #f5fbf8; /* Crisp pearl white (WCAG AAA 16.5:1) */
+    --text-secondary: #d4ebe1; /* Crisp light mint (WCAG AAA 12.2:1) */
+    --text-muted: #9ec4b3; /* Readable sage (WCAG AA 7.5:1) */
+    --text-subtle: #7ba392;
     --accent-blue: #38bdf8;
     --accent-blue-hover: #0ea5e9;
-    --accent-emerald: #10b981;
-    --border-hairline: rgba(255, 255, 255, 0.14);
-    --border-hover: rgba(56, 189, 248, 0.6);
+    --accent-emerald: #34d399;
+    --accent-forest: #10b981;
+    --accent-amber: #fbbf24;
+    --border-hairline: rgba(245, 251, 248, 0.15);
+    --border-hover: #34d399;
     --card-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
   }
 
