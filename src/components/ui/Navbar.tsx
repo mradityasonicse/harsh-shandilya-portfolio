@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Volume2, VolumeX, Menu, X, Terminal, FileText } from 'lucide-react';
+import { Compass, Volume2, VolumeX, Menu, X, FileText } from 'lucide-react';
 import type { PersonalProfile } from '../../data/personalConfig';
 import { playAudioFx } from './AudioEngine';
 
@@ -8,7 +8,6 @@ interface NavbarProps {
   onToggleAudio: () => void;
   activeSection: string;
   profile: PersonalProfile;
-  onOpenTerminal: () => void;
   onOpenResume: () => void;
 }
 
@@ -17,20 +16,18 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleAudio,
   activeSection,
   profile,
-  onOpenTerminal,
   onOpenResume,
 }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navLinks = [
-    { id: 'hero', label: 'Helm' },
-    { id: 'legend', label: 'Chronicle' },
-    { id: 'armory', label: 'Armory' },
-    { id: 'design-eye', label: 'Design Eye' },
-    { id: 'voyages', label: 'Expeditions' },
-    { id: 'spoils', label: 'Honors' },
-    { id: 'log', label: 'Service Log' },
-    { id: 'bottle', label: 'Dispatch' },
+    { id: 'hero', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'resume', label: 'Resume' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   const scrollTo = (id: string) => {
@@ -70,7 +67,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               {profile.name}
             </span>
             <span className="text-[10px] font-mono text-[#94a3b8] tracking-widest uppercase block">
-              Systems Architect • 21°14'N
+              {profile.role} • 21°14'N
             </span>
           </div>
         </button>
@@ -98,24 +95,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </div>
 
-        {/* Action HUD Controls: Terminal, CV, Audio & Mobile Menu */}
+        {/* Action HUD Controls: CV, Audio & Mobile Menu */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* CLI Terminal Trigger */}
-          <button
-            onClick={() => {
-              playAudioFx('click');
-              onOpenTerminal();
-            }}
-            title="Open Naval Architecture Terminal (` or Ctrl+K)"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0e1622] border border-[#c5a059]/30 hover:border-[#dfbe7a] text-xs font-mono text-[#dfbe7a] hover:bg-[#141f2e] transition-all cursor-pointer shadow-sm group"
-          >
-            <Terminal className="w-3.5 h-3.5 text-[#dfbe7a]" />
-            <span className="hidden sm:inline font-semibold">CLI</span>
-            <kbd className="hidden md:inline-block px-1.5 py-0.2 bg-[#05080c] text-[10px] text-[#94a3b8] rounded border border-white/10">
-              ^K
-            </kbd>
-          </button>
-
           {/* Curriculum Vitae (Print/View) */}
           <button
             onClick={() => {

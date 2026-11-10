@@ -39,11 +39,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
   };
 
   return (
-    <section id="bottle" className="min-h-screen py-24 px-4 max-w-6xl mx-auto relative z-10">
+    <section id="contact" data-alias="bottle" className="min-h-screen py-24 px-4 max-w-6xl mx-auto relative z-10">
+      {/* Anchor helper for legacy #bottle links */}
+      <div id="bottle" className="absolute -top-16 left-0 pointer-events-none" />
       <SectionBanner
         number="CHRONICLE VI"
-        title="Direct Dispatch & Opportunity Inquiry"
-        subtitle="Open for full-time systems engineering roles, high-concurrency architecture consulting, and technical leadership"
+        title="Direct Contact & Opportunity Inquiry"
+        subtitle="Open for software development, cybersecurity, and cloud engineering internships & collaborative projects"
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-10">
@@ -162,6 +164,23 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                   {copiedEmail ? <CheckCheck className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
                 </button>
               </div>
+
+              {/* Phone with click to call */}
+              {profile.phone && (
+                <div className="flex items-center justify-between p-3.5 rounded-xl bg-[#05080c] border border-white/5 hover:border-[#dfbe7a]/40 transition-colors">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#0e1622] border border-[#c5a059]/30 flex items-center justify-center text-[#dfbe7a]">
+                      <span className="text-xs">📞</span>
+                    </div>
+                    <div>
+                      <div className="text-[10px] font-mono text-[#94a3b8] uppercase">Phone / WhatsApp</div>
+                      <a href={`tel:${profile.phone}`} className="text-xs sm:text-sm font-mono text-[#f1f5f9] hover:text-[#dfbe7a] font-medium transition-colors">
+                        {profile.phone}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Geographic Coordinates */}
               <div className="flex items-center gap-3 p-3.5 rounded-xl bg-[#05080c] border border-white/5">

@@ -114,18 +114,23 @@ const SpotlightQuadrantCard: React.FC<{
 export const SkillsSection: React.FC<SkillsSectionProps> = ({ profile }) => {
   const [activeCategory, setActiveCategory] = useState<string>('All');
 
+  const categories = ['All', 'Development', 'Cybersecurity', 'Tools & Cloud', 'Leadership'];
+
   const filteredCategories = activeCategory === 'All'
     ? profile.skills
-    : profile.skills.filter((cat) => cat.category.toLowerCase().includes(activeCategory.toLowerCase()));
-
-  const categories = ['All', 'Frontend', 'Backend', 'Cloud', 'Security'];
+    : profile.skills.filter((cat) => {
+        const needle = activeCategory.toLowerCase().split(' ')[0];
+        return cat.category.toLowerCase().includes(needle);
+      });
 
   return (
-    <section id="armory" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
+    <section id="skills" data-alias="armory" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
+      {/* Anchor helper for legacy #armory links */}
+      <div id="armory" className="absolute -top-16 left-0 pointer-events-none" />
       <SectionBanner
         number="CHRONICLE II"
-        title="Technical Armory & Systems Stack"
-        subtitle="A verified matrix of distributed backend systems, 3D spatial WebGL interfaces, cloud infrastructure, and security posture"
+        title="Technical Skills & Proficiencies"
+        subtitle="Core proficiencies across Software Development, Cybersecurity, Cloud Infrastructure, and Community Leadership"
       />
 
       {/* Armory Category Filters */}

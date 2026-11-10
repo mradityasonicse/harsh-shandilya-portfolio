@@ -10,13 +10,11 @@ import { AudioEngine } from './components/ui/AudioEngine';
 import { HeroSection } from './components/sections/HeroSection';
 import { AboutSection } from './components/sections/AboutSection';
 import { SkillsSection } from './components/sections/SkillsSection';
-import { DesignEyeSection } from './components/sections/DesignEyeSection';
 import { ProjectsSection } from './components/sections/ProjectsSection';
-import { AchievementsSection } from './components/sections/AchievementsSection';
 import { ExperienceSection } from './components/sections/ExperienceSection';
+import { ResumeSection } from './components/sections/ResumeSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { FooterSection } from './components/sections/FooterSection';
-import { CaptainTerminal } from './components/ui/CaptainTerminal';
 import { ResumeModal } from './components/ui/ResumeModal';
 import { SoundboardBar } from './components/ui/SoundboardBar';
 import { VoyageHUD } from './components/ui/VoyageHUD';
@@ -35,7 +33,6 @@ export const App: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState('hero');
   const [audioPlaying, setAudioPlaying] = useState(false);
-  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const profile = PERSONAL_CONFIG;
 
@@ -53,7 +50,15 @@ export const App: React.FC = () => {
       setScrollProgress(e.progress);
       ScrollTrigger.update();
 
-      const sections = ['hero', 'legend', 'armory', 'design-eye', 'voyages', 'spoils', 'log', 'bottle'];
+      const sections = [
+        'hero',
+        'about',
+        'skills',
+        'projects',
+        'experience',
+        'resume',
+        'contact'
+      ];
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
         if (el) {
@@ -80,14 +85,10 @@ export const App: React.FC = () => {
     };
   }, []);
 
-  // Global hotkeys for Captain's Terminal & Modals
+  // Global hotkeys for Modal close
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === '`' || e.key === '~' || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) {
-        e.preventDefault();
-        setIsTerminalOpen((prev) => !prev);
-      } else if (e.key === 'Escape') {
-        setIsTerminalOpen(false);
+      if (e.key === 'Escape') {
         setIsResumeOpen(false);
       }
     };
@@ -98,9 +99,9 @@ export const App: React.FC = () => {
 
   const handleExplore = () => {
     if (window.__lenis) {
-      window.__lenis.scrollTo('#voyages');
+      window.__lenis.scrollTo('#projects');
     } else {
-      const el = document.getElementById('voyages');
+      const el = document.getElementById('projects') || document.getElementById('voyages');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -133,23 +134,37 @@ export const App: React.FC = () => {
         onToggleAudio={() => setAudioPlaying(!audioPlaying)}
         activeSection={activeSection}
         profile={profile}
-        onOpenTerminal={() => setIsTerminalOpen(true)}
         onOpenResume={() => setIsResumeOpen(true)}
       />
 
-      {/* 6. Main Voyage Sections Powered by Personal Profile */}
+      {/* 6. Main Flow: Home -> About -> Skills -> Projects -> Experience -> Resume -> Contact */}
       <main className="relative z-10 flex flex-col space-y-16 md:space-y-24">
+        {/* 1. Home */}
         <HeroSection
           profile={profile}
           onExplore={handleExplore}
           onOpenResume={() => setIsResumeOpen(true)}
         />
+
+        {/* 2. About */}
         <AboutSection profile={profile} />
+
+        {/* 3. Skills */}
         <SkillsSection profile={profile} />
-        <DesignEyeSection />
+
+        {/* 4. Projects */}
         <ProjectsSection profile={profile} />
-        <AchievementsSection profile={profile} />
+
+        {/* 5. Experience (Work History, Internships, Education, Milestones) */}
         <ExperienceSection profile={profile} />
+
+        {/* 6. Resume (View / Download CV Button) */}
+        <ResumeSection
+          profile={profile}
+          onOpenResume={() => setIsResumeOpen(true)}
+        />
+
+        {/* 7. Contact */}
         <ContactSection
           profile={profile}
           onOpenResume={() => setIsResumeOpen(true)}
@@ -159,28 +174,20 @@ export const App: React.FC = () => {
       {/* 7. Naval Astrolabe Crest Footer */}
       <FooterSection />
 
-      {/* 8. Captain's Command Bridge CLI Terminal */}
-      <CaptainTerminal
-        isOpen={isTerminalOpen}
-        onClose={() => setIsTerminalOpen(false)}
-        onOpenResume={() => setIsResumeOpen(true)}
-        profile={profile}
-      />
-
-      {/* 9. Official Architectural CV Modal */}
+      {/* 8. Official Architectural CV Modal */}
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
         profile={profile}
       />
 
-      {/* 10. Floating Nautical Soundscape Controller (Bottom Right) */}
+      {/* 9. Floating Nautical Soundscape Controller (Bottom Right) */}
       <SoundboardBar
         ambientPlaying={audioPlaying}
         onToggleAmbient={() => setAudioPlaying(!audioPlaying)}
       />
 
-      {/* 11. Floating Voyage Coordinates & Circular Progress HUD (Bottom Left) */}
+      {/* 10. Floating Voyage Coordinates & Circular Progress HUD (Bottom Left) */}
       <VoyageHUD
         scrollProgress={scrollProgress}
         activeSection={activeSection}

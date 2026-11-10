@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import type { PersonalProfile } from '../../data/personalConfig';
-import { ChevronDown, FileText, Shield, Compass, Sparkles, Eye, ArrowUpRight, Zap } from 'lucide-react';
+import { ChevronDown, FileText, Compass, Sparkles, ArrowUpRight, Zap } from 'lucide-react';
 import { playAudioFx } from '../ui/AudioEngine';
 
 interface HeroSectionProps {
@@ -34,27 +34,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     setMouseTilt({ x: 0, y: 0 });
   };
 
-  const handleInspect = () => {
+  const handleViewMyWork = () => {
     playAudioFx('seal');
-    onExplore();
-  };
-
-  const handleExploreArmory = () => {
-    playAudioFx('click');
     if (typeof window !== 'undefined' && window.__lenis) {
-      window.__lenis.scrollTo('#armory');
+      window.__lenis.scrollTo('#projects');
     } else {
-      const el = document.getElementById('armory');
+      const el = document.getElementById('projects') || document.getElementById('voyages');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const handleExploreDesignEye = () => {
+  const handleContactMe = () => {
     playAudioFx('click');
     if (typeof window !== 'undefined' && window.__lenis) {
-      window.__lenis.scrollTo('#design-eye');
+      window.__lenis.scrollTo('#contact');
     } else {
-      const el = document.getElementById('design-eye');
+      const el = document.getElementById('contact') || document.getElementById('bottle');
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -65,11 +60,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <section
       id="hero"
+      data-alias="home"
       aria-label="Introduction Hero Poster"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className="min-h-screen relative flex flex-col justify-between pt-28 sm:pt-24 pb-10 px-4 sm:px-6 md:px-10 lg:px-14 overflow-hidden z-10 selection:bg-[#dfbe7a]/30"
     >
+      {/* Anchor helper for #home navigation */}
+      <div id="home" className="absolute top-0 left-0 pointer-events-none" />
       {/* ============================================================ */}
       {/* 1. ATMOSPHERIC BACKDROP & VOLUMETRIC SPECULAR LIGHTING      */}
       {/* ============================================================ */}
@@ -170,17 +168,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0a1018]/90 border border-[#dfbe7a]/40 backdrop-blur-xl shadow-lg">
             <span className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#10b981] animate-pulse" />
             <span className="text-[11px] font-mono text-[#dfbe7a] uppercase tracking-wider font-bold">
-              ACTIVE COMMISSION • SYSTEMS ARCHITECT
+              GOOGLE STUDENT AMBASSADOR '26 • AWS SBG RCET LEAD
             </span>
           </div>
 
-          {/* Engine Vitals */}
+          {/* Location & Status */}
           <div className="hidden sm:inline-flex items-center gap-4 text-[11px] font-mono text-[#94a3b8] tracking-widest uppercase">
             <span className="flex items-center gap-1.5 text-emerald-400">
-              <Zap className="w-3.5 h-3.5" /> 120 FPS NATIVE
+              <Zap className="w-3.5 h-3.5" /> OPEN TO INTERNSHIPS
             </span>
             <span>•</span>
-            <span className="text-[#cbd5e1]">{profile.location.split('•')[0].trim()}</span>
+            <span className="text-[#cbd5e1]">{profile.location}</span>
           </div>
         </div>
 
@@ -194,7 +192,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           >
             {/* Greeting subtitle */}
             <div className="text-sm sm:text-base font-serif italic text-[#dfbe7a] tracking-wider mb-1 flex items-center gap-2.5">
-              <span>Sovereign Full-Stack Architect</span>
+              <span>Cybersecurity & Software Developer</span>
               <span className="inline-block w-8 h-[1px] bg-[#dfbe7a]/50" />
             </div>
 
@@ -205,13 +203,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             >
               HARSH<br />
               <span className="bg-gradient-to-r from-white via-[#dfbe7a] to-[#c5a059] bg-clip-text text-transparent">
-                SHANDILYA.
+                SHANDILYA
               </span>
             </h1>
 
-            {/* Brass Sub-role Pill */}
+            {/* Sub-role Pill */}
             <div className="inline-block mt-3 px-3 py-1.5 rounded-lg bg-[#0e1622]/90 border border-[#c5a059]/40 text-[#dfbe7a] font-mono text-[11px] font-bold uppercase tracking-wider shadow-md backdrop-blur-md">
-              HIGH-THROUGHPUT SYSTEMS & 3D WEBGL
+              B.TECH CSE (CYBER SECURITY) • RUNGTA UNIVERSITY
             </div>
 
             {/* Bio statement */}
@@ -222,31 +220,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Tactical CTA Buttons */}
             <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mt-5 sm:mt-7">
               <button
-                onClick={handleInspect}
-                data-cursor="EXPEDITIONS"
+                onClick={handleViewMyWork}
+                data-cursor="WORK"
                 className="flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-gradient-to-r from-[#c5a059] to-[#dfbe7a] hover:from-[#dfbe7a] hover:to-[#f1f5f9] text-[#05080c] rounded-xl text-xs font-mono font-bold uppercase tracking-wider shadow-[0_10px_30px_rgba(223,190,122,0.4)] hover:shadow-[0_14px_40px_rgba(223,190,122,0.6)] transition-all cursor-pointer group"
               >
                 <Compass className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
-                Explore Expeditions
+                View My Work
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </button>
 
               <button
-                onClick={handleExploreDesignEye}
-                data-cursor="DESIGN EYE"
-                className="flex items-center gap-2 px-4 sm:px-5 py-3 sm:py-3.5 bg-[#0a1018]/90 hover:bg-[#141f2e] text-[#dfbe7a] border border-[#dfbe7a]/40 hover:border-[#dfbe7a] rounded-xl text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer shadow-md group"
+                onClick={handleContactMe}
+                data-cursor="CONTACT"
+                className="flex items-center gap-2 px-5 sm:px-6 py-3 sm:py-3.5 bg-[#0a1018]/90 hover:bg-[#141f2e] text-[#dfbe7a] border border-[#dfbe7a]/40 hover:border-[#dfbe7a] rounded-xl text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer shadow-md group"
               >
-                <Eye className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                Design Eye Matrix
-              </button>
-
-              <button
-                onClick={handleExploreArmory}
-                data-cursor="ARMORY"
-                className="flex items-center gap-1.5 px-3.5 py-3 sm:py-3.5 bg-[#0a1018]/60 hover:bg-[#121926] text-[#94a3b8] hover:text-white border border-white/10 hover:border-white/20 rounded-xl text-xs font-mono uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
-              >
-                <Shield className="w-3.5 h-3.5" />
-                Armory
+                <Zap className="w-4 h-4 text-[#dfbe7a] group-hover:scale-110 transition-transform" />
+                Contact Me
               </button>
 
               {onOpenResume && (
@@ -256,10 +245,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     onOpenResume();
                   }}
                   data-cursor="RESUME"
-                  className="flex items-center gap-1.5 px-3.5 py-3 sm:py-3.5 bg-[#0a1018]/60 hover:bg-[#121926] text-[#94a3b8] hover:text-white border border-white/10 hover:border-white/20 rounded-xl text-xs font-mono uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
+                  className="flex items-center gap-1.5 px-4 py-3 sm:py-3.5 bg-[#0a1018]/60 hover:bg-[#121926] text-[#cbd5e1] hover:text-[#dfbe7a] border border-[#c5a059]/30 hover:border-[#dfbe7a] rounded-xl text-xs font-mono font-bold uppercase tracking-wider backdrop-blur-md transition-all cursor-pointer"
                 >
-                  <FileText className="w-3.5 h-3.5" />
-                  CV
+                  <FileText className="w-3.5 h-3.5 text-[#dfbe7a]" />
+                  Resume
                 </button>
               )}
             </div>
@@ -267,7 +256,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             {/* Location coordinates */}
             <div className="flex items-center gap-2 mt-4 text-[11px] font-mono text-[#94a3b8] tracking-widest uppercase">
               <span className="text-sm">📍</span>
-              <span>21°14'N 81°38'E • BHILAI / RAIPUR, INDIA</span>
+              <span>{profile.location.toUpperCase()}</span>
             </div>
           </div>
 
@@ -309,7 +298,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           </div>
 
           <button
-            onClick={handleExploreArmory}
+            onClick={() => {
+              playAudioFx('seal');
+              onExplore();
+            }}
             className="flex items-center gap-1.5 text-[11px] font-mono text-[#94a3b8] hover:text-[#dfbe7a] transition-colors cursor-pointer group"
           >
             <span className="tracking-widest uppercase">NAVIGATE EXPEDITIONS</span>

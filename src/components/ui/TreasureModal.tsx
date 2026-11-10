@@ -60,6 +60,42 @@ export const TreasureModal: React.FC<TreasureModalProps> = ({ project, onClose }
           </p>
         </div>
 
+        {/* 4 Core Pillars: Problem, Contribution, Tools Used, Outcome */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
+          {project.problem && (
+            <div className="p-3.5 rounded-xl bg-[#0a1018] border border-rose-500/20">
+              <div className="text-[11px] font-mono font-bold text-rose-400 uppercase tracking-wider mb-1">
+                The Problem
+              </div>
+              <p className="text-xs text-[#94a3b8] font-sans leading-relaxed font-light">
+                {project.problem}
+              </p>
+            </div>
+          )}
+
+          {project.contribution && (
+            <div className="p-3.5 rounded-xl bg-[#0a1018] border border-[#dfbe7a]/25">
+              <div className="text-[11px] font-mono font-bold text-[#dfbe7a] uppercase tracking-wider mb-1">
+                My Contribution
+              </div>
+              <p className="text-xs text-[#cbd5e1] font-sans leading-relaxed font-light">
+                {project.contribution}
+              </p>
+            </div>
+          )}
+
+          {project.outcome && (
+            <div className="p-3.5 rounded-xl bg-[#0a1018] border border-emerald-500/20 sm:col-span-2">
+              <div className="text-[11px] font-mono font-bold text-emerald-400 uppercase tracking-wider mb-1">
+                Outcome & Quantifiable Impact
+              </div>
+              <p className="text-xs text-[#cbd5e1] font-sans leading-relaxed font-light">
+                {project.outcome}
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* Key Architectural Deliverables */}
         <div className="mb-6 space-y-2.5">
           <h4 className="text-xs font-mono font-bold text-[#dfbe7a] uppercase tracking-wider flex items-center gap-2">

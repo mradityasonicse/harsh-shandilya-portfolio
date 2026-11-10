@@ -11,13 +11,13 @@ export const VoyageHUD: React.FC<VoyageHUDProps> = ({ scrollProgress, activeSect
   const [menuOpen, setMenuOpen] = useState(false);
 
   const waypoints = [
-    { id: 'hero', name: 'Helm & Horizon', label: '00' },
-    { id: 'legend', name: 'Engineering Chronicle', label: '01' },
-    { id: 'armory', name: 'Technical Armory', label: '02' },
-    { id: 'voyages', name: 'Flagship Expeditions', label: '03' },
-    { id: 'spoils', name: 'Naval Honors & Certs', label: '04' },
-    { id: 'log', name: 'Chronicle of Service', label: '05' },
-    { id: 'bottle', name: 'Direct Dispatch', label: '06' },
+    { id: 'hero', name: 'Home', label: '01' },
+    { id: 'about', name: 'About', label: '02' },
+    { id: 'skills', name: 'Skills', label: '03' },
+    { id: 'projects', name: 'Projects', label: '04' },
+    { id: 'experience', name: 'Experience', label: '05' },
+    { id: 'resume', name: 'Resume', label: '06' },
+    { id: 'contact', name: 'Contact', label: '07' },
   ];
 
   const depthPercent = Math.round(scrollProgress * 100);

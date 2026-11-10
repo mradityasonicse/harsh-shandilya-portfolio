@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { PersonalProfile } from '../../data/personalConfig';
 import { SectionBanner } from '../ui/SectionBanner';
 import { TreasureModal, type PersonalProject } from '../ui/TreasureModal';
-import { Compass, Sparkles, MapPin, Layers, ArrowUpRight, GitBranch } from 'lucide-react';
+import { Compass, Sparkles, MapPin, Layers, ArrowUpRight, GitBranch, AlertCircle, Wrench, TrendingUp } from 'lucide-react';
 import { playAudioFx } from '../ui/AudioEngine';
 
 interface ProjectsSectionProps {
@@ -20,6 +20,8 @@ const SpotlightProjectCard: React.FC<{
     const rect = e.currentTarget.getBoundingClientRect();
     setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
+
+  const tools = proj.toolsUsed || proj.techStack;
 
   return (
     <div
@@ -64,37 +66,67 @@ const SpotlightProjectCard: React.FC<{
           <ArrowUpRight className="w-4 h-4 text-[#94a3b8] group-hover:text-[#dfbe7a] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </h3>
 
-        <p className="text-xs font-sans text-[#dfbe7a] italic mb-3.5">
+        <p className="text-xs font-sans text-[#dfbe7a] italic mb-4">
           "{proj.tagline}"
         </p>
 
-        {/* Description */}
-        <p className="text-xs sm:text-sm text-[#94a3b8] font-sans leading-relaxed mb-5 line-clamp-3 font-light">
-          {proj.description}
-        </p>
-
-        {/* Highlights */}
-        {proj.highlights && proj.highlights.length > 0 && (
-          <div className="mb-5 space-y-1 text-xs text-[#cbd5e1] font-sans font-light">
-            {proj.highlights.slice(0, 2).map((h, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#dfbe7a] shrink-0" />
-                <span className="truncate">{h}</span>
+        {/* Structured 4-Field Architecture Dossier (Problem, Contribution, Tools, Outcome) */}
+        <div className="space-y-3.5 mb-5 text-xs font-sans">
+          {/* 1. Problem */}
+          {proj.problem && (
+            <div className="p-3 rounded-xl bg-[#05080c]/80 border border-white/5 space-y-1">
+              <div className="flex items-center gap-1.5 font-mono font-semibold text-rose-400 text-[11px] uppercase tracking-wider">
+                <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                Problem
               </div>
+              <p className="text-[#94a3b8] font-light leading-relaxed pl-5">
+                {proj.problem}
+              </p>
+            </div>
+          )}
+
+          {/* 2. My Contribution */}
+          {proj.contribution && (
+            <div className="p-3 rounded-xl bg-[#05080c]/80 border border-[#dfbe7a]/15 space-y-1">
+              <div className="flex items-center gap-1.5 font-mono font-semibold text-[#dfbe7a] text-[11px] uppercase tracking-wider">
+                <Wrench className="w-3.5 h-3.5 shrink-0" />
+                My Contribution
+              </div>
+              <p className="text-[#cbd5e1] font-light leading-relaxed pl-5">
+                {proj.contribution}
+              </p>
+            </div>
+          )}
+
+          {/* 3. Outcome */}
+          {proj.outcome && (
+            <div className="p-3 rounded-xl bg-[#05080c]/80 border border-emerald-500/15 space-y-1">
+              <div className="flex items-center gap-1.5 font-mono font-semibold text-emerald-400 text-[11px] uppercase tracking-wider">
+                <TrendingUp className="w-3.5 h-3.5 shrink-0" />
+                Outcome & Impact
+              </div>
+              <p className="text-[#cbd5e1] font-light leading-relaxed pl-5">
+                {proj.outcome}
+              </p>
+            </div>
+          )}
+        </div>
+
+        {/* 4. Tools Used Badges */}
+        <div className="space-y-1.5 mb-5">
+          <div className="text-[10px] font-mono text-[#94a3b8] uppercase tracking-wider">
+            Tools Used:
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {tools.map((tech) => (
+              <span
+                key={tech}
+                className="px-2.5 py-0.5 bg-[#05080c] text-[#cbd5e1] text-[10px] font-mono rounded-md border border-white/10 group-hover:border-[#dfbe7a]/40 transition-colors shadow-sm"
+              >
+                {tech}
+              </span>
             ))}
           </div>
-        )}
-
-        {/* Tech Stack Badges */}
-        <div className="flex flex-wrap gap-1.5 mb-6">
-          {proj.techStack.map((tech) => (
-            <span
-              key={tech}
-              className="px-2.5 py-0.5 bg-[#05080c] text-[#cbd5e1] text-[10px] font-mono rounded-md border border-white/10 group-hover:border-[#dfbe7a]/40 transition-colors shadow-sm"
-            >
-              {tech}
-            </span>
-          ))}
         </div>
       </div>
 
@@ -142,7 +174,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => 
   const [selectedProject, setSelectedProject] = useState<PersonalProject | null>(null);
   const [filter, setFilter] = useState<string>('All');
 
-  const filterTabs = ['All', 'Distributed System', '3D & AI', 'Full-Stack SaaS', 'Cyber Security'];
+  const filterTabs = ['All', ...Array.from(new Set(profile.projects.map((p) => p.type)))];
 
   const filteredProjects = filter === 'All'
     ? profile.projects
@@ -169,11 +201,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => 
   };
 
   return (
-    <section id="voyages" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
+    <section id="projects" data-alias="voyages" className="min-h-screen py-24 px-4 max-w-7xl mx-auto relative z-10">
+      {/* Anchor helper for legacy #voyages links */}
+      <div id="voyages" className="absolute -top-16 left-0 pointer-events-none" />
+
       <SectionBanner
-        number="CHRONICLE III"
-        title="Flagship Production Expeditions"
-        subtitle="Architected codebases across distributed backend engines, 3D WebGL spatial applications, and resilient cloud systems"
+        number="CHRONICLE IV"
+        title="Featured Work & Production Expeditions"
+        subtitle="Every project documented with Problem, Contribution, Tools Used, and Measurable Outcome"
       />
 
       {/* Filter Tabs */}
@@ -197,7 +232,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ profile }) => 
                   : 'bg-[#0e1622] text-[#94a3b8] border border-[#c5a059]/25 hover:border-[#dfbe7a] hover:text-[#f1f5f9]'
               }`}
             >
-              {tab === 'All' ? `All Expeditions (${count})` : `${tab} (${count})`}
+              {tab === 'All' ? `All Projects (${count})` : `${tab} (${count})`}
             </button>
           );
         })}
