@@ -221,7 +221,8 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ profile })
                     <a
                       href={item.credentialUrl}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
+                      aria-label={`Verify ${item.title} credential from ${item.issuer} (opens in a new tab)`}
                       className="text-[var(--text-primary)] hover:underline inline-flex items-center gap-1 font-semibold"
                     >
                       Verify <ExternalLink className="w-3 h-3" />

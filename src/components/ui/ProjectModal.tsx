@@ -142,7 +142,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <a
               href={project.githubUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
+              aria-label={`View source code for ${project.title} on GitHub (opens in a new tab)`}
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-[#05080c] dark:hover:bg-[#141f2e] text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 text-xs font-mono font-semibold transition-all shadow-sm"
             >
               <Code2 className="w-4 h-4" />
@@ -153,7 +154,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               <a
                 href={project.demoUrl}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
+                aria-label={`View repository or demo for ${project.title} (opens in a new tab)`}
                 className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-950 text-xs font-mono font-bold uppercase transition-all shadow-sm"
               >
                 <ExternalLink className="w-4 h-4" />

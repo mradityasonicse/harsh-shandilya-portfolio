@@ -43,10 +43,15 @@ export const Navbar: React.FC<NavbarProps> = ({
     <nav className="fixed top-0 left-0 right-0 z-40 bg-[#faf8f1]/90 dark:bg-[#071510]/90 backdrop-blur-xl border-b border-[#173f32]/12 dark:border-[#faf8f1]/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
         {/* Brand Emblem: Photo Avatar + Full Name */}
-        <button
-          onClick={() => scrollTo('hero')}
+        <a
+          href="#hero"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo('hero');
+          }}
           className="flex items-center gap-2.5 sm:gap-3 text-left group cursor-pointer focus:outline-none min-w-0"
           title={profile.name}
+          aria-label={`${profile.name} - Return to top`}
         >
           {/* Circular Photo Avatar Logo - Clean Hairline Border, Zero Blinking Dots */}
           <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full p-[2px] border border-[#173f32]/20 dark:border-[#faf8f1]/20 bg-white dark:bg-[#0e241c] shadow-xs group-hover:scale-105 transition-transform duration-200 shrink-0">
@@ -72,27 +77,32 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span className="hidden sm:inline">Cybersecurity &amp; Software Developer</span>
             </span>
           </div>
-        </button>
+        </a>
 
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
-              <button
+              <a
                 key={link.id}
-                onClick={() => scrollTo(link.id)}
+                href={`#${link.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(link.id);
+                }}
                 className={`text-[13px] font-sans transition-all duration-200 relative py-1 cursor-pointer tracking-tight ${
                   isActive
                     ? 'text-[#173f32] dark:text-[#faf8f1] font-bold'
                     : 'text-[#4a685b] hover:text-[#173f32] dark:text-[#9fc1b4] dark:hover:text-[#faf8f1] font-medium'
                 }`}
+                aria-current={isActive ? 'true' : undefined}
               >
                 {link.label}
                 {isActive && (
                   <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-[#173f32] dark:bg-[#34d399] rounded-full" />
                 )}
-              </button>
+              </a>
             );
           })}
         </div>
@@ -141,13 +151,17 @@ export const Navbar: React.FC<NavbarProps> = ({
       {mobileOpen && (
         <div className="lg:hidden bg-[#faf8f1] dark:bg-[#071510] border-b border-[#173f32]/12 dark:border-[#faf8f1]/10 px-4 py-4 space-y-2 backdrop-blur-2xl">
           {navLinks.map((link) => (
-            <button
+            <a
               key={link.id}
-              onClick={() => scrollTo(link.id)}
-              className="w-full text-left py-2.5 px-3 text-sm font-sans tracking-tight text-[#173f32] dark:text-[#faf8f1] hover:bg-white/60 dark:hover:bg-white/5 rounded-xl transition-colors cursor-pointer font-medium"
+              href={`#${link.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo(link.id);
+              }}
+              className="w-full block text-left py-2.5 px-3 text-sm font-sans tracking-tight text-[#173f32] dark:text-[#faf8f1] hover:bg-white/60 dark:hover:bg-white/5 rounded-xl transition-colors cursor-pointer font-medium"
             >
               {link.label}
-            </button>
+            </a>
           ))}
           {onToggleTheme && (
             <button

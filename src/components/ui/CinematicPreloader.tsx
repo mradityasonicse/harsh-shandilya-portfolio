@@ -11,7 +11,12 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
   durationMs = 2300,
   onComplete,
 }) => {
-  const [phase, setPhase] = useState<'waiting' | 'flying' | 'parting' | 'completed'>('waiting');
+  const [phase, setPhase] = useState<'waiting' | 'flying' | 'parting' | 'completed'>(() => {
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return 'completed';
+    }
+    return 'waiting';
+  });
   const onCompleteRef = useRef(onComplete);
 
   useEffect(() => {
@@ -19,11 +24,15 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
   }, [onComplete]);
 
   useEffect(() => {
-    // 1. Accessibility: Skip immediately if user requests reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) {
-      setPhase('completed');
+    if (phase === 'completed') {
       onCompleteRef.current?.();
+    }
+  }, [phase]);
+
+  useEffect(() => {
+    // 1. Accessibility: Skip immediately if user requests reduced motion
+    const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
       return;
     }
 
@@ -31,7 +40,6 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
     const handlePageShow = (e: PageTransitionEvent) => {
       if (e.persisted) {
         setPhase('completed');
-        onCompleteRef.current?.();
       }
     };
     window.addEventListener('pageshow', handlePageShow);
@@ -53,7 +61,6 @@ export const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
 
     const completionTimer = setTimeout(() => {
       setPhase('completed');
-      onCompleteRef.current?.();
     }, durationMs);
 
     return () => {

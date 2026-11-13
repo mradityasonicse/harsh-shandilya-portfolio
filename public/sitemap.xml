@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  =======================================================================
+  Sitemap for Harsh Kumar Shandilya Portfolio
+  ⚠️ ACTION BEFORE DEPLOYMENT:
+  Replace "https://YOUR_DOMAIN_HERE.com" with your live production domain
+  (e.g. https://harshshandilya.com)
+  =======================================================================
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Canonical Homepage -->
+  <url>
+    <loc>https://YOUR_DOMAIN_HERE.com/</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://YOUR_DOMAIN_HERE.com/harsh-cutout.png</image:loc>
+      <image:title>Harsh Kumar Shandilya — Cybersecurity &amp; Software Developer</image:title>
+      <image:caption>Harsh Kumar Shandilya Portfolio Hero Cutout Portrait</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://YOUR_DOMAIN_HERE.com/profile-photo.jpg</image:loc>
+      <image:title>Harsh Kumar Shandilya Profile Portrait</image:title>
+    </image:image>
+  </url>
+
+  <!-- Official Resume PDF -->
+  <url>
+    <loc>https://YOUR_DOMAIN_HERE.com/Harsh_Resume.pdf</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>

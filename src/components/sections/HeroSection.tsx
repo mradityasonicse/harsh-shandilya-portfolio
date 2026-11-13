@@ -149,27 +149,38 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Clean NYC Action Buttons - High Contrast, Rounded Pill Geometry */}
             <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 mt-5 sm:mt-7">
-              <button
-                onClick={handleViewMyWork}
-                className="nyc-btn-primary group w-full sm:w-auto"
+              <a
+                href="#projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleViewMyWork();
+                }}
+                className="nyc-btn-primary group w-full sm:w-auto inline-flex items-center justify-center gap-2"
+                aria-label="View featured projects section"
               >
                 <Code2 className="w-4 h-4 text-emerald-400 dark:text-[#071510]" />
                 <span>View My Work</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
-              </button>
+              </a>
 
-              <button
-                onClick={handleContactMe}
-                className="nyc-btn-secondary group flex-1 sm:flex-initial"
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleContactMe();
+                }}
+                className="nyc-btn-secondary group flex-1 sm:flex-initial inline-flex items-center justify-center gap-2"
+                aria-label="Contact Harsh Kumar Shandilya"
               >
                 <Zap className="w-4 h-4 text-amber-500 group-hover:scale-110 transition-transform" />
                 <span>Contact Me</span>
-              </button>
+              </a>
 
               {onOpenResume && (
                 <button
                   onClick={onOpenResume}
-                  className="nyc-btn-secondary group flex-1 sm:flex-initial"
+                  className="nyc-btn-secondary group flex-1 sm:flex-initial inline-flex items-center justify-center gap-2"
+                  aria-label="Open printable resume modal"
                 >
                   <FileText className="w-4 h-4 text-[#4a685b] dark:text-[#a0c2b5]" />
                   <span>Resume</span>
@@ -264,13 +275,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <span>AVAILABLE FOR INTERNSHIPS & ROLES</span>
           </div>
 
-          <button
-            onClick={onExplore}
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              onExplore();
+            }}
             className="flex items-center gap-1.5 text-[11px] font-mono text-[#173f32] hover:text-[#102d24] dark:text-[#c2dfd4] dark:hover:text-white transition-colors cursor-pointer group active:scale-95 font-semibold"
+            aria-label="Scroll down to featured projects"
           >
             <span className="tracking-widest uppercase">SCROLL TO EXPLORE</span>
             <ChevronDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-          </button>
+          </a>
         </div>
       </div>
     </section>

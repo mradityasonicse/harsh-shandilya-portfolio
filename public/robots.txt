@@ -1,0 +1,23 @@
+# =======================================================================
+# Robots.txt for Harsh Kumar Shandilya Portfolio
+# ⚠️ ACTION BEFORE DEPLOYMENT:
+# Replace "https://YOUR_DOMAIN_HERE.com" with your live production domain
+# (e.g. https://harshshandilya.com)
+# =======================================================================
+
+User-agent: *
+Allow: /
+
+# Prevent crawlers from indexing cloud health checks and internal endpoints
+Disallow: /health
+Disallow: /healthz
+Disallow: /api/
+
+# Prevent indexing of query strings (e.g. UTM parameters, tracking IDs) to avoid duplicate content
+Disallow: /*?*
+
+# Prevent indexing of raw JSON data files
+Disallow: /*.json$
+
+# Canonical XML Sitemap
+Sitemap: https://YOUR_DOMAIN_HERE.com/sitemap.xml

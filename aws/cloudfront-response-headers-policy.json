@@ -1,0 +1,37 @@
+{
+  "Comment": "Production Security & Privacy Headers for Harsh Portfolio",
+  "Name": "HarshPortfolioSecurityHeadersPolicy",
+  "SecurityHeadersConfig": {
+    "StrictTransportSecurity": {
+      "Override": true,
+      "StrictTransportSecurity": "max-age=63072000; includeSubDomains; preload"
+    },
+    "ContentTypeOptions": {
+      "Override": true
+    },
+    "FrameOptions": {
+      "Override": true,
+      "FrameOption": "SAMEORIGIN"
+    },
+    "ReferrerPolicy": {
+      "Override": true,
+      "ReferrerPolicy": "strict-origin-when-cross-origin"
+    },
+    "XSSProtection": {
+      "Override": true,
+      "Protection": true,
+      "ModeBlock": true
+    }
+  },
+  "CustomHeadersConfig": {
+    "Quantity": 1,
+    "Items": [
+      {
+        "Header": "Permissions-Policy",
+        "Value": "camera=(), microphone=(), geolocation=()",
+        "Override": true
+      }
+    ]
+  }
+}
+

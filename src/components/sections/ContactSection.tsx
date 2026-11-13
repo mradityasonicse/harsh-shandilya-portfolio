@@ -189,9 +189,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                       <a
                         href={`https://wa.me/${profile.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hi Harsh, I saw your portfolio and would like to connect!')}`}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         className="text-xs sm:text-sm font-mono text-[var(--text-primary)] hover:underline font-medium transition-colors"
                         title="Click to Chat on WhatsApp"
+                        aria-label="Chat with Harsh Kumar Shandilya on WhatsApp (opens in a new tab)"
                       >
                         {profile.phone}
                       </a>
@@ -200,9 +201,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                   <a
                     href={`https://wa.me/${profile.phone.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hi Harsh, I saw your portfolio and would like to connect!')}`}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     className="px-3 py-1.5 rounded-full bg-[var(--canvas-bg)] hover:bg-[var(--text-primary)] hover:text-[var(--canvas-bg)] text-[var(--text-primary)] text-xs font-mono font-semibold transition-all cursor-pointer flex items-center gap-1 border border-[var(--border-hairline)] active:scale-95"
                     title="Open WhatsApp Chat directly"
+                    aria-label="Open WhatsApp chat directly (opens in a new tab)"
                   >
                     <span>WhatsApp</span>
                     <ExternalLink className="w-3 h-3" />
@@ -228,7 +230,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                 <a
                   href={profile.githubUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Harsh Kumar Shandilya's GitHub profile (opens in a new tab)"
                   className="p-3 rounded-full bg-[var(--canvas-bg)]/80 border border-[var(--border-hairline)] hover:border-[var(--border-hover)] flex items-center justify-between group transition-all active:scale-95 px-4"
                 >
                   <span className="text-xs font-mono font-semibold text-[var(--text-primary)]">GitHub</span>
@@ -238,7 +241,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile, onOpenR
                 <a
                   href={profile.linkedinUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Harsh Kumar Shandilya's LinkedIn profile (opens in a new tab)"
                   className="p-3 rounded-full bg-[var(--canvas-bg)]/80 border border-[var(--border-hairline)] hover:border-[var(--border-hover)] flex items-center justify-between group transition-all active:scale-95 px-4"
                 >
                   <span className="text-xs font-mono font-semibold text-[var(--text-primary)]">LinkedIn</span>

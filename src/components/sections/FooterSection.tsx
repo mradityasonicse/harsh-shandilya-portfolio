@@ -96,7 +96,8 @@ export const FooterSection: React.FC = () => {
                 <a
                   href="https://coursera.org/share/7e749bc9a0fe90bc3717a338c758f9e7"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Verify Foundations of Cybersecurity certificate on Coursera (opens in a new tab)"
                   className="hover:text-[var(--text-primary)] transition-colors flex items-center gap-1"
                 >
                   <span>Foundations of Cybersecurity</span>
@@ -107,7 +108,8 @@ export const FooterSection: React.FC = () => {
                 <a
                   href="https://coursera.org/share/52b5ed448da8f62a1f399802af0b6530"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Verify Introduction to Cybersecurity certificate on Coursera (opens in a new tab)"
                   className="hover:text-[var(--text-primary)] transition-colors flex items-center gap-1"
                 >
                   <span>Intro to Cybersecurity</span>
@@ -118,7 +120,8 @@ export const FooterSection: React.FC = () => {
                 <a
                   href="https://coursera.org/share/42f1ce37c6c596648906174438de0fe2"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Verify Programming in Java certificate on Coursera (opens in a new tab)"
                   className="hover:text-[var(--text-primary)] transition-colors flex items-center gap-1"
                 >
                   <span>Programming in Java</span>
@@ -129,7 +132,8 @@ export const FooterSection: React.FC = () => {
                 <a
                   href="https://coursera.org/share/abe5a9612db47abae37e31f33b45b682"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Verify Computer Networking Fundamentals certificate on Coursera (opens in a new tab)"
                   className="hover:text-[var(--text-primary)] transition-colors flex items-center gap-1"
                 >
                   <span>Computer Networking</span>
@@ -140,7 +144,8 @@ export const FooterSection: React.FC = () => {
                 <a
                   href="https://coursera.org/share/e2e08944a48bfb9788ee14348789ba99"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Verify Machine Learning and Data Science certificate on Coursera (opens in a new tab)"
                   className="hover:text-[var(--text-primary)] transition-colors flex items-center gap-1"
                 >
                   <span>Machine Learning & Data Science</span>
@@ -158,6 +163,7 @@ export const FooterSection: React.FC = () => {
             <div className="space-y-2 text-xs font-mono text-[var(--text-muted)]">
               <a
                 href="mailto:hshandilya2008@gmail.com"
+                aria-label="Send email to Harsh Kumar Shandilya"
                 className="flex items-center gap-2 hover:text-[var(--text-primary)] transition-colors"
               >
                 <Mail className="w-3.5 h-3.5 text-slate-700 dark:text-sky-400" />
@@ -165,6 +171,7 @@ export const FooterSection: React.FC = () => {
               </a>
               <a
                 href="tel:+917647088605"
+                aria-label="Call Harsh Kumar Shandilya"
                 className="flex items-center gap-2 hover:text-[var(--text-primary)] transition-colors"
               >
                 <Phone className="w-3.5 h-3.5 text-slate-700 dark:text-sky-400" />
@@ -174,7 +181,8 @@ export const FooterSection: React.FC = () => {
                 <a
                   href="https://github.com/hackthesparrow"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Harsh Kumar Shandilya's GitHub profile (opens in a new tab)"
                   className="px-3.5 py-1 rounded-full bg-[var(--canvas-bg)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border-hairline)] transition-colors shadow-xs active:scale-95"
                 >
                   GitHub
@@ -182,7 +190,8 @@ export const FooterSection: React.FC = () => {
                 <a
                   href="https://www.linkedin.com/in/harsh-kumar-shandilya-78b223372/"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Harsh Kumar Shandilya's LinkedIn profile (opens in a new tab)"
                   className="px-3.5 py-1 rounded-full bg-[var(--canvas-bg)] hover:bg-[var(--surface-hover)] text-[var(--text-primary)] border border-[var(--border-hairline)] transition-colors shadow-xs active:scale-95"
                 >
                   LinkedIn
@@ -190,6 +199,7 @@ export const FooterSection: React.FC = () => {
                 <a
                   href="/Harsh_Resume.pdf"
                   download="Harsh_Kumar_Shandilya_Resume.pdf"
+                  aria-label="Download Harsh Kumar Shandilya's Resume in PDF format"
                   className="px-3.5 py-1 rounded-full bg-[var(--text-primary)] hover:opacity-90 text-[var(--canvas-bg)] font-medium shadow-xs active:scale-95"
                 >
                   Resume

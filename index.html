@@ -1,20 +1,273 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" dir="ltr" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- ⚠️ ACTION BEFORE DEPLOYMENT: Replace "https://YOUR_DOMAIN_HERE.com" with your live production domain (e.g. https://harshshandilya.com) -->
+    <link rel="canonical" href="https://YOUR_DOMAIN_HERE.com/" />
+
+    <!-- Primary SEO Meta Tags -->
+    <title>Harsh Kumar Shandilya — Cybersecurity &amp; Software Developer | Portfolio</title>
+    <meta name="title" content="Harsh Kumar Shandilya — Cybersecurity &amp; Software Developer | Portfolio" />
+    <meta name="description" content="Official portfolio of Harsh Kumar Shandilya — Cybersecurity Analyst, Software Developer, Google Student Ambassador '26, and Student Builder Group Leader at AWS SBG RCET." />
+    <meta name="keywords" content="Harsh Kumar Shandilya, Cybersecurity, Software Developer, B.Tech CSE Cyber Security, Google Student Ambassador 2026, AWS Student Builder Group RCET, Java Developer, Kali Linux, Wireshark, Penetration Testing, Python, React, Algorithms" />
+    <meta name="author" content="Harsh Kumar Shandilya" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#173f32" />
+
+    <!-- Mobile & PWA Web App Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Harsh Portfolio" />
+
+    <!-- Favicons -->
     <link rel="icon" type="image/jpeg" href="/profile-photo.jpg" />
     <link rel="apple-touch-icon" href="/profile-photo.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Harsh Kumar Shandilya — Cybersecurity & Software Developer. B.Tech CSE (Cyber Security) at Rungta University, Google Student Ambassador '26, Student Builder Group Leader." />
-    <meta name="keywords" content="Harsh Kumar Shandilya, Cybersecurity, Software Developer, B.Tech CSE, Google Student Ambassador, Student Builder Group Leader, Java, Kali Linux, Python, React, Penetration Testing" />
-    <title>Harsh Kumar Shandilya — Cybersecurity & Software Developer | Portfolio</title>
-    
-    <!-- Google Fonts: Instrument Serif (Editorial NYC Heading), Plus Jakarta Sans, Geist, Space Grotesk -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Harsh Kumar Shandilya Portfolio" />
+    <meta property="og:url" content="https://YOUR_DOMAIN_HERE.com/" />
+    <meta property="og:title" content="Harsh Kumar Shandilya — Cybersecurity &amp; Software Developer" />
+    <meta property="og:description" content="Official portfolio of Harsh Kumar Shandilya — Cybersecurity Analyst, Software Developer, Google Student Ambassador '26, and Student Builder Group Leader at AWS SBG RCET." />
+    <meta property="og:image" content="https://YOUR_DOMAIN_HERE.com/harsh-cutout.png" />
+    <meta property="og:image:secure_url" content="https://YOUR_DOMAIN_HERE.com/harsh-cutout.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Harsh Kumar Shandilya — Cybersecurity &amp; Software Developer Portfolio" />
+
+    <!-- X / Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://YOUR_DOMAIN_HERE.com/" />
+    <meta name="twitter:title" content="Harsh Kumar Shandilya — Cybersecurity &amp; Software Developer" />
+    <meta name="twitter:description" content="Official portfolio of Harsh Kumar Shandilya — Cybersecurity Analyst, Software Developer, Google Student Ambassador '26, and Student Builder Group Leader at AWS SBG RCET." />
+    <meta name="twitter:image" content="https://YOUR_DOMAIN_HERE.com/harsh-cutout.png" />
+    <meta name="twitter:image:alt" content="Harsh Kumar Shandilya — Cybersecurity &amp; Software Developer Portfolio" />
+
+    <!-- Google Fonts: Instrument Serif, Plus Jakarta Sans, Geist, Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Geist:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data (JSON-LD): Person, WebSite & CreativeWork Schema Graph -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://YOUR_DOMAIN_HERE.com/#website",
+          "url": "https://YOUR_DOMAIN_HERE.com/",
+          "name": "Harsh Kumar Shandilya Portfolio",
+          "description": "Official portfolio of Harsh Kumar Shandilya — Cybersecurity Analyst, Software Developer, Google Student Ambassador '26, and Student Builder Group Leader at AWS SBG RCET.",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://YOUR_DOMAIN_HERE.com/#person"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://YOUR_DOMAIN_HERE.com/#person",
+          "name": "Harsh Kumar Shandilya",
+          "alternateName": ["Harsh", "Harsh Shandilya"],
+          "url": "https://YOUR_DOMAIN_HERE.com/",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://YOUR_DOMAIN_HERE.com/harsh-cutout.png",
+            "caption": "Harsh Kumar Shandilya - Cybersecurity & Software Developer"
+          },
+          "jobTitle": "Cybersecurity & Software Developer",
+          "description": "Building reliable software, practical cloud architectures, and secure systems with active community leadership.",
+          "email": "mailto:hshandilya2008@gmail.com",
+          "telephone": "+91 7647088605",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Bhilai",
+            "addressRegion": "Chhattisgarh",
+            "addressCountry": "IN"
+          },
+          "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Rungta International Skills University (RCET)",
+            "description": "Bachelor of Technology (B.Tech) – Computer Science Engineering (Cyber Security)"
+          },
+          "sameAs": [
+            "https://github.com/hackthesparrow",
+            "https://www.linkedin.com/in/harsh-kumar-shandilya-78b223372/"
+          ],
+          "knowsAbout": [
+            "Java Programming",
+            "Cybersecurity",
+            "Linux Administration",
+            "Kali Linux",
+            "Wireshark Network Analysis",
+            "Penetration Testing Fundamentals",
+            "Algorithms & Data Structures",
+            "AWS Cloud Fundamentals",
+            "Frontend Development with React",
+            "Community Leadership"
+          ],
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Foundations of Cybersecurity",
+              "credentialCategory": "Certifications",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "Coursera (Google / Industry)"
+              },
+              "url": "https://coursera.org/share/7e749bc9a0fe90bc3717a338c758f9e7"
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Cyber Essentials & Security Defenses",
+              "credentialCategory": "Certifications",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "Certified Security Course"
+              },
+              "url": "https://drive.google.com/file/d/1Xc0p5zOqnAIxRAQXnBeVt8-c4IDVxKTx/view?usp=sharing"
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Introduction to Cybersecurity",
+              "credentialCategory": "Certifications",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "Coursera"
+              },
+              "url": "https://coursera.org/share/52b5ed448da8f62a1f399802af0b6530"
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Machine Learning and Data Science",
+              "credentialCategory": "Certifications",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "Coursera"
+              },
+              "url": "https://coursera.org/share/e2e08944a48bfb9788ee14348789ba99"
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Programming in Java",
+              "credentialCategory": "Certifications",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "Coursera"
+              },
+              "url": "https://coursera.org/share/42f1ce37c6c596648906174438de0fe2"
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Computer Networking Fundamentals",
+              "credentialCategory": "Certifications",
+              "recognizedBy": {
+                "@type": "Organization",
+                "name": "Coursera"
+              },
+              "url": "https://coursera.org/share/abe5a9612db47abae37e31f33b45b682"
+            }
+          ]
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "@id": "https://YOUR_DOMAIN_HERE.com/#project-file-compression-simulator",
+          "name": "File Compression Simulator",
+          "headline": "Java simulation tool demonstrating Huffman coding & run-length encoding with bitrate analysis",
+          "description": "An algorithmic Java application designed to simulate and evaluate lossless file compression and decompression techniques using Huffman coding trees and run-length encoding (RLE), with file size reduction metrics and performance benchmarking.",
+          "creator": {
+            "@id": "https://YOUR_DOMAIN_HERE.com/#person"
+          },
+          "programmingLanguage": "Java, Data Structures, Huffman Coding, Algorithms",
+          "codeRepository": "https://github.com/hackthesparrow/Java-Project-",
+          "url": "https://github.com/hackthesparrow/Java-Project-"
+        },
+        {
+          "@type": "SoftwareSourceCode",
+          "@id": "https://YOUR_DOMAIN_HERE.com/#project-personal-portfolio-web",
+          "name": "Interactive Web Mini Projects & UI Suite",
+          "headline": "Suite of responsive frontend applications, DOM utilities, and modular components",
+          "description": "A portfolio and interactive web tools repository demonstrating responsive UI design, accessible layout systems, and clean JavaScript component architecture.",
+          "creator": {
+            "@id": "https://YOUR_DOMAIN_HERE.com/#person"
+          },
+          "programmingLanguage": "JavaScript, React, HTML5, CSS3, Tailwind CSS",
+          "codeRepository": "https://github.com/hackthesparrow/Web-Mini_Projects",
+          "url": "https://github.com/hackthesparrow/Web-Mini_Projects"
+        },
+        {
+          "@type": "CreativeWork",
+          "@id": "https://YOUR_DOMAIN_HERE.com/#project-network-security-audit-lab",
+          "name": "Network Security & Vulnerability Analysis Lab",
+          "headline": "Hands-on penetration testing labs, packet dissection, and security auditing with Kali Linux & Wireshark",
+          "description": "Practical cybersecurity laboratory environments demonstrating network packet capture, Nmap service reconnaissance, CIA triad defense models, and defensive vulnerability scanning.",
+          "creator": {
+            "@id": "https://YOUR_DOMAIN_HERE.com/#person"
+          },
+          "programmingLanguage": "Kali Linux, Wireshark, Nmap, Bash, Security Auditing",
+          "codeRepository": "https://github.com/hackthesparrow",
+          "url": "https://github.com/hackthesparrow"
+        }
+      ]
+    }
+    </script>
   </head>
   <body class="bg-[var(--canvas-bg)] text-[var(--text-primary)] selection:bg-[#173f32]/20 selection:text-[#173f32] overflow-x-hidden antialiased">
+    <!-- Non-JavaScript Crawlability & Accessibility Fallback -->
+    <noscript>
+      <div style="padding: 2rem; max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.6; color: #173f32;">
+        <h1>Harsh Kumar Shandilya — Cybersecurity &amp; Software Developer</h1>
+        <p><strong>B.Tech Computer Science &amp; Engineering (Cyber Security) at Rungta University (RCET)</strong></p>
+        <p>Google Student Ambassador 2026 • Student Builder Group Leader at AWS SBG RCET</p>
+        <p>Location: Bhilai, Chhattisgarh, India | Email: hshandilya2008@gmail.com | Phone: +91 7647088605</p>
+
+        <h2>About</h2>
+        <p>I am a B.Tech Computer Science &amp; Engineering (Cyber Security) student at Rungta International Skills University with active focus on software development, cloud computing, and defensive cybersecurity. Serving as Google Student Ambassador 2026 and Student Builder Group Leader at RCET, I combine practical programming in Java and C with hands-on Linux system security and campus tech event leadership.</p>
+
+        <h2>Core Technical Skills</h2>
+        <ul>
+          <li><strong>Development:</strong> Java (Core &amp; OOP), C Programming, Python, JavaScript, React, HTML5, Modern CSS3.</li>
+          <li><strong>Cybersecurity:</strong> Kali Linux, Basic Penetration Testing, Wireshark Packet Analysis, Linux Administration &amp; Bash, Systems Hardening.</li>
+          <li><strong>Cloud &amp; Infrastructure:</strong> AWS Cloud Fundamentals, MySQL Relational Database, Git &amp; GitHub Version Control.</li>
+        </ul>
+
+        <h2>Featured Projects</h2>
+        <ul>
+          <li>
+            <strong>File Compression Simulator (Java &amp; Algorithms):</strong> Lossless file compression and decompression using Huffman coding trees and run-length encoding (RLE).
+            <br /><a href="https://github.com/hackthesparrow/Java-Project-">View Java Project on GitHub</a>
+          </li>
+          <li>
+            <strong>Interactive Web Mini Projects &amp; UI Suite (Frontend Engineering):</strong> Suite of responsive web applications and performant React components.
+            <br /><a href="https://github.com/hackthesparrow/Web-Mini_Projects">View Web Projects on GitHub</a>
+          </li>
+          <li>
+            <strong>Network Security &amp; Vulnerability Analysis Lab (Cybersecurity &amp; Linux):</strong> Hands-on packet dissection, Nmap reconnaissance, and network hardening labs.
+            <br /><a href="https://github.com/hackthesparrow">View Cybersecurity Repositories on GitHub</a>
+          </li>
+        </ul>
+
+        <h2>Verified Certifications</h2>
+        <ul>
+          <li>Foundations of Cybersecurity — Google / Coursera</li>
+          <li>Cyber Essentials &amp; Security Defenses — Certified Security Course</li>
+          <li>Introduction to Cybersecurity — Coursera</li>
+          <li>Programming in Java — Coursera</li>
+          <li>Computer Networking Fundamentals — Coursera</li>
+          <li>Machine Learning and Data Science — Coursera</li>
+        </ul>
+
+        <p><a href="/Harsh_Resume.pdf">Download Official Resume (PDF)</a></p>
+      </div>
+    </noscript>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

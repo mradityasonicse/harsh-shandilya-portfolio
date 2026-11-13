@@ -145,7 +145,8 @@ const SpotlightProjectCard: React.FC<{
               onClick={(e) => {
                 e.stopPropagation();
               }}
-              title="View Repository"
+              title={`View ${proj.title} on GitHub`}
+              aria-label={`View source code for ${proj.title} on GitHub (opens in a new tab)`}
               className="p-2.5 rounded-full bg-white dark:bg-[#071510] text-[#173f32] dark:text-[#faf8f1] border border-[#173f32]/16 dark:border-[#faf8f1]/15 hover:border-[#173f32] hover:bg-[#f5f2e8] transition-all cursor-pointer shadow-xs active:scale-95"
             >
               <GitBranch className="w-3.5 h-3.5" />

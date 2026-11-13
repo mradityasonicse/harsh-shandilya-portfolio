@@ -20,6 +20,7 @@ export interface PersonalProfile {
   email: string;
   phone?: string;
   photoUrl?: string;
+  siteUrl?: string;
   githubUrl: string;
   linkedinUrl: string;
   twitterUrl: string;
@@ -86,6 +87,8 @@ export const PERSONAL_CONFIG: PersonalProfile = {
   email: "hshandilya2008@gmail.com",
   phone: "+91 7647088605",
   photoUrl: "/harsh-cutout.png",
+  // ⚠️ CONFIGURE BEFORE DEPLOYMENT: Replace placeholder with your live production domain (e.g. https://harshshandilya.com)
+  siteUrl: "https://YOUR_DOMAIN_HERE.com",
   githubUrl: "https://github.com/hackthesparrow",
   linkedinUrl: "https://www.linkedin.com/in/harsh-kumar-shandilya-78b223372/",
   twitterUrl: "https://x.com",

@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PERSONAL_CONFIG, INTRO_CONFIG } from './data/personalConfig';
+import { SECTION_SEO } from './data/seoConfig';
 import { ModernistDotGrid } from './components/canvas/ModernistDotGrid';
 import { Navbar } from './components/ui/Navbar';
 import { NYCTickerBanner } from './components/ui/NYCTickerBanner';
@@ -49,6 +50,24 @@ export const App: React.FC = () => {
       localStorage.setItem('nyc_portfolio_theme', 'light');
     }
   }, [isDark]);
+
+  // Synchronize document title and description with active view / modal
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+
+    if (isResumeOpen) {
+      document.title = 'Official Resume & Credentials | Harsh Kumar Shandilya';
+      return;
+    }
+
+    const currentSeo = SECTION_SEO[activeSection] || SECTION_SEO.hero;
+    document.title = currentSeo.title;
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', currentSeo.description);
+    }
+  }, [activeSection, isResumeOpen]);
 
   // Initialize Lenis Inertia Smooth Scroll
   useEffect(() => {

@@ -113,12 +113,24 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, profi
                   </>
                 )}
                 <span>•</span>
-                <a href={profile.githubUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-[var(--text-primary)] print:text-black">
+                <a
+                  href={profile.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Harsh Kumar Shandilya's GitHub profile (opens in a new tab)"
+                  className="flex items-center gap-1 hover:text-[var(--text-primary)] print:text-black"
+                >
                   <Code2 className="w-3.5 h-3.5 text-slate-500" />
                   GitHub
                 </a>
                 <span>•</span>
-                <a href={profile.linkedinUrl} target="_blank" rel="noreferrer" className="flex items-center gap-1 hover:text-[var(--text-primary)] print:text-black">
+                <a
+                  href={profile.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Visit Harsh Kumar Shandilya's LinkedIn profile (opens in a new tab)"
+                  className="flex items-center gap-1 hover:text-[var(--text-primary)] print:text-black"
+                >
                   <Globe className="w-3.5 h-3.5 text-slate-500" />
                   LinkedIn
                 </a>
